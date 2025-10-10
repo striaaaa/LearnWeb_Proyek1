@@ -1,0 +1,58 @@
+.path {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.path-1 {
+  width: 20%;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #d9d9d9;
+  border-radius: 8px;
+}
+
+.container-border {
+  border-bottom: 1px solid #d4d4d4;
+  padding-bottom: 30px;
+}
+
+.materi {
+  width: 80%;
+  margin: auto;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  /* background-color: aqua; */
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+}
+
+.left-content {
+  width: 35%;
+  padding: 10px 0 10px 10px;
+  border: 1px solid #d4d4d4;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.line {
+  width: 1px;
+  border-left: 2px solid #d4d4d4;
+  height: 20vh;
+}
+
+.list-modul {
+  padding: 5px 20px;
+}

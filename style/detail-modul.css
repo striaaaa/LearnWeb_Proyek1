@@ -1,0 +1,146 @@
+.nav-detail-modul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  padding-left: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #fff;
+  transition: 0.5s;
+}
+.left-nav-detail {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.right-nav-detail {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.foot-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  border-top: 1px solid #595959;
+  color: #595959;
+  font-size: 20px;
+}
+
+/* BTN TEMA */
+
+.btn-theme {
+  /* padding: 10px; */
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  width: 60px;
+  height: 60px;
+  transition: background-color 0.5s, box-shadow 0.5s;
+}
+
+body.dark {
+  background-color: #292929;
+  color: white;
+  transition: 0.5s;
+}
+body.dark .ri-moon-line {
+  color: white;
+}
+
+body.dark .nav span {
+  color: white;
+  transition: 0.5s;
+}
+
+body.dark .nav-detail-modul {
+  background: #292929;
+  color: white;
+  transition: 0.5s;
+}
+
+body.dark .nav-detail-modul {
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+  transition: 0.5s;
+}
+body.dark .foot-nav {
+  border-top: 1px solid #a6a6a6;
+  color: #a6a6a6;
+  transition: 0.5s;
+}
+body.dark .frame h1 {
+  color: white;
+  transition: 0.5s;
+}
+body.dark .frame p,
+body.dark .frame ul li {
+  color: #d4d4d4;
+  transition: 0.5s;
+}
+
+/* AKHHIR BTN TEMA */
+
+/* CONTAINER DETAIL MODUL */
+.container-detail {
+  width: 85%;
+  margin: auto;
+  margin-top: 50px;
+  /* height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding-bottom: 50px;
+}
+
+.frame {
+  width: 90%;
+  border-bottom: 2px solid #a6a6a6;
+  padding-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.frame h1 {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.frame p {
+  /* font-size: 16px; */
+  font-weight: 400;
+  color: #595959;
+  line-height: 1.5;
+}
+
+.frame ul li {
+  font-size: 20px;
+  font-weight: 400;
+  color: #595959;
+  line-height: 1.5;
+  margin-left: 20px;
+}
+
+.frame .bingkai {
+  width: 50%;
+  height: 50%;
+}
+
+.frame .bingkai img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
