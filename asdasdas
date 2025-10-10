@@ -1,0 +1,15 @@
+    # Mengaktifkan mesin rewrite Apache
+    RewriteEngine On
+
+    # Tentukan base URL proyek Anda. Ganti /learnweb/ jika Anda mengubah nama folder
+    RewriteBase /learnweb/ 
+
+    # 1. Pastikan aset (CSS, JS, gambar) yang ada tetap bisa diakses
+    # Jika permintaan adalah untuk file yang ada (-f) atau direktori yang ada (-d), jangan lakukan rewrite
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # 2. Aturan Rewrite Utama
+    # Semua yang tidak ditemukan sebagai file/folder akan diarahkan ke index.php
+    # dan sisanya dari URL akan dilewatkan sebagai parameter 'page'
+    RewriteRule ^(.*)$ index.php?page=$1 [L,QSA]
