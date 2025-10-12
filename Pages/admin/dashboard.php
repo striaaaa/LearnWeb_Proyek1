@@ -1,12 +1,12 @@
 <?php
 require_once __DIR__ . '/../../config/database.php';
-require_once __DIR__.'/../../middleware/authMiddleware.php'; 
+// require_once __DIR__.'/../../middleware/authMiddleware.php'; 
 $mysqli = getMysqliConnection();
 try {
     // $stmt = $mysqli->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
-    $name = "Zaa Aslam";
-    $email = "zaa@mail.com";
-    // $pass = password_hash("zaa123", PASSWORD_BCRYPT);
+    // $name = "Sunin";
+    // $email = "123@mail.com";
+    // $pass = password_hash("123", PASSWORD_BCRYPT);
     // // "s" = string, "i" = integer, "d" = double, "b" = blob
     // $stmt->bind_param("sss", $name, $email, $pass);
     // $stmt->execute();

@@ -1,3 +1,9 @@
+<?php
+// require_once __DIR__ . '/../controller/loginController.php';
+require_once __DIR__ . '/../middleware/guestMiddleware.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -32,6 +38,7 @@
         </div>
       </div>
     </div>
+   
 
     <div class="container-profile">
       <div class="img-radius">

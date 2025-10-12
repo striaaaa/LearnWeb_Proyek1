@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    not found
+    not founds
 </body>
 </html>

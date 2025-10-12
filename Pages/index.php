@@ -1,50 +1,24 @@
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Homepage</title>
-  <link rel="stylesheet" href="assets/css/nav.css" /> 
-    <link rel="stylesheet" href="assets/css/home.css"> 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sora:wght@100..800&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div class="nav">
-      <div class="logo">Logo</div>
-      <div class="nav-link">
-        <a href=""><span>Beranda</span></a>
-        <a href="learning-path.html"><span>Learning Path</span></a>
-        <a href=""><span>Dashboard</span></a>
-      </div>
-      <div class="log-btn">
-        <div class="regist-btn">Daftar</div>
-        <div class="login-btn">Masuk</div>
-      </div>
-    </div>
+<?php
+require_once __DIR__ . '/../controller/homapageController.php';
+require_once __DIR__ . '/../controller/loginController.php'; 
+require_once __DIR__ . '/../middleware/guestMiddleware.php';
 
-    <div class="container-1">
-      <div class="left_content_1">
-        <div class="header_content_1">
-          <p>Belajar Web Development Dasar dengan Mudah</p>
-        </div>
-        <div class="sub_header_content_1">
-          <p>Materi terstruktur untuk mahasiswa baru Teknik Informatika</p>
-        </div>
-        <div class="btn_content_1">
-          <span>Belajar Sekarang</span>
-        </div>
-      </div>
-      <div class="right_content_1">
-        <div class="box-img-1">
-          <img src="https://" alt="ini gambar" />
-        </div>
-      </div>
-    </div>
+$page_css = '<link rel="stylesheet" href="assets/css/home.css" />';
+?>
+<?php
+ob_start();
+?>
 
+<!-- diimport dri middleware -->
+<?#=basefolder();?>  
+ <div class="logout-container" style="text-align: right; margin: 20px;">
+      <form  method="post">
+        <button type="submit" name="logout" class="logout-btn" style="padding: 8px 16px; background: #e74c3c; color: #fff; border: none; border-radius: 4px; cursor: pointer;">
+          Logout
+        </button>
+      </form>
+    </div>
     <div class="container-2">
       <div class="header_content_2">
         <p>Mulai Belajar dari sini</p>
@@ -177,39 +151,8 @@
         <span>Mulai Belajar</span>
       </div>
     </div>
+<?php
+$content = ob_get_clean();
 
-    <footer>
-      <div class="top-footer">
-        <div class="left-footer">
-          <div class="logo-footer">LearnWeb</div>
-          <div class="desc-footer">
-            <p>Politeknik Negeri Indramayu</p>
-            <p>
-              Jl. Raya Lohbener Lama No.08, Legok, Kec. Lohbener, Kabupaten
-              Indramayu, Jawa Barat 45252
-            </p>
-          </div>
-          <div class="icon_sosmed">
-            <div class="icon-1">
-              <img src="assets/ig-vector.png" alt="" />
-            </div>
-            <div class="icon-1">
-              <img src="assets/github-vector.png" alt="" />
-            </div>
-          </div>
-        </div>
-        <div class="right-footer">
-          <div class="link-footer">
-            <h4>Link</h4>
-            <a href=""><p>Beranda</p></a>
-            <a href=""><p>Learning Path</p></a>
-            <a href=""><p>Dashboard</p></a>
-          </div>
-        </div>
-      </div>
-      <div class="bottom-footer">
-        <p>© 2025 LearnWeb | Dibuat oleh Kelompok 2 -</p>
-      </div>
-    </footer>
-  </body>
-</html>
+include __DIR__ . '/../layouts/mainUser.php';
+?>

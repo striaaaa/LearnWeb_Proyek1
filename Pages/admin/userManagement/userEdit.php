@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__.'/../../../middleware/authMiddleware.php'; 
+// require_once __DIR__.'/../../../middleware/authMiddleware.php'; 
 global $params;
 $id = $params['id'] ?? null;
 

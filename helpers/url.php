@@ -8,7 +8,12 @@ function base_url()
 }
 // var_dump(base_url());
 // die();
-
+function basefolder()
+{
+    $url = $_SERVER['REQUEST_URI'];
+    $segments = explode('/', trim($url, '/'));
+   return '/' . $segments[0];
+}
 function get_segments()
 {
     // var_dump($_SERVER['SCRIPT_NAME']); # /learnweb/index.php

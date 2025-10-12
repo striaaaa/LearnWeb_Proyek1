@@ -1,14 +1,14 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
     Options -Indexes
-    RewriteBase /learnweb/
+    RewriteBase /learnweb_proyek1/
 
     # biar bisa tangani /folder/file juga (user/profile → Pages/user/profile.php)
     RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)$ Pages/$1/$2.php [L]
 
     # kalau hanya 1 segmen → arahkan ke Pages/user/namafile.php
     RewriteRule ^([a-zA-Z0-9_-]+)$ Pages/$1.php [L]
-    #setelah /learnweb/ kosong → arahkan ke Pages/index.php
+    #setelah /learnweb_proyek1/ kosong → arahkan ke Pages/index.php
     RewriteRule ^$ Pages/index.php [L]
     # fallback: kalau bukan file/folder → lempar ke index.php
     RewriteCond %{REQUEST_FILENAME} !-f

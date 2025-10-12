@@ -82,7 +82,7 @@
         <h1>Analogi Sederhana</h1>
         <p>
           Bayangkan HTML itu seperti tulang dalam tubuh manusia → memberi
-          struktur. Supaya terlihat menarik, HTML butuh CSS (ibarat pakaian),
+          struktur.Supaya terlihat menarik, HTML butuh CSS (ibarat pakaian),
           dan agar interaktif, HTML butuh JavaScript (ibarat otot).
         </p>
       </div>

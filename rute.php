@@ -1,5 +1,5 @@
 <?php
-require_once 'helpers/url.php';
+// require_once 'helpers/url.php';
 $segments = [];
 for ($i = 0; $i < 20; $i++) {
     $seg = url_segment($i);
@@ -9,7 +9,7 @@ for ($i = 0; $i < 20; $i++) {
 // Definisi routes
 $routes = [
     ""          => "Pages/index.php",
-    "login"     => "Pages/login.php",
+    "loginn"     => "Pages/login.php",
     "dashboard" => "Pages/dashboard.php",
     "course-detail" => "Pages/course-detail.php",
     "profile"   => "Pages/user/profile.php",
@@ -56,12 +56,12 @@ function resolveRoute($routes, $segments, &$params = [])
                     continue 2;
                 }
             }
-            return "views/404.php";
+            return "Pages/404.php";
         }
     }
 
     if (is_array($current)) {
-        return $current[""] ?? "views/404.php";
+        return $current[""] ?? "Pages/404.php";
     }
 
     return $current;
@@ -74,5 +74,5 @@ $file = resolveRoute($routes, $segments, $params);
 if (file_exists($file)) {
     include $file;
 } else {
-    include "views/404.php";
+    include "Pages/404.php";
 }
