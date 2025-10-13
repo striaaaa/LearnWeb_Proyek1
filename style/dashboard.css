@@ -132,6 +132,11 @@
   margin-top: 20px;
 }
 
+.btn-download:hover {
+  background: #595959;
+  transition: 0.3s;
+}
+
 .line {
   height: 1px;
   background: #afafaf;
