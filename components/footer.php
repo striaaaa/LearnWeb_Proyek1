@@ -15,10 +15,10 @@
           </div>
           <div class="icon_sosmed">
             <div class="icon-1">
-              <img src="../assets/ig-vector.png" alt="" />
+              <img src="<?=basefolder()?>/assets/ig-vector.png" alt="" />
             </div>
             <div class="icon-1">
-              <img src="../assets/github-vector.png" alt="" />
+              <img src="<?=basefolder()?>/assets/github-vector.png" alt="" />
             </div>
           </div>
         </div>

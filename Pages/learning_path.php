@@ -1,38 +1,10 @@
 <?php
-require_once __DIR__ . '../../helpers/url.php';
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Learning Path</title>
-    <link rel="stylesheet" href="assets/css/nav.css" />
-    <link rel="stylesheet" href="assets/css/learning-path.css" />
-
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sora:wght@100..800&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div class="nav">
-      <div class="logo">Logo</div>
-      <div class="nav-link">
-        <a href="after-login.html"><span>Beranda</span></a>
-        <a href="<?=base_url()?>/learning-path"><span>Learning Path</span></a>
-        <a href=""><span>Dashboard</span></a>
-      </div>
-      <div class="acc-nav">
-        <div class="name-acc-nav">
-          <span>Nama Akun</span>
-        </div>
-        <div class="img-acc-nav">
-          <img src="../assets/user.png" alt="user" />
-        </div>
-      </div>
-    </div>
+// require_once __DIR__ . '../../helpers/url.php';
+require_once __DIR__ . '/../controller/courseLearningPathController.php';
+// $page_css = '<link rel="stylesheet" href="assets/css/learning-path.css" />';
+$page_css  = '<link rel="stylesheet" href="' . basefolder() . '/assets/css/learning-path.css">';
+ob_start();
+?> 
     <div class="path">
       <div class="path-1">
         <span>HTML</span>
@@ -47,16 +19,22 @@ require_once __DIR__ . '../../helpers/url.php';
         <span>PHP</span>
       </div>
     </div>
+    <?php
+    echo "<pre>";
+    var_dump($courseWithModulesResult['data']);
+    echo "</pre>";
+    ?>
     <div class="container-border">
       <div class="materi">
+        <?php
+        foreach ($courseWithModulesResult['data'] as $key=>$course) {
+        ?>
         <div class="content">
           <div class="left-content">
             <div class="tahapan">
-              <span>Langkah 1</span>
+              <span>Langkah <?=$key?></span>
             </div>
-            <div class="head-content"><span>Pengenalan HTML</span></div>
-            <div class="head-content"><span>Pengenalan HTML</span></div>
-            <div class="head-content"><span>Pengenalan HTML</span></div>
+            <div class="head-content"><span><?=$course['title'] ?></span></div> 
           </div>
           <div class="line"></div>
           <div class="righ-content">
@@ -65,139 +43,17 @@ require_once __DIR__ . '../../helpers/url.php';
             </div>
             <div class="list-modul">
               <ul>
-                <li>Apa itu HTML?</li>
-                <li>Apa itu HTML?</li>
-                <li>Apa itu HTML?</li>
+                <li><?=$course['module_content']?>?</li> 
               </ul>
             </div>
           </div>
-        </div>
-        <div class="content">
-          <div class="left-content">
-            <div class="tahapan">
-              <span>Langkah 1</span>
-            </div>
-            <div class="head-content"><span>Pengenalan HTML</span></div>
-            <div class="head-content"><span>Pengenalan HTML</span></div>
-            <div class="head-content"><span>Pengenalan HTML</span></div>
-          </div>
-          <div class="line"></div>
-          <div class="righ-content">
-            <div class="header-right">
-              <span>Pengenalan HTML</span>
-            </div>
-            <div class="list-modul">
-              <ul>
-                <li>Apa itu HTML?</li>
-                <li>Apa itu HTML?</li>
-                <li>Apa itu HTML?</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="content">
-          <div class="left-content">
-            <div class="tahapan">
-              <span>Langkah 1</span>
-            </div>
-            <div class="head-content"><span>Pengenalan HTML</span></div>
-            <div class="head-content"><span>Pengenalan HTML</span></div>
-            <div class="head-content"><span>Pengenalan HTML</span></div>
-          </div>
-          <div class="line"></div>
-          <div class="righ-content">
-            <div class="header-right">
-              <span>Pengenalan HTML</span>
-            </div>
-            <div class="list-modul">
-              <ul>
-                <li>Apa itu HTML?</li>
-                <li>Apa itu HTML?</li>
-                <li>Apa itu HTML?</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="content">
-          <div class="left-content">
-            <div class="tahapan">
-              <span>Langkah 1</span>
-            </div>
-            <div class="head-content"><span>Pengenalan HTML</span></div>
-            <div class="head-content"><span>Pengenalan HTML</span></div>
-            <div class="head-content"><span>Pengenalan HTML</span></div>
-          </div>
-          <div class="line"></div>
-          <div class="righ-content">
-            <div class="header-right">
-              <span>Pengenalan HTML</span>
-            </div>
-            <div class="list-modul">
-              <ul>
-                <li>Apa itu HTML?</li>
-                <li>Apa itu HTML?</li>
-                <li>Apa itu HTML?</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="content">
-          <div class="left-content">
-            <div class="tahapan">
-              <span>Langkah 1</span>
-            </div>
-            <div class="head-content"><span>Pengenalan HTML</span></div>
-            <div class="head-content"><span>Pengenalan HTML</span></div>
-            <div class="head-content"><span>Pengenalan HTML</span></div>
-          </div>
-          <div class="line"></div>
-          <div class="righ-content">
-            <div class="header-right">
-              <span>Pengenalan HTML</span>
-            </div>
-            <div class="list-modul">
-              <ul>
-                <li>Apa itu HTML?</li>
-                <li>Apa itu HTML?</li>
-                <li>Apa itu HTML?</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+        </div> 
+        <?php }?>
       </div>
     </div>
-    <footer>
-      <div class="top-footer">
-        <div class="left-footer">
-          <div class="logo-footer">LearnWeb</div>
-          <div class="desc-footer">
-            <p>Politeknik Negeri Indramayu</p>
-            <p>
-              Jl. Raya Lohbener Lama No.08, Legok, Kec. Lohbener, Kabupaten
-              Indramayu, Jawa Barat 45252
-            </p>
-          </div>
-          <div class="icon_sosmed">
-            <div class="icon-1">
-              <img src="../assets/ig-vector.png" alt="" />
-            </div>
-            <div class="icon-1">
-              <img src="../assets/github-vector.png" alt="" />
-            </div>
-          </div>
-        </div>
-        <div class="right-footer">
-          <div class="link-footer">
-            <h4>Link</h4>
-            <a href=""><p>Beranda</p></a>
-            <a href=""><p>Learning Path</p></a>
-            <a href=""><p>Dashboard</p></a>
-          </div>
-        </div>
-      </div>
-      <div class="bottom-footer">
-        <p>© 2025 LearnWeb | Dibuat oleh Kelompok 2 -</p>
-      </div>
-    </footer>
-  </body>
-</html>
+    <?php include __DIR__ . '/../components/footer.php'; ?>
+<?php
+$content = ob_get_clean();
+
+include __DIR__ . '/../layouts/mainUser.php';
+?>

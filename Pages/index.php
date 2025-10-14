@@ -2,16 +2,33 @@
 <?php
 require_once __DIR__ . '/../controller/homapageController.php';
 require_once __DIR__ . '/../controller/loginController.php'; 
-require_once __DIR__ . '/../middleware/guestMiddleware.php';
+// require_once __DIR__ . '/../middleware/guestMiddleware.php';
 
-$page_css = '<link rel="stylesheet" href="assets/css/home.css" />';
-?>
-<?php
+$page_css  = '<link rel="stylesheet" href="' . basefolder() . '/assets/css/home.css">';
 ob_start();
-?>
+?> 
 
 <!-- diimport dri middleware -->
 <?#=basefolder();?>  
+
+ <div class="container-1">
+     <div class="left_content_1">
+         <div class="header_content_1">
+             <p>Belajar Web Development Dasar dengan Mudah</p>
+         </div>
+         <div class="sub_header_content_1">
+             <p>Materi terstruktur untuk mahasiswa baru Teknik Informatika</p>
+         </div>
+         <div class="btn_content_1">
+             <span>Belajar Sekarang</span>
+         </div>
+     </div>
+     <div class="right_content_1">
+         <div class="box-img-1">
+             <img src="https://" alt="ini gambar" />
+         </div>
+     </div>
+ </div>
  <div class="logout-container" style="text-align: right; margin: 20px;">
       <form  method="post">
         <button type="submit" name="logout" class="logout-btn" style="padding: 8px 16px; background: #e74c3c; color: #fff; border: none; border-radius: 4px; cursor: pointer;">

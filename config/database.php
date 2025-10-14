@@ -1,4 +1,6 @@
 <?php
+
+require_once __DIR__ . '/../helpers/db_helper.php';
 function getMysqliConnection() {
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 

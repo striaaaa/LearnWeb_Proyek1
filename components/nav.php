@@ -2,17 +2,19 @@
  <div class="nav">
      <div class="logo">Logo</div>
      <div class="nav-link">
-         <a href=""><span>Beranda</span></a>
-         <a href="learning-path.html"><span>Learning Path</span></a>
-         <a href=""><span>Dashboard</span></a>
+         <a href="<?=basefolder()?>/"><span>Beranda</span></a>
+         <a href="<?=basefolder()?>/course"><span>Kursus</span></a>
+         <a href="<?=basefolder()?>/dashboard"><span>Dashboard</span></a>
      </div>
      <?php if (!isset($_COOKIE['login_token'])): ?>
          <div class="log-btn">
-            <a href="<?=basefolder()?>/login">
-                <div class="regist-btn">Daftar</div>
+            <a class="regist-btn" href="<?=basefolder()?>/register">
+                Daftar
             </a>
-             <div class="login-btn">Masuk</div>
-         </div>
+            <a class="login-btn" href="<?=basefolder()?>/login">
+                Masuk
+            </a>
+        </div>
      <?php else: ?>
          <div class="acc-nav">
              <div class="name-acc-nav">
@@ -25,22 +27,3 @@
      <?php endif; ?>
  </div>
 
-
- <div class="container-1">
-     <div class="left_content_1">
-         <div class="header_content_1">
-             <p>Belajar Web Development Dasar dengan Mudah</p>
-         </div>
-         <div class="sub_header_content_1">
-             <p>Materi terstruktur untuk mahasiswa baru Teknik Informatika</p>
-         </div>
-         <div class="btn_content_1">
-             <span>Belajar Sekarang</span>
-         </div>
-     </div>
-     <div class="right_content_1">
-         <div class="box-img-1">
-             <img src="https://" alt="ini gambar" />
-         </div>
-     </div>
- </div>

@@ -1,45 +1,9 @@
 <?php
-// require_once __DIR__ . '/../controller/loginController.php';
+require_once __DIR__ . '/../controller/dashboardController.php';
 require_once __DIR__ . '/../middleware/guestMiddleware.php';
-
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="assets/css/nav.css" /> 
-    <link rel="stylesheet" href="assets/css/dashboard.css"> 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sora:wght@100..800&display=swap"
-      rel="stylesheet"
-    /> 
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div class="nav">
-      <div class="logo">Logo</div>
-      <div class="nav-link">
-        <a href="after-login.html"><span>Beranda</span></a>
-        <a href="learning-path.html"><span>Learning Path</span></a>
-        <a href=""><span>Dashboard</span></a>
-      </div>
-      <div class="acc-nav">
-        <div class="name-acc-nav">
-          <span>Nama Akun</span>
-        </div>
-        <div class="img-acc-nav">
-          <img src="assets/ig-vector.png" alt="user" />
-        </div>
-      </div>
-    </div>
-   
-
+$page_css = '<link rel="stylesheet" href="assets/css/dashboard.css" />';
+ob_start();
+?> 
     <div class="container-profile">
       <div class="img-radius">
         <img src="" alt="user" />
@@ -61,13 +25,41 @@ require_once __DIR__ . '/../middleware/guestMiddleware.php';
       <div class="content-modul">
         <div class="top-content">
           <div class="img-left-modul">
-            <img src="" alt="" />
+            <img src="" alt="ajdaskjdas" />
           </div>
           <div class="title-modul">
             <span><i class="ri-check-line"></i>Selesai</span>
+            <p>Pengenalan Html dasar</p>
+            <span class="jam"><i class="ri-time-line"></i>45 Jam</span>
           </div>
         </div>
+        <p class="desc-modul">
+          Mempelajari komponen - komponen dasar Html dan CSS yang Merupakan
+          fondasi utama untuk menjadi front-end web developer
+        </p>
+        <div class="btn-download">Unduh Materi</div>
+      </div>
+      <div class="content-modul">
+        <div class="top-content">
+          <div class="img-left-modul">
+            <img src="" alt="ajdaskjdas" />
+          </div>
+          <div class="title-modul">
+            <span><i class="ri-check-line"></i>Selesai</span>
+            <p>Pengenalan Html dasar</p>
+            <span class="jam"><i class="ri-time-line"></i>45 Jam</span>
+          </div>
+        </div>
+        <p class="desc-modul">
+          Mempelajari komponen - komponen dasar Html dan CSS yang Merupakan
+          fondasi utama untuk menjadi front-end web developer
+        </p>
+        <div class="btn-download">Unduh Materi</div>
       </div>
     </div>
-  </body>
-</html>
+
+    <div class="line"></div> 
+<?php
+$content = ob_get_clean();
+include __DIR__ . '/../layouts/mainUser.php';
+?>

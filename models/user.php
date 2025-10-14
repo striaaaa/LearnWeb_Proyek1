@@ -15,3 +15,21 @@ $result = $stmt->get_result();
 if ($result && $result->num_rows === 1) {
     $user = $result->fetch_assoc();
 } 
+function getUserLogin($login_token)
+{
+
+    try {
+        $sql = "SELECT name, email, image, login_token, created_at FROM users WHERE login_token = ?";
+
+        $courses = runQuery($sql, [$login_token], 's'); 
+        return [
+            'success' => true,
+            'data' => $courses
+        ];
+    } catch (Exception $e) {
+        return [
+            'success' => false,
+            'error' => $e->getMessage()
+        ];
+    }
+}

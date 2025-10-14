@@ -1,5 +1,5 @@
 <?php
-// require_once 'helpers/url.php';
+require_once 'helpers/url.php';
 $segments = [];
 for ($i = 0; $i < 20; $i++) {
     $seg = url_segment($i);
@@ -9,13 +9,16 @@ for ($i = 0; $i < 20; $i++) {
 // Definisi routes
 $routes = [
     ""          => "Pages/index.php",
-    "loginn"     => "Pages/login.php",
+    "login"     => "Pages/login.php",
     "dashboard" => "Pages/dashboard.php",
+
     "course-detail" => "Pages/course-detail.php",
     "profile"   => "Pages/user/profile.php",
     "setting"   => "Pages/user/setting.php",
-
-    "learning-path" => "Pages/learning_path.php",
+    "course" => [
+        "" => "Pages/course.php",
+        ":courseId" => "Pages/learning_path.php"
+    ],
 
     "admin"     => [
         "dashboard" => "Pages/admin/dashboard.php",
