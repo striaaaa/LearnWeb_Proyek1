@@ -73,6 +73,15 @@
   justify-content: space-between;
   gap: 20px;
 }
+
+.head_card_2 {
+  width: 100%;
+  height: 200px;
+  background-color: red;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
 .btn_card_2 {
   width: 40%;
   padding: 10px 10px;
