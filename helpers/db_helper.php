@@ -2,6 +2,22 @@
 require_once __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/../config/database.php';
 // helpers/db_helper.php
+// letakkan di luar switch (sekali saja)
+if (!function_exists('arrayToObject')) {
+    function arrayToObject($data)
+    {
+        if (is_array($data)) {
+            // jika array numerik, ubah setiap elemen jadi object
+            if (array_keys($data) === range(0, count($data) - 1)) {
+                return array_map(__FUNCTION__, $data);
+            } else {
+                return (object) array_map(__FUNCTION__, $data);
+            }
+        }
+        return $data;
+    }
+}
+
 function runQuery($sql, $params = [], $types = '')
 {
     // $conn = getMysqliConnection();
@@ -43,7 +59,7 @@ function runQuery($sql, $params = [], $types = '')
         if (!$stmt) {
             throw new Exception("Prepare failed: " . mysqli_error($conn));
         }
- 
+
         if (!empty($params)) {
             if ($types === '') {
                 $types = '';
@@ -52,21 +68,33 @@ function runQuery($sql, $params = [], $types = '')
                 }
             }
             mysqli_stmt_bind_param($stmt, $types, ...$params);
-        } 
+        }
 
 
         if (!mysqli_stmt_execute($stmt)) {
             throw new Exception("Execute failed: " . mysqli_stmt_error($stmt));
         }
- 
+
         $queryType = strtoupper(strtok(trim($sql), ' '));
         $result = null;
 
         switch ($queryType) {
+            // case 'SELECT':
+            //     $res = mysqli_stmt_get_result($stmt);
+            //     $result = $res ? mysqli_fetch_all($res, MYSQLI_ASSOC) : [];
+            //     break;
             case 'SELECT':
                 $res = mysqli_stmt_get_result($stmt);
                 $result = $res ? mysqli_fetch_all($res, MYSQLI_ASSOC) : [];
+
+                if (count($result) === 1) {
+                    $result = $result[0];
+                }
+
+                $result = arrayToObject($result);
                 break;
+
+
 
             case 'INSERT':
                 $result = [
@@ -90,8 +118,7 @@ function runQuery($sql, $params = [], $types = '')
         mysqli_stmt_close($stmt);
         mysqli_close($conn);
 
-        return $result ;
-
+        return $result;
     } catch (Exception $e) {
 
         if (isset($stmt)) mysqli_stmt_close($stmt);
@@ -102,5 +129,4 @@ function runQuery($sql, $params = [], $types = '')
             'error' => $e->getMessage()
         ];
     }
-
 }

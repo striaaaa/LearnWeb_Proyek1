@@ -33,7 +33,7 @@
   font-weight: 600;
   margin-bottom: 10px;
   letter-spacing: 1px;
-}
+} 
 .detail-profile span {
   font-size: 20px;
   font-weight: 400;
@@ -61,7 +61,7 @@
 
 .content-modul {
   width: 40%;
-  height: 35vh;
+  /* height: 35vh; */
   padding: 15px 30px;
   /* background: #ff6c6c; */
   border-radius: 16px;
@@ -120,7 +120,7 @@
 }
 
 .btn-download {
-  width: 150px;
+  /* width: 150px; */
   height: 40px;
   background: #3d3d3d;
   color: white;

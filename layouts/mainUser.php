@@ -13,8 +13,7 @@
       rel="stylesheet"
     />
   </head>
-<body>
-<!-- <?=basefolder();?> -->
+<body> 
     <?php include __DIR__ . '/../components/nav.php'; ?>
 
     <div class="container">

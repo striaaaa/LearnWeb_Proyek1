@@ -155,7 +155,7 @@ ob_start();
         </div>
       </div>
     </div>
-
+  <?php if (!isset($_COOKIE['login_token'])) {?>
     <div class="container-4">
       <div class="head-content-4">
         <h4>Siap Jadi Web Developer dari dasar?</h4>
@@ -168,6 +168,10 @@ ob_start();
         <span>Mulai Belajar</span>
       </div>
     </div>
+    <?php }?>
+
+  
+<?php include __DIR__ . '/../components/footer.php'; ?>
 <?php
 $content = ob_get_clean();
 

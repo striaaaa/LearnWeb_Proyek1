@@ -4,8 +4,9 @@ require_once __DIR__ . '/../controller/courseLearningPathController.php';
 // $page_css = '<link rel="stylesheet" href="assets/css/learning-path.css" />';
 $page_css  = '<link rel="stylesheet" href="' . basefolder() . '/assets/css/learning-path.css">';
 ob_start();
-?> 
-    <div class="path">
+?>
+
+<!-- <div class="path">
       <div class="path-1">
         <span>HTML</span>
       </div>
@@ -18,40 +19,50 @@ ob_start();
       <div class="path-1">
         <span>PHP</span>
       </div>
-    </div>
+    </div> -->
+<?php
+// echo "<PRE>";
+// var_dump($courseWithModulesResult['data'][0]->title);
+// // echo json_encode($courseWithModulesResult['data'], JSON_PRETTY_PRINT);
+// echo "</PRE>";
+// 
+?>
+<div class="container-border">
+  <h1>Kursus <?= $courseWithModulesResult['data']['title'] ?></h1>
+  <div class="materi">
     <?php
-    echo "<pre>";
-    var_dump($courseWithModulesResult['data']);
-    echo "</pre>";
+    foreach ($courseWithModulesResult['data']['modules'] as $key => $course) {
     ?>
-    <div class="container-border">
-      <div class="materi">
-        <?php
-        foreach ($courseWithModulesResult['data'] as $key=>$course) {
-        ?>
-        <div class="content">
-          <div class="left-content">
-            <div class="tahapan">
-              <span>Langkah <?=$key?></span>
-            </div>
-            <div class="head-content"><span><?=$course['title'] ?></span></div> 
+      <div class="content">
+        <div class="left-content">
+          <div class="tahapan">
+            <span>Langkah <?= $key ?></span>
+          </div> 
+          <div class="head-content"><span><?= $course['title'] ?></span></div>
+        </div>
+        <div class="line"></div>
+        <div class="righ-content">
+          <div class="header-right">
+            <span>Pengenalan HTML</span>
           </div>
-          <div class="line"></div>
-          <div class="righ-content">
-            <div class="header-right">
-              <span>Pengenalan HTML</span>
-            </div>
-            <div class="list-modul">
-              <ul>
-                <li><?=$course['module_content']?>?</li> 
-              </ul>
-            </div>
+          <div class="list-modul">
+            <ul>
+              <?php if (!empty($course['contents'])): ?>
+                <?php foreach ($course['contents'] as $content): ?>
+                  <li><?= htmlspecialchars($content['module_content']) ?></li>
+                <?php endforeach; ?>
+              <?php else: ?>
+                <li><em>Tidak ada konten tersedia</em></li>
+              <?php endif; ?>
+            </ul>
+
           </div>
-        </div> 
-        <?php }?>
+        </div>
       </div>
-    </div>
-    <?php include __DIR__ . '/../components/footer.php'; ?>
+    <?php } ?>
+  </div>
+</div>
+<?php include __DIR__ . '/../components/footer.php'; ?>
 <?php
 $content = ob_get_clean();
 

@@ -25,7 +25,7 @@ require_once __DIR__ . '/../controller/registerController.php';
             <div class="form">
                 <form method="post">
                     <input type="text" name="name" placeholder="Nama Pengguna" value="<?= htmlspecialchars($_POST['name'] ?? '') ?>"/>
-                    <input type="email" name="email" placeholder="Email" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>xxcx"/>
+                    <input type="email" name="email" placeholder="Email" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>"/>
                     <input type="password" name="password" placeholder="Password" />
                     <p class="lupa-pw">Lupa Password?</p>
                     <button class="btn-login" type="submit" name="register">

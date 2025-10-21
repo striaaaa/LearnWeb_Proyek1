@@ -9,14 +9,15 @@ ob_start();
         <img src="" alt="user" />
       </div>
       <div class="detail-profile">
-        <h1>Satria Sahrul Ramadhan</h1>
+      
+        <h1><?=$userLogin->name?></h1>
         <div class="bergabung">
           <i class="ri-calendar-2-fill"></i>
-          <span>Bergabung sejak 2023</span>
+          <span>Bergabung sejak <?=$userLogin->created_at?></span>
         </div>
         <div class="bergabung">
           <i class="ri-map-pin-2-fill"></i>
-          <span>Kota Jakarta Utara</span>
+          <span><?=$userLogin->alamat?></span>
         </div>
       </div>
     </div>
@@ -29,7 +30,7 @@ ob_start();
           </div>
           <div class="title-modul">
             <span><i class="ri-check-line"></i>Selesai</span>
-            <p>Pengenalan Html dasar</p>
+            <p class="nigga">Pengenalan Html dasar</p>
             <span class="jam"><i class="ri-time-line"></i>45 Jam</span>
           </div>
         </div>
@@ -39,6 +40,7 @@ ob_start();
         </p>
         <div class="btn-download">Unduh Materi</div>
       </div>
+      
       <div class="content-modul">
         <div class="top-content">
           <div class="img-left-modul">

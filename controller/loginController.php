@@ -13,16 +13,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
     $userResult = runQuery($userQuery, [$email]);
 
     if (!empty($userResult)) {
-        $user = $userResult[0];
-        $storedHash = $user['password'];
+        $user = $userResult;
+        $storedHash = $user->password;
  
         if (password_verify($password, $storedHash)) { 
-            runQuery("UPDATE users SET login_token = ? WHERE user_id = ?", [$token, $user['user_id']]);
+            runQuery("UPDATE users SET login_token = ? WHERE user_id = ?", [$token, $user->user_id]);
  
             $newOptions = ['cost' => 12];
             if (password_needs_rehash($storedHash, PASSWORD_DEFAULT, $newOptions)) {
                 $newHash = password_hash($password, PASSWORD_DEFAULT, $newOptions);
-                runQuery("UPDATE users SET password = ? WHERE user_id = ?", [$newHash, $user['user_id']]);
+                runQuery("UPDATE users SET password = ? WHERE user_id = ?", [$newHash, $user->user_id]);
             }
  
             setcookie(
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
                 true
             );
  
-            if ($user['role'] === 'admin') {
+            if ($user->role === 'admin') {
                 header("Location: " . $baseFolder . "/admin/dashboard");
             } else {
                 header("Location: " . $baseFolder . "/");

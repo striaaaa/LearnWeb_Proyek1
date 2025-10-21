@@ -32,7 +32,7 @@ function getCourseByIdWithModules($course_id)
         $sql = "SELECT  c.course_id,
     c.title,
     m.module_id,
-    m.title,
+    m.title as module_title,
     mc.module_content_id,
     mc.content_type,
     mc.content_data AS module_content FROM courses c 
@@ -72,3 +72,146 @@ AND c.course_id = ?";
         ];
     }
 }
+function getCourseByIdWithModules2($course_id){
+    try {
+    $sql = "SELECT 
+                c.course_id,
+                c.title AS course_title,
+                m.module_id,
+                m.title AS module_title,
+                mc.module_content_id,
+                mc.content_type,
+                mc.content_data AS module_content
+            FROM courses c
+            INNER JOIN modules m ON c.course_id = m.course_id
+            LEFT JOIN modules_content mc ON mc.module_id = m.module_id
+            WHERE c.course_id = ?";
+
+    $rows = runQuery($sql, [$course_id], 'i');
+
+    // Bentuk struktur nested
+    $courseData = null;
+
+    foreach ($rows as $row) {
+        $courseId = $row->course_id;
+
+        // Inisialisasi data course (sekali saja)
+        if ($courseData === null) {
+            $courseData = [
+                'course_id' => $courseId,
+                'title' => $row->course_title,
+                'modules' => []
+            ];
+        }
+
+        // Cek apakah module sudah ada
+        $moduleIndex = null;
+        foreach ($courseData['modules'] as $i => $mod) {
+            if ($mod['module_id'] === $row->module_id) {
+                $moduleIndex = $i;
+                break;
+            }
+        }
+ 
+        if ($moduleIndex === null) {
+            $courseData['modules'][] = [
+                'module_id' => $row->module_id,
+                'title' => $row->module_title,
+                'contents' => []
+            ];
+            $moduleIndex = count($courseData['modules']) - 1;
+        }
+ 
+        if (!empty($row->module_content_id)) {
+            $courseData['modules'][$moduleIndex]['contents'][] = [
+                'module_content_id' => $row->module_content_id,
+                'content_type' => $row->content_type,
+                'module_content' => $row->module_content
+            ];
+        }
+    }
+
+    return [
+        'success' => true,
+        'data' => $courseData
+    ];
+
+} catch (Exception $e) {
+    return [
+        'success' => false,
+        'error' => $e->getMessage()
+    ];
+}
+}
+// try {
+//     $sql = "SELECT 
+//                 c.course_id,
+//                 c.title AS course_title,
+//                 m.module_id,
+//                 m.title AS module_title,
+//                 mc.module_content_id,
+//                 mc.content_type,
+//                 mc.content_data AS module_content
+//             FROM courses c
+//             INNER JOIN modules m ON c.course_id = m.course_id
+//             LEFT JOIN modules_content mc ON mc.module_id = m.module_id
+//             WHERE c.course_id = ?";
+
+//     $rows = runQuery($sql, [$course_id], 'i');
+
+//     // Bentuk struktur nested
+//     $courseData = null;
+
+//     foreach ($rows as $row) {
+//         $courseId = $row->course_id;
+
+//         // Inisialisasi data course (sekali saja)
+//         if ($courseData === null) {
+//             $courseData = [
+//                 'course_id' => $courseId,
+//                 'title' => $row->course_title,
+//                 'modules' => []
+//             ];
+//         }
+
+//         // Cek apakah module sudah ada
+//         $moduleIndex = null;
+//         foreach ($courseData['modules'] as $i => $mod) {
+//             if ($mod['module_id'] === $row->module_id) {
+//                 $moduleIndex = $i;
+//                 break;
+//             }
+//         }
+
+//         // Kalau belum ada, tambahkan module baru
+//         if ($moduleIndex === null) {
+//             $courseData['modules'][] = [
+//                 'module_id' => $row->module_id,
+//                 'title' => $row->module_title,
+//                 'contents' => []
+//             ];
+//             $moduleIndex = count($courseData['modules']) - 1;
+//         }
+
+//         // Tambahkan content ke module bersangkutan
+//         if (!empty($row->module_content_id)) {
+//             $courseData['modules'][$moduleIndex]['contents'][] = [
+//                 'module_content_id' => $row->module_content_id,
+//                 'content_type' => $row->content_type,
+//                 'module_content' => $row->module_content
+//             ];
+//         }
+//     }
+
+//     return [
+//         'success' => true,
+//         'data' => $courseData
+//     ];
+
+// } catch (Exception $e) {
+//     return [
+//         'success' => false,
+//         'error' => $e->getMessage()
+//     ];
+// }
+

@@ -1,4 +1,5 @@
- <?php require_once __DIR__ . '/../models/user.php'; ?>
+ <?php require_once __DIR__ . '/../controller/dashboardController.php';  
+ ?>
  <div class="nav">
      <div class="logo">Logo</div>
      <div class="nav-link">
@@ -18,7 +19,7 @@
      <?php else: ?>
          <div class="acc-nav">
              <div class="name-acc-nav">
-                 <span><?=$user['name'] ?? 'Nama Akun'; ?></span>
+                 <span><?=$userLogin->name; ?></span>
              </div>
              <div class="img-acc-nav">
                  <img src="../assets/user.png" alt="user" />

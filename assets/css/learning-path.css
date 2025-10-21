@@ -5,7 +5,9 @@
   justify-content: center;
   gap: 40px;
 }
-
+.nigga{
+  color: red !important;
+}
 .path-1 {
   width: 20%;
   padding: 8px;
@@ -17,6 +19,8 @@
 }
 
 .container-border {
+   margin-left: 100px;     
+  margin-right: 100px;   
   border-bottom: 1px solid #d4d4d4;
   padding-bottom: 30px;
 }

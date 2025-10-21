@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             [$email]
         );
 
-        if (!empty($checkEmail)) {
+        if (!empty($checkEmail->user_id)) {
             echo "Email sudah terdaftar. Silakan login.";
             exit;
         }
