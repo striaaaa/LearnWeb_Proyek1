@@ -6,4 +6,3 @@ if (!isset($_COOKIE['login_token'])) {
     header('Location:' .$baseFolder.'/login');
     exit;
 }
- 

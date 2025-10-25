@@ -21,7 +21,19 @@ $routes = [
     ],
 
     "admin"     => [
-        "dashboard" => "Pages/admin/dashboard.php",
+        "dashboard" => "Pages/admin/dashboard-admin.php",
+        "manajemen-kursus" => [
+            ""=>"Pages/admin/courseManagement/index.php",
+            "tambah-kursus"=>"Pages/admin/courseManagement/tambah-kursus.php",
+        ],
+        "manajemen-modul" => [
+            ""=>"Pages/admin/moduleManagement/index.php",
+            "tambah-modul"=>"Pages/admin/moduleManagement/tambah_modul.php",
+        ],
+        "manajemen-pengguna" => [
+            ""=>"Pages/admin/userManagement/index.php", 
+        ],
+
         "user"      => [
             ""       => "Pages/admin/user.php",
             "edit"   => [

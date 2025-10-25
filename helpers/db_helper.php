@@ -120,13 +120,13 @@ function runQuery($sql, $params = [], $types = '')
 
         return $result;
     } catch (Exception $e) {
+    echo "<pre>RunQuery Error: " . $e->getMessage() . "</pre>";
+    if (isset($stmt)) mysqli_stmt_close($stmt);
+    if (isset($conn)) mysqli_close($conn);
 
-        if (isset($stmt)) mysqli_stmt_close($stmt);
-        if (isset($conn)) mysqli_close($conn);
-
-        return [
-            'success' => false,
-            'error' => $e->getMessage()
-        ];
-    }
+    return [
+        'success' => false,
+        'error' => $e->getMessage()
+    ];
+}
 }

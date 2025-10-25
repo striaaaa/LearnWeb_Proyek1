@@ -4,7 +4,6 @@
   font-family: "Poppins", sans-serif;
 }
 
-
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
   display: none;
@@ -39,16 +38,12 @@ body {
   display: flex;
   gap: 10px;
 }
-.regist-btn  {
-  color: black;
-  text-decoration: none;
+.regist-btn {
   padding: 10px 20px;
   border: 1px solid #595959;
   border-radius: 8px;
 }
 .login-btn {
-  color: white;
-  text-decoration: none;
   padding: 10px 20px;
   background-color: #595959;
   border-radius: 8px;

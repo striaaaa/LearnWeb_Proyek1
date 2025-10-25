@@ -66,3 +66,33 @@ function potong_text($tulisan, $count)
 
     return $tulisan . " (...)";
 }
+
+$current_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+ 
+$base = basefolder(); 
+
+
+if (strpos($current_path, $base) === 0) {
+    $current_path = substr($current_path, strlen($base));
+}
+// Pastikan path diawali dengan slash
+if (substr($current_path, 0, 1) !== '/') {
+    $current_path = '/' . $current_path;
+}
+ 
+function is_active_link($target_path, $current_path) { 
+    if (substr($target_path, 0, 1) !== '/') {
+        $target_path = '/' . $target_path;
+    }
+     
+    if ($current_path === $target_path) {
+        return 'is-active';
+    }
+     
+    if (strpos($current_path, $target_path) === 0 && $target_path !== '/') {
+        return 'is-active';
+    }
+    
+    return '';
+}
+?>

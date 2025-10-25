@@ -12,4 +12,6 @@ function getMysqliConnection() {
         die("Koneksi database GAGAL: " . $e->getMessage());
     }
 }
+
+
 ?>
