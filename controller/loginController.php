@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
 
     if (!empty($userResult)) {
         $user = $userResult;
-        $storedHash = $user->password;
+        $storedHash = $user->password??'';
  
         if (password_verify($password, $storedHash)) { 
             runQuery("UPDATE users SET login_token = ? WHERE user_id = ?", [$token, $user->user_id]);
@@ -24,8 +24,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
                 $newHash = password_hash($password, PASSWORD_DEFAULT, $newOptions);
                 runQuery("UPDATE users SET password = ? WHERE user_id = ?", [$newHash, $user->user_id]);
             }
- 
-            setcookie(
+   if ($user->role === 'admin') {
+                header("Location: " . $baseFolder . "/admin/dashboard");
+                 setcookie(  
                 "login_token",
                 $token,
                 time() + (30 * 24 * 60 * 60),
@@ -34,12 +35,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
                 false,
                 true
             );
- 
-            if ($user->role === 'admin') {
-                header("Location: " . $baseFolder . "/admin/dashboard");
-            } else {
+            } 
+            if($user->role==='user') {
                 header("Location: " . $baseFolder . "/");
+                 setcookie(  
+                "login_token",
+                $token,
+                time() + (30 * 24 * 60 * 60),
+                "/",
+                "",
+                false,
+                true
+            );
             }
+            if($user->role===''){
+                header("Location: " . $baseFolder . "/login");
+                exit;
+            }
+           
+ 
+          
             exit;
         } else {
             echo "Email atau password salah.";

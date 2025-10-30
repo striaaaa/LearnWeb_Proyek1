@@ -13,8 +13,7 @@ $routes = [
     "dashboard" => "Pages/dashboard.php",
 
     "course-detail" => "Pages/course-detail.php",
-    "profile"   => "Pages/user/profile.php",
-    "setting"   => "Pages/user/setting.php",
+    "profile"   => "Pages/user/profile.php", 
     "course" => [
         "" => "Pages/course.php",
         ":courseId" => "Pages/learning_path.php"
@@ -25,6 +24,14 @@ $routes = [
         "manajemen-kursus" => [
             ""=>"Pages/admin/courseManagement/index.php",
             "tambah-kursus"=>"Pages/admin/courseManagement/tambah-kursus.php",
+        ],
+
+        "manajemen-modul-konten" => [
+            ""=>"Pages/admin/moduleContentManagement/index.php",
+            ":moduleId"=>[
+                "tambah-konten"=>"Pages/admin/moduleContentManagement/tambah-modul-content.php",
+            ],
+            // "tambah-modul-content"=>"Pages/admin/moduleContentManagement/tambah-modul-content.php",
         ],
         "manajemen-modul" => [
             ""=>"Pages/admin/moduleManagement/index.php",
@@ -91,3 +98,42 @@ if (file_exists($file)) {
 } else {
     include "Pages/404.php";
 }
+
+
+/*
+===========================================
+📜 ROUTE LIST — http://localhost/learnweb/
+===========================================
+
+# 🏠 PUBLIC ROUTES
+[GET] /                            → Pages/index.php
+[GET] /login                       → Pages/login.php
+[GET] /dashboard                   → Pages/dashboard.php
+[GET] /course-detail               → Pages/course-detail.php
+[GET] /profile                     → Pages/user/profile.php
+[GET] /setting                     → Pages/user/setting.php
+
+# 📚 COURSE ROUTES
+[GET] /course                      → Pages/course.php
+[GET] /course/{courseId}           → Pages/learning_path.php
+
+# 🛠️ ADMIN ROUTES
+[GET] /admin/dashboard             → Pages/admin/dashboard-admin.php
+
+## 🎓 Manajemen Kursus
+[GET] /admin/manajemen-kursus                          → Pages/admin/courseManagement/index.php
+[GET] /admin/manajemen-kursus/tambah-kursus            → Pages/admin/courseManagement/tambah-kursus.php
+
+## 📦 Manajemen Modul
+[GET] /admin/manajemen-modul                           → Pages/admin/moduleManagement/index.php
+[GET] /admin/manajemen-modul/tambah-modul              → Pages/admin/moduleManagement/tambah_modul.php
+
+## 🧩 Manajemen Modul Konten
+[GET] /admin/manajemen-modul-konten                    → Pages/admin/moduleContentManagement/index.php
+[GET] /admin/manajemen-modul-konten/{moduleId}/tambah-konten → Pages/admin/moduleContentManagement/tambah-modul-content.php
+
+## 👥 Manajemen Pengguna
+[GET] /admin/manajemen-pengguna                        → Pages/admin/userManag 
+
+===========================================
+*/

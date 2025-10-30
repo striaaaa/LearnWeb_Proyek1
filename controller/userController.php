@@ -8,7 +8,7 @@ require_once __DIR__ . '/../models/user.php';
 // $id = $params['courseId'] ?? null;
 $userAll = getUserAll();
 $user_id = $_POST['user_id'] ?? null;
-$isActive = $_POST['is_active'] ?? null;
+$isActive = $_POST['isActiveInput'] ?? null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
@@ -16,14 +16,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         case 'create':
             break;
         case 'updateStatusUser':
+           
             $updateStatusUserResult = updateStatusUser($user_id, $isActive);
             break;
         case 'delete':
             break;
     }
 
-    // header("Location: " . baseFolder() . "/admin/manajemen-pengguna");
-    // exit;
+    header("Location: " . baseFolder() . "/admin/manajemen-pengguna");
+    exit;
 }
 
 function updateStatusUser($user_id, $isActive)
@@ -31,14 +32,18 @@ function updateStatusUser($user_id, $isActive)
     // var_dump($user_id, $isActive);
     // die();
     try {
+        echo $isActive;
+        echo 'userirf'.$user_id;
         $isActiveCheck = ($isActive == 1) ? 'user' : NULL; 
         $updatedUser=null;
         if (is_null($isActiveCheck)) { 
             $sql = "UPDATE users SET role = NULL WHERE user_id = ?"; 
             $updatedUser=runQuery($sql, [$user_id], 'i'); 
+            echo "if";
         } else { 
             $sql = "UPDATE users SET role = ? WHERE user_id = ?";
-           $updatedUser= runQuery($sql, ['user', $user_id], 'si');  
+            $updatedUser= runQuery($sql, ['user', $user_id], 'si');  
+            echo "else";
         }
 
         // die();

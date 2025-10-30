@@ -92,7 +92,11 @@ function getCourseByIdWithModules2($course_id) {
                 'message' => 'Course tidak ditemukan.'
             ];
         }
-
+        
+        
+        if (is_object($rows)) {
+            $rows = [$rows];
+        }
         $courseData = (object)[
             'course_id' => $rows[0]->course_id,
             'title' => $rows[0]->course_title,
@@ -146,6 +150,8 @@ function getCourseWithModules2() {
         $sql = "SELECT 
                     c.course_id,
                     c.title AS course_title,
+                    c.description,
+                    DATE_FORMAT(c.created_at, '%Y-%m-%d') AS formated_created_at,
                     m.module_id,
                     m.title AS module_title,
                     mc.module_content_id,
@@ -180,6 +186,8 @@ function getCourseWithModules2() {
                 $courseData[$courseId] = [
                     'course_id' => $courseId,
                     'title' => $row->course_title,
+                    'description' => $row->description,
+                    'created_at' => $row->formated_created_at,
                     'modules' => []
                 ];
             } 

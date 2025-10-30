@@ -71,12 +71,5 @@ function updateCourse($conn) {
 }
 
 function deleteCourse($conn) {
-  $id = $_GET['id'] ?? 0;
-  if (!$id) die("ID tidak valid");
-
-  runQuery("DELETE FROM modules WHERE course_id=$id");
-  runQuery("DELETE FROM courses WHERE course_id=$id");
-
-  header("Location: ../views/courses_list.php?deleted=1");
-  exit;
+  
 }

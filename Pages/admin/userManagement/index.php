@@ -44,9 +44,9 @@ ob_start();
         Status saat ini :
         <form  action="<?= basefolder() ?>/controller/userController.php" method="post">
                 <input type="hidden" name="user_id"  id="userIdInput" >
-                <input type="hidden" name="is_active" id="isActiveInput" >
+                <!-- <input type="hidden" name="is_active" id="isActiveInput" > -->
                 <input type="hidden" name="action" value="updateStatusUser">
-          <select name="active" id="isActiveSelect">
+          <select name="isActiveInput" id="isActiveSelect">
             <option value="1">Aktif</option>
             <option value="0">Tidak aktif</option>
           </select>
@@ -88,10 +88,10 @@ ob_start();
       // userNonAktifBtn.addEventListener('click', openModalUserActive);
       function userAktifParseOn(is_active, user_id){
         console.log('status dan is',status, is_active, user_id);
-        isActiveSelectOption.value=is_active;
-        isActiveInput.value=is_active;
+        isActiveSelectOption.value=is_active; 
         userIdInput.value=user_id
-
+        console.log('usd',userIdInput);
+        
       }
     </script>
 <?php

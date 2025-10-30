@@ -7,7 +7,7 @@ function getUserLogin($login_token)
 {
 
     try {
-        $sql = "SELECT name, email, image, login_token,alamat, created_at FROM users WHERE login_token = ?";
+        $sql = "SELECT name, email, image, login_token,alamat, created_at, role FROM users WHERE login_token = ?";
 
         $userLogin = runQuery($sql, [$login_token], 's');
         return [

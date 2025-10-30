@@ -8,10 +8,8 @@ ob_start();
 ?>
 <div class="container-course">
    <h1>Course Page</h1>
-   <p>Welcome to the course page. Here you can find various courses to enhance your skills.</p>
-   <!-- <?= var_dump($courseAll['data']); ?> -->
+   <p>Welcome to the course page. Here you can find various courses to enhance your skills.</p> 
    <div class="grid grid-cols-12 gap-4">
-
       <?php foreach ($courseAll['data'] as $key => $course) {
          ?>
          <div class="col-span-6">
@@ -27,7 +25,7 @@ ob_start();
          </div>
         </div>
         <p class="desc-modul">
-          <?=$course->description?>
+           <?=$course->description?>
          </p>
          <a href="<?=basefolder()?>/course/<?=$course->course_id?>" class="btn-download">Mulai kerjakan</a>
       </div>

@@ -69,7 +69,9 @@ function runQuery($sql, $params = [], $types = '')
             }
             mysqli_stmt_bind_param($stmt, $types, ...$params);
         }
-
+        // echo "<pre>DEBUG QUERY: $sql\nPARAMS: ";
+        // print_r($params);
+        // echo "</pre>";
 
         if (!mysqli_stmt_execute($stmt)) {
             throw new Exception("Execute failed: " . mysqli_stmt_error($stmt));
@@ -92,6 +94,7 @@ function runQuery($sql, $params = [], $types = '')
                 }
 
                 $result = arrayToObject($result);
+                // $result = array_map('arrayToObject', $result);
                 break;
 
 
@@ -104,6 +107,10 @@ function runQuery($sql, $params = [], $types = '')
                 break;
 
             case 'UPDATE':
+                $result = [
+                    'affected_rows' => mysqli_stmt_affected_rows($stmt)
+                ];
+                break;
             case 'DELETE':
                 $result = [
                     'affected_rows' => mysqli_stmt_affected_rows($stmt)
@@ -120,13 +127,13 @@ function runQuery($sql, $params = [], $types = '')
 
         return $result;
     } catch (Exception $e) {
-    echo "<pre>RunQuery Error: " . $e->getMessage() . "</pre>";
-    if (isset($stmt)) mysqli_stmt_close($stmt);
-    if (isset($conn)) mysqli_close($conn);
+        echo "<pre>RunQuery Error: " . $e->getMessage() . "</pre>";
+        if (isset($stmt)) mysqli_stmt_close($stmt);
+        if (isset($conn)) mysqli_close($conn);
 
-    return [
-        'success' => false,
-        'error' => $e->getMessage()
-    ];
-}
+        return [
+            'success' => false,
+            'error' => $e->getMessage()
+        ];
+    }
 }

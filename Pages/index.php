@@ -2,7 +2,7 @@
 <?php
 require_once __DIR__ . '/../controller/homapageController.php';
 require_once __DIR__ . '/../controller/loginController.php'; 
-// require_once __DIR__ . '/../middleware/guestMiddleware.php';
+require_once __DIR__ . '/../middleware/guestMiddleware.php';
 
 $page_css  = '<link rel="stylesheet" href="' . basefolder() . '/assets/css/home.css">';
 ob_start();
@@ -29,13 +29,7 @@ ob_start();
          </div>
      </div>
  </div>
- <div class="logout-container" style="text-align: right; margin: 20px;">
-      <form  method="post">
-        <button type="submit" name="logout" class="logout-btn" style="padding: 8px 16px; background: #e74c3c; color: #fff; border: none; border-radius: 4px; cursor: pointer;">
-          Logout
-        </button>
-      </form>
-    </div>
+
     <div class="container-2">
       <div class="header_content_2">
         <p>Mulai Belajar dari sini</p>
