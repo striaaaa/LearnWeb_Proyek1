@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../../../controller/moduleManajemenController.php';
+require_once __DIR__ . '/../../../controller/uploadController.php';
 $page_css = '<link rel="stylesheet" href="' . basefolder() . '/assets/css/admin/manajemen-penggguna.css" />';
 ob_start();
 global $params;
@@ -13,17 +14,18 @@ $id = $params['moduleId'] ?? null;
         background: #ffffff;
         border: 1px solid #ddd;
         border-radius: 5px;
-        padding: 20px;
+       
     }
     .element-sidebar{
       background-color: #ddd;
       padding: 20px;
-      border-radius: 16px;
+      border-radius: 16px; 
     }
     .editor-parent{
       border-radius: 16px;
       padding: 20px;
       background-color: #ffffff;
+
     }
     .tambah-elemnt-btn{
       width: 100%;
@@ -32,43 +34,124 @@ $id = $params['moduleId'] ?? null;
       background-color: transparent;
       border-bottom:2px solid gray ;
     }
-    .btn-content{
-      
+    .btn-content p{
+      font-size: 16px;
       font-weight: 400 ;
     }
 </style> 
-<div>
-  <div class="grid grid-cols-12 gap-4">
+<div class="h-full">
+  <div class="grid grid-cols-12 gap-4 h-full">
     <div class="col-span-3 element-sidebar">
-      <div>
-        <h1>Tambah modul konten</h1>
+      <div style="position: sticky;top:0;">
+        <h2>Tambah modul konten</h1>
         <p>Lorem ipsum dolor sit amet consectetur.</p>
         <input type="text" placeholder="Cari">
         <div>
           <h2>Tambah element</h2>
           <div>
-            <button class="tambah-elemnt-btn flex justify-between">
+            <button class="tambah-elemnt-btn flex justify-between" onclick="addBlock('header')">
               <div class="flex items-center btn-content">
-
                 <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="12" height="24" viewBox="0 0 12 24">
                   <path fill="currentColor" d="m7.588 12.43l-1.061 1.06L.748 7.713a.996.996 0 0 1 0-1.413L6.527.52l1.06 1.06l-5.424 5.425z" transform="rotate(-180 5.02 9.505)" />
                 </svg>
                 &nbsp; 
+                &nbsp; 
                 <h2>
-
-                  Heading
+                  <p>Heading</p>
                 </h2>
               </div>
-        <span>+</span>
+       <p>+</p>
+            </button>
+            <button class="tambah-elemnt-btn flex justify-between" onclick="addBlock('image')">
+              <div class="flex items-center btn-content">
+                <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="12" height="24" viewBox="0 0 12 24">
+                  <path fill="currentColor" d="m7.588 12.43l-1.061 1.06L.748 7.713a.996.996 0 0 1 0-1.413L6.527.52l1.06 1.06l-5.424 5.425z" transform="rotate(-180 5.02 9.505)" />
+                </svg>
+                &nbsp; 
+                &nbsp; 
+                <h2>
+                  <p>Image</p>
+                </h2>
+              </div>
+       <p>+</p>
+            </button>
+            <button class="tambah-elemnt-btn flex justify-between" onclick="addBlock('list')">
+              <div class="flex items-center btn-content">
+                <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="12" height="24" viewBox="0 0 12 24">
+                  <path fill="currentColor" d="m7.588 12.43l-1.061 1.06L.748 7.713a.996.996 0 0 1 0-1.413L6.527.52l1.06 1.06l-5.424 5.425z" transform="rotate(-180 5.02 9.505)" />
+                </svg>
+                &nbsp; 
+                &nbsp; 
+                <h2>
+                  <p>List</p>
+                </h2>
+              </div>
+       <p>+</p>
+            </button>
+            <button class="tambah-elemnt-btn flex justify-between" onclick="addBlock('code')">
+              <div class="flex items-center btn-content">
+                <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="12" height="24" viewBox="0 0 12 24">
+                  <path fill="currentColor" d="m7.588 12.43l-1.061 1.06L.748 7.713a.996.996 0 0 1 0-1.413L6.527.52l1.06 1.06l-5.424 5.425z" transform="rotate(-180 5.02 9.505)" />
+                </svg>
+                &nbsp; 
+                &nbsp; 
+                <h2>
+                  <p>Code</p>
+                </h2>
+              </div>
+       <p>+</p>
+            </button>
+            <button class="tambah-elemnt-btn flex justify-between" onclick="addBlock('linkTool')">
+              <div class="flex items-center btn-content">
+                <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="12" height="24" viewBox="0 0 12 24">
+                  <path fill="currentColor" d="m7.588 12.43l-1.061 1.06L.748 7.713a.996.996 0 0 1 0-1.413L6.527.52l1.06 1.06l-5.424 5.425z" transform="rotate(-180 5.02 9.505)" />
+                </svg>
+                &nbsp; 
+                &nbsp; 
+                <h2>
+                  <p>Link</p>
+                </h2>
+              </div>
+       <p>+</p>
+            </button>
+            <button class="tambah-elemnt-btn flex justify-between" onclick="addBlock('delimiter')">
+              <div class="flex items-center btn-content">
+                <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="12" height="24" viewBox="0 0 12 24">
+                  <path fill="currentColor" d="m7.588 12.43l-1.061 1.06L.748 7.713a.996.996 0 0 1 0-1.413L6.527.52l1.06 1.06l-5.424 5.425z" transform="rotate(-180 5.02 9.505)" />
+                </svg>
+                &nbsp; 
+                &nbsp; 
+                <h2>
+                  <p>Delimiter</p>
+                </h2>
+              </div>
+       <p>+</p>
+            </button>
+            <button class="tambah-elemnt-btn flex justify-between" onclick="addBlock('chunkDivider')">
+              <div class="flex items-center btn-content">
+                <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="12" height="24" viewBox="0 0 12 24">
+                  <path fill="currentColor" d="m7.588 12.43l-1.061 1.06L.748 7.713a.996.996 0 0 1 0-1.413L6.527.52l1.06 1.06l-5.424 5.425z" transform="rotate(-180 5.02 9.505)" />
+                </svg>
+                &nbsp; 
+                &nbsp; 
+                <h2>
+                  <p>Chunk Poin</p>
+                </h2>
+              </div>
+       <p>+</p>
             </button>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-span-9 editor-parent">
-
+    <div class="col-span-9 editor-parent h" style="position: relative;">
+<div id="editorjs" class="h-full"></div>
+<div style="position: sticky;bottom:0;" class="flex justify-end">
+  <button class="" id="save-button">Simpan</button>
+</div>
     </div>
   </div>
+  <pre id="output"></pre>
 </div>
 
 <!-- CDN JS -->
@@ -78,96 +161,134 @@ $id = $params['moduleId'] ?? null;
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script>
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/code@latest"></script>
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest"></script>
-<script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script> 
 <script src="https://cdn.jsdelivr.net/npm/@editorjs/link@latest"></script>
 
-<script>
-  const editor = new EditorJS({
-    holder: 'editorjs',
-    autofocus: true,
-    tools: {
-      header: {
-        class: Header,
-        inlineToolbar: true,
-        config: {
-          placeholder: 'Enter a header',
-          levels: [1,2, 3, 4],
-          defaultLevel: 2
-        }
-      },
-      paragraph: {
-        inlineToolbar: true
-      },
-      list: {
-        class: EditorjsList,
-        inlineToolbar: true,
-        config: {
-          defaultStyle: 'unordered'
-        }
-      },
-      quote: {
-        class: Quote,
-        inlineToolbar: true,
-        config: {
-          quotePlaceholder: 'Enter a quote',
-          captionPlaceholder: 'Quote author'
-        }
-      },
-      code: {
-        class: CodeTool,
-        inlineToolbar: false
-      },
-      delimiter: Delimiter,
-      image: {
-        class: ImageTool,
-        config: {
-          endpoints: {
-            byFile: '/upload-image.php', // endpoint upload file
-            byUrl: '/fetch-image.php'    // endpoint fetch dari URL
-          },
-          captionPlaceholder: 'Enter caption...',
-          additionalRequestHeaders: {},
-          field: 'image'
-        }
-      },
-      linkTool: {
-        class: LinkTool,
-        config: {
-          endpoint: '/fetch-link.php' // endpoint untuk meta link
-        }
-      }
-    },
-    data: {
-      time: new Date().getTime(),
-      blocks: [
-        {
-          type: "header",
-          data: { text: "Mulai menulis modul Anda di sini", level: 2 }
-        },
-        {
-          type: "paragraph",
-          data: { text: "Editor ini sudah mendukung heading, list, quote, image, dan code block." }
-        },
-        {
-          type: "delimiter",
-          data: {}
-        }
-      ]
+<script> 
+const backup = localStorage.getItem('editorBackup');
+const initialData = backup ? JSON.parse(backup) : { blocks: [] };
+class ChunkDivider {
+  static get toolbox() {
+    return {
+      title: 'Chunk',
+      icon: '<svg width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M2 9h14v1H2z" fill="currentColor"/></svg>'
+    };
+  }
+
+  render() {
+    this.wrapper = document.createElement('div');
+    this.wrapper.classList.add('chunk-divider');
+    this.wrapper.innerHTML = `
+      <div style="border-top: 2px dashed #aaa; margin: 20px 0; text-align:center; font-size: 12px; color:#888;">
+        — CHUNK PEMBATAS —
+      </div>
+    `;
+    return this.wrapper;
+  }
+
+  save() {
+    return { type: 'chunk' }; // data JSON-nya minimal
+  }
+}
+const editor = new EditorJS({
+  holder: 'editorjs',
+  autofocus: true,
+  tools: {
+    header: Header,
+     paragraph: {
+    inlineToolbar: true
+  },
+    list: EditorjsList,
+    quote: Quote,
+    code: CodeTool,
+    delimiter: Delimiter,
+    chunkDivider:ChunkDivider,
+    // image: {
+    //   class: ImageTool,
+    //   config: {
+    //     endpoints: { byFile: '/upload-image.php', byUrl: '/fetch-image.php' }
+    //   }
+    // },
+    image: {
+  class: ImageTool,
+  config: {
+    endpoints: {
+      byFile: '<?=basefolder();?>/controller/uploadController.php?action=upload-image',
+      byUrl: '<?=basefolder();?>/controller/uploadController.php?action=fetch-image'
+    }
+  }
+},
+    linkTool: {
+      class: LinkTool,
+      config: { endpoint: '/fetch-link.php' }
+    }
+  },
+  data:  initialData
+  
+});
+
+function addBlock(type) {
+  editor.save().then(() => {
+    const lastIndex = editor.blocks.getBlocksCount(); // total blok sekarang
+    console.log(lastIndex);
+    
+    switch (type) {
+      case 'header':
+        editor.blocks.insert('header', { text: 'Judul baru', level: 2 }, null, lastIndex, true);
+        break;
+      case 'paragraph':
+        editor.blocks.insert('paragraph', { text: 'Mulai menulis paragraf di sini...' }, null, lastIndex, true);
+        break;
+      case 'list':
+        editor.blocks.insert('list', { style: 'unordered', items: ['Item 1', 'Item 2'] }, null, lastIndex, true);
+        break;
+      case 'quote':
+        editor.blocks.insert('quote', { text: 'Tuliskan kutipan...', caption: 'Penulis' }, null, lastIndex, true);
+        break;
+      case 'code':
+        editor.blocks.insert('code', { code: '// kode di sini' }, null, lastIndex, true);
+        break;
+      case 'delimiter':
+        editor.blocks.insert('delimiter', {}, null, lastIndex, true);
+        break;
+      case 'image':
+        editor.blocks.insert('image', { file: { url: '/placeholder.png' }, caption: 'Contoh gambar' }, null, lastIndex, true);
+        break;
+      case 'linkTool':
+        editor.blocks.insert('linkTool', { link: 'https://example.com' }, null, lastIndex, true);
+        break;
+      case 'chunkDivider':
+         editor.blocks.insert('chunkDivider', {}, null, lastIndex, true);
+        break;
+      default:
+        console.warn('Tipe blok tidak dikenal:', type);
     }
   });
-
-  const saveButton = document.getElementById('save-button');
-  const output = document.getElementById('output');
-
-  saveButton.addEventListener('click', () => {
-    editor.save().then(savedData => {
-      output.innerHTML = JSON.stringify(savedData, null, 4);
-      console.log(savedData);
-      // TODO: kirim ke backend pakai fetch() untuk disimpan ke DB
-    }).catch((error) => {
-      console.error('Saving failed: ', error);
-    });
+}
+document.getElementById('save-button').addEventListener('click', () => {
+  editor.save().then(data => {
+    document.getElementById('output').innerHTML = JSON.stringify(data, null, 4);
   });
+});
+
+
+// setInterval(async () => {
+//   const savedData = await editor.save();
+//   localStorage.setItem('editorBackup', JSON.stringify(savedData));
+//   console.log('Editor data saved to localStorage');
+// }, 3000);
+setInterval(async () => {
+  const savedData = await editor.save();
+  localStorage.setItem('editorBackup', JSON.stringify(savedData));
+
+ fetch('<?= basefolder() ?>/controller/moduleContentController.php?action=autosave', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ content: savedData, user_id: 1 })
+  })
+  .then(res => res.json())
+  .then(res => console.log(res.message));
+}, 3000);
 </script>
 
 <?php
