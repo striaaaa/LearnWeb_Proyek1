@@ -33,8 +33,8 @@ ob_start();
               <?php } ?>
             </td>
             <td class="aktif">
-              <span>Aktif</span>
-              <span>Aktif</span>
+              <button>Edit</button>
+              <button>Hapus</button>
             </td>
           </tr>
            <?php }?>

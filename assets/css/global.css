@@ -3,12 +3,17 @@
   text-align: center;
 }
 
-/* === Flex Container === */
+.h-full{
+  height: 100%;
+}
 .flex {
   display: flex;
 }
 .inline-flex {
   display: inline-flex;
+}
+.flex-col {
+  flex-direction: column;
 }
 .col-start-1  { grid-column-start: 1; }
 .col-start-2  { grid-column-start: 2 !important; }

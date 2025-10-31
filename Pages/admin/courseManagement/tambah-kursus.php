@@ -9,27 +9,36 @@ ob_start();
     enctype="multipart/form-data"
     id="formKursus">
     <!-- <div class="btn-aksi">Tambah Kursus</div> -->
-    <div class="frame-card">
-      <div class="left-card">
-        <label for="title">Judul</label>
-        <input type="text" id="courseTitle" name="title" />
-        <label for="description" >Deskripsi</label>
-        <textarea name="description" id="courseDesc" cols="30" rows="10"></textarea>
-        <label for="">Foto</label>
-        <input type="file" id="courseImage"  name="courseImage"/>
-        <button id="simpanKursus" type="submit">Simpan</button>
-      </div>
-      <div class="right-card">
-        <h3>List Modul</h3>
-        <div class="frame-list-modul" id="modulesContainer">
-          <!-- <div class="list-modul">
-                    <span>JudulModul</span>
-                    <p>asodknadwakdladnaowdnawoiawk</p>
-                </div>  -->
+    <div class="grid grid-cols-12 justify-between">
+      <div class="col-span-7">
+        <div class="left-card  flex flex-col justify-between h-full">
+          <div >
+            <h3 class="right-card-h3">Tambah Kursus</h3>
+            <label for="title">Judul</label>
+            <input type="text" id="courseTitle" name="title" />
+            <label for="description" >Deskripsi</label>
+            <textarea name="description" id="courseDesc" cols="30" rows="10"></textarea>
+            <label for="">Foto</label>
+            <input type="file" id="courseImage" style="background-color: #ffffff;"  name="courseImage"/>
+          </div>
+          <button id="simpanKursus" type="submit" class="left-card-button">Simpan</button>
         </div>
-        <button id="tbhModul" type="button">
-          Tambah modul
-        </button>
+      </div>
+      <div class="col-span-1"></div>
+      <div class="col-span-4 right-card">
+        <div class="card-content-tambah">
+
+          <h3 class="right-card-h3">List Modul</h3>
+          <div class="frame-list-modul" id="modulesContainer">
+            <!-- <div class="list-modul">
+              <span>JudulModul</span>
+              <p>asodknadwakdladnaowdnawoiawk</p>
+            </div>  -->
+          </div>
+          <button id="tbhModul" type="button" class="left-card-button">
+            Tambah modul
+          </button>
+        </div>
       </div>
     </div>
     <div id="moduleModal" class="modal hidden">
@@ -46,9 +55,9 @@ ob_start();
     </div>
     <input type="hidden" name="modulesData" id="modulesData" />
   </form>
-  <button onclick="  modulesDataInput.value = JSON.stringify(modules); console.log(modulesDataInput.value);">
+  <!-- <button onclick="  modulesDataInput.value = JSON.stringify(modules); console.log(modulesDataInput.value);">
     tes
-  </button>
+  </button> -->
 </div>
 
 <script>

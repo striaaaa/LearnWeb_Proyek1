@@ -5,7 +5,10 @@ ob_start();
 ?>
  
     <div class="">
-      <div class="btn-aksi">Filter</div>
+      <div class="flex justify-end">
+
+        <div class="btn-aksi">Filter</div>
+      </div>
       <table>
         <thead>
           <tr>

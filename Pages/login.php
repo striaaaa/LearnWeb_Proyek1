@@ -26,11 +26,14 @@ require_once __DIR__ . '/../middleware/authMiddleware.php';
             <div class="form">
                 <form method="post" >
                     <input type="text" name="email" <?= htmlspecialchars($_POST['email'] ?? '') ?> placeholder="Email" />
+                    <br>
+                    <br>
                     <input type="password" name="password" placeholder="Password" />
+                   
                     <p class="lupa-pw">Lupa Password?</p> 
-                        <button class="btn-login" type="submit" name="login">
-                            Login
-                        </button> 
+                    <button class="btn-login" type="submit" name="login">
+                        Login
+                    </button> 
                     <div class="register">
                         <span>Belum memiliki akun?</span>
                         <a href="<?=basefolder()?>/register">
