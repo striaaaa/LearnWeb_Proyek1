@@ -1,7 +1,6 @@
 
 <?php
 require_once __DIR__ . '/../controller/homapageController.php';
-require_once __DIR__ . '/../controller/loginController.php'; 
 require_once __DIR__ . '/../middleware/guestMiddleware.php';
 
 $page_css  = '<link rel="stylesheet" href="' . basefolder() . '/assets/css/home.css">';

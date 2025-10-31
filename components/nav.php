@@ -1,4 +1,6 @@
  <?php require_once __DIR__ . '/../controller/dashboardController.php';  
+ 
+require_once __DIR__ . '/../controller/loginController.php'; 
  ?>
  <div class="nav">
      <div class="logo">Logo</div>
