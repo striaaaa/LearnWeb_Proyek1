@@ -1,7 +1,7 @@
 
 <?php
 require_once __DIR__ . '/../controller/homapageController.php';
-require_once __DIR__ . '/../middleware/guestMiddleware.php';
+// require_once __DIR__ . '/../middleware/guestMiddleware.php';
 
 $page_css  = '<link rel="stylesheet" href="' . basefolder() . '/assets/css/home.css">';
 ob_start();
@@ -35,7 +35,7 @@ ob_start();
       </div>
       <div class="container-card-2">
         <div class="card_content_2">
-          <div class="head_card_2"><p>HTML</p></div>
+          <div class="head_card_2">  <img src="<?=basefolder()?>/assets/card-1.png" alt=""></div>
           <div class="desc_card_2">
             <p>Pengenalan & Struktur Html</p>
             <p>Pengenalan & Struktur Html</p>
@@ -47,7 +47,9 @@ ob_start();
           </div>
         </div>
         <div class="card_content_2">
-          <div class="head_card_2"><p>HTML</p></div>
+          <div class="head_card_2">
+            <img src="<?=basefolder()?>/assets/card-2.png" alt="">
+          </div>
           <div class="desc_card_2">
             <p>Pengenalan & Struktur Html</p>
             <p>Pengenalan & Struktur Html</p>
@@ -59,7 +61,9 @@ ob_start();
           </div>
         </div>
         <div class="card_content_2">
-          <div class="head_card_2"><p>HTML</p></div>
+          <div class="head_card_2">
+              <img src="<?=basefolder()?>/assets/card-3.png" alt="">
+          </div>
           <div class="desc_card_2">
             <p>Pengenalan & Struktur Html</p>
             <p>Pengenalan & Struktur Html</p>
@@ -71,7 +75,9 @@ ob_start();
           </div>
         </div>
         <div class="card_content_2">
-          <div class="head_card_2"><p>HTML</p></div>
+          <div class="head_card_2">
+              <img src="<?=basefolder()?>/assets/card-4.png" alt="">
+          </div>
           <div class="desc_card_2">
             <p>Pengenalan & Struktur Html</p>
             <p>Pengenalan & Struktur Html</p>

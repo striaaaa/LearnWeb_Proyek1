@@ -1,4 +1,7 @@
-
+<?php
+require_once __DIR__ . '/../components/alert.php';
+renderFlashAlert();
+?>
 <!DOCTYPE html>
 <html>
 <head>

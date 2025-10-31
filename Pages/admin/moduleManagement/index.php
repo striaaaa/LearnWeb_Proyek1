@@ -126,7 +126,7 @@ ob_start();
       <div class="col-span-4">
         <p><?= htmlspecialchars($course->description) ?></p>
       </div>
-      <div class="col-span-3">
+      <div class="col-span-3">uioui
         <p><?= htmlspecialchars($course->created_at ?? '-') ?></p>
       </div>
       <div class="col-span-1 flex justify-end items-center">

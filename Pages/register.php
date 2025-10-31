@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../controller/registerController.php'; 
+renderFlashAlert();
 ?>
 
 <!DOCTYPE html>
@@ -20,13 +21,16 @@ require_once __DIR__ . '/../controller/registerController.php';
     <div class="right">
         <div class="card">
             <div class="header">
-                <p>Login</p>
+                <p>Register</p>
             </div>
             <div class="form">
                 <form method="post">
-                    <input type="text" name="name" placeholder="Nama Pengguna" value="<?= htmlspecialchars($_POST['name'] ?? '') ?>"/>
-                    <input type="email" name="email" placeholder="Email" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>"/>
-                    <input type="password" name="password" placeholder="Password" />
+                    <input type="text" name="name" placeholder="Nama Pengguna" value="<?= htmlspecialchars($_POST['name'] ?? '') ?>" required/>
+                    <br><br>
+                    <input type="email" name="email" placeholder="Email" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>" required/>
+                    <br><br>
+                    <input type="password" name="password" placeholder="Password" required/>
+                    <br><br>
                     <p class="lupa-pw">Lupa Password?</p>
                     <button class="btn-login" type="submit" name="register">
                         Register

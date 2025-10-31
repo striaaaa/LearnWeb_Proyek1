@@ -2,6 +2,7 @@
 $current = basename($_SERVER['REQUEST_URI']);
 
 require_once __DIR__ . '/../controller/loginController.php'; 
+renderFlashAlert();
 ?>
 <!DOCTYPE html>
 <html>
