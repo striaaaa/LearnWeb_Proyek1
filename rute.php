@@ -16,7 +16,12 @@ $routes = [
     "profile"   => "Pages/user/profile.php", 
     "course" => [
         "" => "Pages/course.php",
-        ":courseId" => "Pages/learning_path.php"
+        ":courseId" => [
+            ""=>  "Pages/learning_path.php",
+            "detailModule"=>[
+                ":moduleId"=>  "Pages/module_content.php"
+            ]
+        ]
     ],
 
     "admin"     => [

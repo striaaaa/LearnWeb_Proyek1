@@ -7,33 +7,110 @@ require_once __DIR__ . '/../helpers/url.php';
 // header("Access-Control-Allow-Headers: Content-Type");
 
 // Aktifkan debug kalau perlu
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 
 $action = $_GET['action'] ?? $_POST['action'] ?? '';
-function saveDraft($data) {
+
+// function saveDraft($data) {
+//     if (!$data || !isset($data['content'])) {
+//         return ['success'=>false,'message'=>'Invalid data'];
+//     }
+
+//     $saveDir = __DIR__ . '/../../storage/';
+//     if (!is_dir($saveDir)) mkdir($saveDir, 0777, true);
+
+//     $userId = $data['user_id'] ?? 1;
+//     $fileName = $saveDir . 'draft_user_'.$userId.'.json';
+
+//     $saved = file_put_contents($fileName, json_encode($data['content'], JSON_PRETTY_PRINT));
+
+//     return [
+//         'success'=>$saved!==false,
+//         'message'=>$data['manual'] ?? false ? 'Draft disimpan manual':'Autosaved',
+//         'file'=>basename($fileName)
+//     ];
+// }
+function response($data, $status = 200)
+{
+    http_response_code($status);
+    echo json_encode($data, JSON_PRETTY_PRINT);
+    exit;
+}
+
+// ====== HANDLER: SAVE DRAFT ======
+function saveDraft($data)
+{
     if (!$data || !isset($data['content'])) {
-        return ['success'=>false,'message'=>'Invalid data'];
+        return ['success' => false, 'message' => 'Invalid data'];
     }
 
-    $saveDir = __DIR__ . '/../../storage/';
+    // Lokasi folder simpan draft
+    $saveDir = __DIR__ . '/../storage/';
     if (!is_dir($saveDir)) mkdir($saveDir, 0777, true);
 
-    $userId = $data['user_id'] ?? 1;
-    $fileName = $saveDir . 'draft_user_'.$userId.'.json';
+//    $random_string = substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'), 0, 10);
+    $moduleId = $data['module_id'] ?? 'unknown';
 
+    // Nama file JSON-nya
+    $fileName = $saveDir . "draft_content_module_{$moduleId}.json";
+
+    // Simpan isi konten ke file
+    $testPath = $saveDir . 'test.txt';
+    file_put_contents($testPath, 'cek');
     $saved = file_put_contents($fileName, json_encode($data['content'], JSON_PRETTY_PRINT));
 
     return [
-        'success'=>$saved!==false,
-        'message'=>$data['manual'] ?? false ? 'Draft disimpan manual':'Autosaved',
-        'file'=>basename($fileName)
+        'success' => $saved !== false,
+        'message' => $data['manual'] ?? false ? 'Draft disimpan manual' : 'Autosaved',
+        'file' => basename($fileName)
     ];
 }
+$dataTempFinal = [];
+// ====== HANDLER: GET DRAFT ======
+function getDraft($moduleId)    
+{
+    $fileName = __DIR__ . "/../storage/draft_content_module_{$moduleId}.json";
+    if (file_exists($fileName)) {
+        $json = file_get_contents($fileName);
+        $data = json_decode($json, true);
+        return [
+            'success' => true,
+            'message' => 'Draft ditemukan',
+            'data' => $data
+        ];
+    }
+    return [
+        'success' => false,
+        'message' => 'Tidak ada draft tersimpan'
+    ];
+}
+// $dataTempFinal= getDraft($module_content_id, $moduleId);
 switch ($action) {
-     case 'autosave':
-        $response = saveDraft($data);
-        break; 
+    //  case 'autosave':
+    //     $response = saveDraft($data);
+    //     break; 
+    case 'autosave':
+        $raw = file_get_contents('php://input');
+        $data = json_decode($raw, true);
+        $result = saveDraft($data);
+        response($result);
+        break;
+
+    case 'manualSave':
+        $raw = file_get_contents('php://input');
+        $data = json_decode($raw, true);
+        $data['manual'] = true;
+        $result = saveDraft($data);
+        response($result);
+        break;
+
+    // case 'getDraft':
+    //     $module_content_id =  1;
+    //     $moduleId =  10;
+    //     $response = getDraft($module_content_id, $moduleId);
+    //     response($dataTempFinal);
+    //     break;
     case 'upload-image':
         uploadImage();
         break;

@@ -4,7 +4,11 @@ require_once __DIR__ . '/../../../controller/uploadController.php';
 $page_css = '<link rel="stylesheet" href="' . basefolder() . '/assets/css/admin/manajemen-penggguna.css" />';
 ob_start();
 global $params;
-$id = $params['moduleId'] ?? null;
+$module_content_id = $_GET['module_content_id'] ?? 1;
+$idModule = $params['moduleId'] ?? null; 
+
+$getDrafData = getDraft( $idModule);
+// echo $id;
 
 ?> 
 
@@ -146,9 +150,13 @@ $id = $params['moduleId'] ?? null;
     </div>
     <div class="col-span-9 editor-parent h" style="position: relative;">
 <div id="editorjs" class="h-full"></div>
-<div style="position: sticky;bottom:0;" class="flex justify-end">
-  <button class="" id="save-button">Simpan</button>
-</div>
+<form  action="<?= basefolder() ?>/controller/manajemenContentController.php" method="post">
+
+  <div style="position: sticky;bottom:0;" class="flex justify-end">
+    <input type="hidden" name="module_id" value="<?=$idModule?>">
+    <button class="" id="save-button" name='action' value='addOrUpdateModuleContent'>Simpan</button>
+  </div>
+</form>
     </div>
   </div>
   <pre id="output"></pre>
@@ -194,6 +202,7 @@ const editor = new EditorJS({
   holder: 'editorjs',
   autofocus: true,
   tools: {
+  
     header: Header,
      paragraph: {
     inlineToolbar: true
@@ -223,7 +232,11 @@ const editor = new EditorJS({
       config: { endpoint: '/fetch-link.php' }
     }
   },
-  data:  initialData
+  data:  initialData,
+    onReady: async () => {
+    console.log('EditorJS siap.');
+    await loadDraft(); // di sini aman panggil render
+  }
   
 });
 
@@ -277,17 +290,41 @@ document.getElementById('save-button').addEventListener('click', () => {
 //   localStorage.setItem('editorBackup', JSON.stringify(savedData));
 //   console.log('Editor data saved to localStorage');
 // }, 3000);
+async function loadDraft() {
+  // const res = await fetch('<?=basefolder()?>/controller/uploadController.php?action=getDraft&module_content_id=1&module_id=10');
+  // const data = await res.json();
+
+  // if (data.success && data.data) {
+  //   console.log('Draft ditemukan, render ke editor...');
+  //   await editor.render(data.data);
+  // }
+  const draftData = <?= json_encode($getDrafData ?? null, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) ?>;
+
+  if (draftData) {
+    console.log('Draft ditemukan, render langsung tanpa fetch...');
+    console.log('inidrat',draftData.data);
+    await editor.render(draftData.data);
+    
+  } else {
+    console.log('Tidak ada draft tersimpan.');
+  }
+}
+// loadDraft();
+
 setInterval(async () => {
   const savedData = await editor.save();
-  localStorage.setItem('editorBackup', JSON.stringify(savedData));
-
- fetch('<?= basefolder() ?>/controller/moduleContentController.php?action=autosave', {
+  // localStorage.setItem('editorBackup', JSON.stringify(savedData));
+ fetch('<?=basefolder()?>/controller/uploadController.php?action=autosave', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ content: savedData, user_id: 1 })
+    body: JSON.stringify({ 
+      module_id: <?=$idModule?>,
+      content: savedData
+    })
   })
   .then(res => res.json())
   .then(res => console.log(res.message));
+  console.log(savedData);
 }, 3000);
 </script>
 

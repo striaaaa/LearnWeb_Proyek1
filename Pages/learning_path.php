@@ -2,7 +2,9 @@
 // require_once __DIR__ . '../../helpers/url.php';
 require_once __DIR__ . '/../controller/courseLearningPathController.php';
 // $page_css = '<link rel="stylesheet" href="assets/css/learning-path.css" />';
+global $params;
 $page_css  = '<link rel="stylesheet" href="' . basefolder() . '/assets/css/learning-path.css">';
+$course_id = $params['courseId']??null;
 ob_start();
 ?>
 
@@ -40,6 +42,7 @@ ob_start();
   <h1>Kursus <?= $courseWithModulesResult->data->title ?></h1>
   <div class="materi">
     <?php foreach ($courseWithModulesResult->data->modules as $key => $course): ?>
+      <a href="<?= basefolder() ?>/course/<?= $course_id ?>/detailModule/<?=$course->module_id?>">
       <div class="content">
         <div class="left-content">
           <div class="tahapan">
@@ -68,6 +71,7 @@ ob_start();
           </div>
         </div>
       </div>
+      </a>
     <?php endforeach; ?>
   </div>
 </div>

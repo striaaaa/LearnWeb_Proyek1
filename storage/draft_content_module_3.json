@@ -1,0 +1,64 @@
+{
+    "time": 1762106193426,
+    "blocks": [
+        {
+            "id": "dOr1ZoKz8-",
+            "type": "header",
+            "data": {
+                "text": "Judul baru",
+                "level": 2
+            }
+        },
+        {
+            "id": "X563axKX6L",
+            "type": "list",
+            "data": {
+                "style": "unordered",
+                "meta": [],
+                "items": [
+                    {
+                        "content": "Item 1",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "Item 2",
+                        "meta": [],
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "id": "1SvmB2ZlFM",
+            "type": "code",
+            "data": {
+                "code": "\/\/ kode di sini"
+            }
+        },
+        {
+            "id": "mn-MKfyv9E",
+            "type": "header",
+            "data": {
+                "text": "Judul baru",
+                "level": 2
+            }
+        },
+        {
+            "id": "i-R0V3uyHs",
+            "type": "chunkDivider",
+            "data": {
+                "type": "chunk"
+            }
+        },
+        {
+            "id": "Cfdgiexg4b",
+            "type": "header",
+            "data": {
+                "text": "Judul barsu",
+                "level": 2
+            }
+        }
+    ],
+    "version": "2.31.0"
+}

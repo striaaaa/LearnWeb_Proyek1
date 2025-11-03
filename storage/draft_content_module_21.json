@@ -1,0 +1,82 @@
+{
+    "time": 1762109324854,
+    "blocks": [
+        {
+            "id": "1gQONAL133",
+            "type": "header",
+            "data": {
+                "text": "Judul bsaru",
+                "level": 2
+            }
+        },
+        {
+            "id": "6mymGav6Gu",
+            "type": "list",
+            "data": {
+                "style": "unordered",
+                "meta": [],
+                "items": [
+                    {
+                        "content": "Item 1",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "Item 2",
+                        "meta": [],
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "id": "nlveIe68Y5",
+            "type": "linkTool",
+            "data": {
+                "link": "https:\/\/www.youtube.com\/watch?v=OuKnhKiNTFw&list=RDJh9Ehrd92pw&index=4",
+                "meta": []
+            }
+        },
+        {
+            "id": "r3UPyB7UPL",
+            "type": "chunkDivider",
+            "data": {
+                "type": "chunk"
+            }
+        },
+        {
+            "id": "RlNy6iNB4O",
+            "type": "header",
+            "data": {
+                "text": "Judul qsweqwe",
+                "level": 2
+            }
+        },
+        {
+            "id": "gSwLFWbrx5",
+            "type": "header",
+            "data": {
+                "text": "Judul baru",
+                "level": 2
+            }
+        },
+        {
+            "id": "vm-5eVpmi5",
+            "type": "quote",
+            "data": {
+                "text": "quotes anjay keren",
+                "caption": "by gwe",
+                "alignment": "left"
+            }
+        },
+        {
+            "id": "pgl3NGlAwo",
+            "type": "header",
+            "data": {
+                "text": "Judul baru",
+                "level": 2
+            }
+        }
+    ],
+    "version": "2.31.0"
+}

@@ -19,7 +19,11 @@ if (!function_exists('arrayToObject')) {
         return $data;
     }
 }
-
+function mysqliEscapeStringg($data){
+     $conn = getMysqliConnection();
+    $dataStringFinal=  mysqli_real_escape_string($conn, $data);
+    return $dataStringFinal;
+}
 function runQuery($sql, $params = [], $types = '')
 {
     // $conn = getMysqliConnection();
