@@ -35,6 +35,11 @@ body {
   font-weight: 500;
   cursor: pointer;
 }
+.nav-link a:hover {
+  color: #313131;
+  animation: 1s;
+  text-decoration: underline;
+}
 
 .log-btn {
   display: flex;

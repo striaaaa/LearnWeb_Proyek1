@@ -1,4 +1,4 @@
-// Ganti konten tanpa reload
+// Ganti konten
 const navLinks = document.querySelectorAll(".nav-linkk");
 const sections = document.querySelectorAll(".card");
 
