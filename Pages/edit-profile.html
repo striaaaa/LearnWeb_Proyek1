@@ -3,7 +3,104 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="../style/nav.css" />
+    <link rel="stylesheet" href="../style/edit-profile.css" />
   </head>
-  <body></body>
+  <body>
+    <div class="nav">
+      <div class="logo">Logo</div>
+      <div class="nav-link">
+        <a href="after-login.html"><span>Beranda</span></a>
+        <a href="choose_learning.html"><span>Learning Path</span></a>
+        <a href="dashboard.html"><span>Dashboard</span></a>
+      </div>
+      <div class="acc-nav">
+        <div class="name-acc-nav">
+          <span>Nama Akun</span>
+        </div>
+        <div class="img-acc-nav">
+          <img src="../assets/user.png" alt="user" />
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENT EDIT PROFILE -->
+    <div class="main">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <h2>Pengaturan</h2>
+        <div class="nav-linkk active" data-target="data-pribadi">
+          Data Pribadi
+        </div>
+        <div class="nav-linkk" data-target="akun">Akun</div>
+      </div>
+
+      <!-- Konten kanan -->
+      <div class="content">
+        <!-- Data Pribadi -->
+        <div id="data-pribadi" class="card">
+          <h3 class="section-title">Data Pribadi</h3>
+
+          <div class="pilih-foto">
+            <div class="left">
+              <label for="foto">Pilih foto</label>
+              <img
+                id="preview"
+                src="https://via.placeholder.com/100"
+                class="profile-pic"
+                alt="Foto Profil"
+              />
+            </div>
+            <div class="right">
+              <input
+                type="image"
+                id="foto"
+                value="Pilih Foto"
+                accept="image/*"
+                onchange="previewFoto(event)"
+              />
+              <p>
+                Gambar Profile Anda sebaiknya memiliki rasio 1:1 dan berukuran
+                tidak lebih dari 2MB.
+              </p>
+            </div>
+          </div>
+
+          <label>Nama Lengkap</label>
+          <input type="text" placeholder="Masukkan nama lengkap" />
+
+          <label>Email</label>
+          <input type="email" placeholder="Masukkan email" />
+
+          <label>Alamat</label>
+          <textarea rows="3" placeholder="Masukkan alamat"></textarea>
+
+          <label>Nomor Telepon</label>
+          <input type="text" placeholder="Masukkan nomor telepon" />
+
+          <button>Simpan Perubahan</button>
+        </div>
+
+        <!-- Akun -->
+        <div id="akun" class="card hidden">
+          <h3 class="section-title">Akun</h3>
+
+          <label class="top">Email</label>
+          <input type="email" value="satriasahrul@gmail.com" readonly />
+
+          <label>Password Baru</label>
+          <input type="password" placeholder="Masukkan password baru" />
+
+          <label>Konfirmasi Password</label>
+          <input type="password" placeholder="Ulangi password baru" />
+
+          <button>Ubah Password</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- JS -->
+    <script src="../edit_profile.js"></script>
+  </body>
 </html>
