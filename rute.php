@@ -10,16 +10,19 @@ for ($i = 0; $i < 20; $i++) {
 $routes = [
     ""          => "Pages/index.php",
     "login"     => "Pages/login.php",
-    "dashboard" => "Pages/dashboard.php",
-
     "course-detail" => "Pages/course-detail.php",
-    "profile"   => "Pages/user/profile.php", 
+    "dashboard" => [
+        "" => "Pages/dashboardUser.php",
+        "edit-profile" => "Pages/edit_profile.php",
+    ],
+
+
     "course" => [
         "" => "Pages/course.php",
         ":courseId" => [
-            ""=>  "Pages/learning_path.php",
-            "detailModule"=>[
-                ":moduleId"=>  "Pages/module_content.php"
+            "" =>  "Pages/learning_path.php",
+            "detailModule" => [
+                ":moduleId" =>  "Pages/module_content.php"
             ]
         ]
     ],
@@ -27,23 +30,23 @@ $routes = [
     "admin"     => [
         "dashboard" => "Pages/admin/dashboard-admin.php",
         "manajemen-kursus" => [
-            ""=>"Pages/admin/courseManagement/index.php",
-            "tambah-kursus"=>"Pages/admin/courseManagement/tambah-kursus.php",
+            "" => "Pages/admin/courseManagement/index.php",
+            "tambah-kursus" => "Pages/admin/courseManagement/tambah-kursus.php",
         ],
 
         "manajemen-modul-konten" => [
-            ""=>"Pages/admin/moduleContentManagement/index.php",
-            ":moduleId"=>[
-                "tambah-konten"=>"Pages/admin/moduleContentManagement/tambah-modul-content.php",
+            "" => "Pages/admin/moduleContentManagement/index.php",
+            ":moduleId" => [
+                "tambah-konten" => "Pages/admin/moduleContentManagement/tambah-modul-content.php",
             ],
             // "tambah-modul-content"=>"Pages/admin/moduleContentManagement/tambah-modul-content.php",
         ],
         "manajemen-modul" => [
-            ""=>"Pages/admin/moduleManagement/index.php",
-            "tambah-modul"=>"Pages/admin/moduleManagement/tambah_modul.php",
+            "" => "Pages/admin/moduleManagement/index.php",
+            "tambah-modul" => "Pages/admin/moduleManagement/tambah_modul.php",
         ],
         "manajemen-pengguna" => [
-            ""=>"Pages/admin/userManagement/index.php", 
+            "" => "Pages/admin/userManagement/index.php",
         ],
 
         "user"      => [

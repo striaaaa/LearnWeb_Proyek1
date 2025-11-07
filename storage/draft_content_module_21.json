@@ -1,5 +1,5 @@
 {
-    "time": 1762109324854,
+    "time": 1762305288070,
     "blocks": [
         {
             "id": "1gQONAL133",
@@ -75,6 +75,39 @@
             "data": {
                 "text": "Judul baru",
                 "level": 2
+            }
+        },
+        {
+            "id": "kGft9Gc3N9",
+            "type": "list",
+            "data": {
+                "style": "unordered",
+                "meta": [],
+                "items": [
+                    {
+                        "content": "Item 1",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "Item 2",
+                        "meta": [],
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "id": "5jE34H2AYA",
+            "type": "image",
+            "data": {
+                "caption": "Contoh gambar",
+                "withBorder": false,
+                "withBackground": false,
+                "stretched": false,
+                "file": {
+                    "url": "\/placeholder.png"
+                }
             }
         }
     ],

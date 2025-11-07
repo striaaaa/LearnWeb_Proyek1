@@ -1,0 +1,86 @@
+{
+    "time": 1762304434635,
+    "blocks": [
+        {
+            "id": "wrHmd9Y3zM",
+            "type": "header",
+            "data": {
+                "text": "JuduasdaSSSSsl baru",
+                "level": 2
+            }
+        },
+        {
+            "id": "ssN5pMDtpC",
+            "type": "image",
+            "data": {
+                "caption": "Contoh gambar",
+                "withBorder": false,
+                "withBackground": false,
+                "stretched": false,
+                "file": {
+                    "url": "\/placeholder.png"
+                }
+            }
+        },
+        {
+            "id": "-Z1hE0TKYt",
+            "type": "list",
+            "data": {
+                "style": "unordered",
+                "meta": [],
+                "items": [
+                    {
+                        "content": "Item 1",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "Itemsds 2",
+                        "meta": [],
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "id": "P7uebX_y6i",
+            "type": "code",
+            "data": {
+                "code": "\/\/ kode di siniasdas"
+            }
+        },
+        {
+            "id": "xeGJmEKoY5",
+            "type": "chunkDivider",
+            "data": {
+                "type": "chunk"
+            }
+        },
+        {
+            "id": "JqMflMxTOW",
+            "type": "chunkDivider",
+            "data": {
+                "type": "chunk"
+            }
+        },
+        {
+            "id": "QsWXRMSi6i",
+            "type": "delimiter",
+            "data": []
+        },
+        {
+            "id": "2ib6l-aJoN",
+            "type": "delimiter",
+            "data": []
+        },
+        {
+            "id": "8Z-HWL8OXq",
+            "type": "header",
+            "data": {
+                "text": "Judul baSJSJSJru",
+                "level": 2
+            }
+        }
+    ],
+    "version": "2.31.0"
+}
