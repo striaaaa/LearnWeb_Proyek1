@@ -1,6 +1,11 @@
-
-
-
+:root {
+  --primary-color: #ffffff;
+  --secondary-color: #bcf665;
+  --bg-color: #eef2fb;
+  --default-text: #535353;
+  --black-text: #000000;
+  --gray-color: #b5b5b5;
+}
 
 .btn-aksi {
   width: fit-content;
@@ -20,7 +25,57 @@
   background-color: #595959;
   transition: 0.3s;
 }
+.dt-paging {
+  justify-content: center; /* pagination ke tengah */
+  margin-top: 10px;
+}
+.dt-paging-button {
+  border-radius: 5px;
+  margin: 0 3px;
+  padding: 10px 20px;
+  background-color: var(--primary-color) !important;
+  border: none !important;
+}
 
+.dt-paging-button:hover{
+background-color: #2563eb !important;
+}
+.dt-paging-button.current {
+  background-color: var(--secondary-color) !important;
+  color: var(--black-text) !important;
+}
+
+table.dataTable {
+  /* border-collapse: separate !important; */
+  border-spacing: 0;
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+}
+ 
+table.dataTable thead tr  {
+border-radius: 200px !important;
+}
+table.dataTable thead th {
+  background-color: var(--secondary-color);  
+  color: #fff;
+  font-weight: 400;  
+  padding: 12px 8px;
+  border-bottom: 20px solid var(--bg-color) !important; 
+}
+ 
+table.dataTable thead th.sorting:hover {
+  background-color: #3b82f6;
+  cursor: pointer;
+}
+ 
+table.dataTable thead th.sorting_asc,
+table.dataTable thead th.sorting_desc {
+  background-color: #2563eb;
+  color: #fff;
+}
+
+
+/* 
 table {
   width: 100%;
   border-collapse: collapse;
@@ -43,9 +98,6 @@ td {
   padding: 12px;
   text-align: center;
   /* border-bottom: 1px solid #ddd; */
-}
-
-
 
 .user-aktif {
   padding: 5px 15px;
@@ -54,13 +106,12 @@ td {
   border-radius: 5px;
   cursor: pointer;
 }
-.user-nonAktif{
+.user-nonAktif {
   padding: 5px 15px;
   background-color: #af9d4c;
   color: white;
   border-radius: 5px;
   cursor: pointer;
-
 }
 
 .frame-card {
@@ -82,10 +133,9 @@ td {
   /* display: flex;
   gap: 10px;
   flex-direction: column; */
-  
 }
-.list-modul{
-  padding:10px 20px;
+.list-modul {
+  padding: 10px 20px;
   background-color: #d4d4d4;
   border-radius: 10px;
 }
@@ -97,7 +147,7 @@ textarea {
   border: none;
   box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.2);
 }
-.left-card-button{
+.left-card-button {
   width: 100%;
   padding: 10px 25px;
   background-color: #595959;
@@ -118,7 +168,7 @@ textarea {
   border-radius: 10px;
   padding: 20px; */
 }
-.card-content-tambah{
+.card-content-tambah {
   margin: 30px;
 }
 
@@ -141,19 +191,34 @@ textarea {
   gap: 5px;
   border-bottom: 1px solid #ddd;
 }
-.list-modul.dragging { opacity: 0.5; background: #d0d0d0; }
+.list-modul.dragging {
+  opacity: 0.5;
+  background: #d0d0d0;
+}
 .modal {
   position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0,0,0,0.4);
-  display: flex; align-items: center; justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.modal.hidden { display: none; }
+.modal.hidden {
+  display: none;
+}
 .modal-content {
   background: white;
   padding: 20px;
   border-radius: 8px;
   width: 320px;
 }
-.modal-btns { margin-top: 10px; text-align: right; }
-.modal-btns button { margin-left: 6px; }
+.modal-btns {
+  margin-top: 10px;
+  text-align: right;
+}
+.modal-btns button {
+  margin-left: 6px;
+}

@@ -39,3 +39,22 @@ function getUserAll()
         ];
     }
 }
+function getUserGroupByMonth($filterYear = null) {
+    if ($filterYear === null) {
+        $filterYear = date('Y');  
+    }
+     $users = [];
+    try {
+        $sql = "SELECT YEAR(created_at) as YEAR, MONTH(created_at) as month, count(*) as total_user from users where year(created_at)=? group by month order by month";
+        $users = runQuery($sql,[$filterYear],'i');
+        return [
+            'success' => true,
+            'data' => $users
+        ];
+    } catch (Exception $e) {
+        return [
+            'success' => false,
+            'error' => $e->getMessage()
+        ];
+    }
+}

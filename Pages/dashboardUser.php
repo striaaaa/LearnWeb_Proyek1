@@ -1,12 +1,14 @@
 <?php
 require_once __DIR__ . '/../controller/dashboardController.php';
 require_once __DIR__ . '/../middleware/guestMiddleware.php';
-$page_css = '<link rel="stylesheet" href="assets/css/dashboard.css" />';
+// $page_css = '<link rel="stylesheet" href="assets/css/dashboard.css" />';
+
+$page_css  = '<link rel="stylesheet" href="' . basefolder() . '/assets/css/dashboard.css">';
 ob_start();
 ?>
 <div class="container-profile">
   <div class="img-radius">
-    <img src="" alt="user" />
+    <img  src="<?= $userLogin->image?basefolder().'/uploads/user/profil/'.$userLogin->image:'https://image.idntimes.com/post/20230220/888355494-47236b76652f2e55025900cd98ccd09e-0759d9cc026a3c781b24c228b3d42224.jpg'?>" alt="user" />
   </div>
   <div class="detail-profile">
     <h1><?= $userLogin->name ?></h1>

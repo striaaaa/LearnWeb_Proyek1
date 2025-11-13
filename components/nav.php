@@ -37,7 +37,7 @@
                  <span><?= $userLogin->name; ?></span>
              </div>
              <div class="img-acc-nav">
-                 <img src="../assets/user.png" alt="user" />
+                 <img  src="<?= $userLogin->image?basefolder().'/uploads/user/profil/'.$userLogin->image:'https://image.idntimes.com/post/20230220/888355494-47236b76652f2e55025900cd98ccd09e-0759d9cc026a3c781b24c228b3d42224.jpg'?>" alt="user" />
              </div>
 
          </div>

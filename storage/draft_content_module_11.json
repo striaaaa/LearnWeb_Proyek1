@@ -1,0 +1,148 @@
+{
+    "time": 1762865096717,
+    "blocks": [
+        {
+            "id": "xH75IGnF-e",
+            "type": "paragraph",
+            "data": {
+                "text": "dsss"
+            }
+        },
+        {
+            "id": "1mhGF724D4",
+            "type": "header",
+            "data": {
+                "text": "nigga",
+                "level": 2
+            }
+        },
+        {
+            "id": "7gEP-TTUy_",
+            "type": "image",
+            "data": {
+                "caption": "Contoh gambar",
+                "withBorder": false,
+                "withBackground": false,
+                "stretched": false,
+                "file": {
+                    "url": "\/placeholder.png"
+                }
+            }
+        },
+        {
+            "id": "oi3G8LK4EH",
+            "type": "list",
+            "data": {
+                "style": "unordered",
+                "meta": [],
+                "items": [
+                    {
+                        "content": "Item 1",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "Item 2",
+                        "meta": [],
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "id": "ZJEkAjb3zc",
+            "type": "image",
+            "data": {
+                "caption": "Contoh gambar",
+                "withBorder": false,
+                "withBackground": false,
+                "stretched": false,
+                "file": {
+                    "url": "\/placeholder.png"
+                }
+            }
+        },
+        {
+            "id": "9fIvtWMa9h",
+            "type": "linkTool",
+            "data": {
+                "link": "https:\/\/example.com",
+                "meta": []
+            }
+        },
+        {
+            "id": "5QvyWOU0jR",
+            "type": "image",
+            "data": {
+                "caption": "Contoh gambar",
+                "withBorder": false,
+                "withBackground": false,
+                "stretched": false,
+                "file": {
+                    "url": "\/placeholder.png"
+                }
+            }
+        },
+        {
+            "id": "k-PtAsBREV",
+            "type": "list",
+            "data": {
+                "style": "unordered",
+                "meta": [],
+                "items": [
+                    {
+                        "content": "Item 1",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "Item ll",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "jkjk",
+                        "meta": [],
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "id": "hhBvsd16tU",
+            "type": "code",
+            "data": {
+                "code": ""
+            }
+        },
+        {
+            "id": "hCxSBEKoyC",
+            "type": "linkTool",
+            "data": {
+                "link": "https:\/\/example.com",
+                "meta": []
+            }
+        },
+        {
+            "id": "M5p9C3N0Yu",
+            "type": "delimiter",
+            "data": []
+        },
+        {
+            "id": "oWUq9PbaJ9",
+            "type": "chunkDivider",
+            "data": {
+                "type": "chunk"
+            }
+        },
+        {
+            "id": "WlWPvoOR2L",
+            "type": "header",
+            "data": {
+                "text": "nigga 2asdasd",
+                "level": 2
+            }
+        }
+    ],
+    "version": "2.31.0"
+}

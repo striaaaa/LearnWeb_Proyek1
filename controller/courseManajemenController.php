@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/../helpers/url.php';
+
 require_once __DIR__ . '/../helpers/db_helper.php';
 require_once __DIR__ . '/../models/course.php';
  $conn = getMysqliConnection();
@@ -11,10 +13,11 @@ switch ($action) {
   case 'store':
     storeCourse($conn);
     break;
-  case 'update':
+  case 'updateCourse':
+    var_dump('asd');
     updateCourse($conn);
     break;
-  case 'delete':
+  case 'deleteCourse':
     deleteCourse($conn);
     break;
   default: 
@@ -65,11 +68,80 @@ function storeCourse($conn) {
   header("Location: ../views/courses_list.php?success=1");
   exit;
 }
+function updateCourse($conn)
+{
+  $id = $_POST['course_id'] ?? 0;
+  $title = $_POST['title'] ?? '';
+  $desc = $_POST['description'] ?? '';
+  $oldImage = $_POST['oldImage'] ?? ''; 
 
-function updateCourse($conn) {
-  // nanti bisa ditambah di sini logika edit/update
+  if (!$id || !$title || !$desc) {
+    die('Data kursus belum lengkap untuk update!');
+  }
+
+  // Upload baru (jika ada)
+  $imageName = $oldImage;
+  if (!empty($_FILES['courseImage']['name'])) {
+    $targetDir = "../uploads/admin/";
+    if (!file_exists($targetDir)) mkdir($targetDir, 0777, true);
+    $imageName = time() . "_" . basename($_FILES["courseImage"]["name"]);
+    move_uploaded_file($_FILES["courseImage"]["tmp_name"], $targetDir . $imageName);
+
+    // Hapus gambar lama kalau ada
+    if ($oldImage && file_exists($targetDir . $oldImage)) {
+      unlink($targetDir . $oldImage);
+    }
+  }
+
+  // Update course
+  $sql = "UPDATE courses
+          SET title = '" . mysqli_real_escape_string($conn, $title) . "',
+              description = '" . mysqli_real_escape_string($conn, $desc) . "',
+              image = '" . mysqli_real_escape_string($conn, $imageName) . "',
+              updated_at = NOW()
+          WHERE course_id = " . intval($id);
+
+  runQuery($sql);
+
+  // // Update modules (hapus dulu, lalu insert ulang biar aman)
+  // runQuery("DELETE FROM modules WHERE course_id = " . intval($id));
+
+  // foreach ($modules as $m) {
+  //   $mod_title = mysqli_real_escape_string($conn, $m['title']);
+  //   $order_no = intval($m['order_no']);
+  //   $sql_mod = "INSERT INTO modules (course_id, title, order_no, created_at)
+  //               VALUES ($id, '$mod_title', $order_no, NOW())";
+  //   runQuery($sql_mod);
+  // }
+
+  header("Location: ../views/courses_list.php?success=1");
+  // header("Location: " . baseFolder() . "/admin/manajemen-kursus");
+  exit;
 }
 
-function deleteCourse($conn) {
-  
+/**
+ * DELETE COURSE
+ */
+function deleteCourse($conn)
+{
+  $id = $_POST['course_id'] ?? 0;
+  if (!$id) die('ID kursus tidak ditemukan!');
+
+  // Hapus image jika ada
+  $result = runQuery("SELECT image FROM courses WHERE course_id = " . intval($id));
+  var_dump($result->image);
+  if (!empty($result->image)) {
+    $targetDir = "../uploads/admin/";
+    $oldImage = $result->image;
+    if (file_exists($targetDir . $oldImage)) {
+      unlink($targetDir . $oldImage);
+    }
+  }
+
+  // Hapus modules & course
+  runQuery("DELETE FROM modules WHERE course_id = " . intval($id));
+  runQuery("DELETE FROM courses WHERE course_id = " . intval($id));
+
+  header("Location: " . baseFolder() . "/admin/manajemen-kursus");
+  exit;
 }

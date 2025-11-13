@@ -1,0 +1,102 @@
+{
+    "time": 1762481008750,
+    "blocks": [
+        {
+            "id": "Yxl1HbOa7O",
+            "type": "header",
+            "data": {
+                "text": "Judul baru",
+                "level": 2
+            }
+        },
+        {
+            "id": "_tsabQLIJe",
+            "type": "list",
+            "data": {
+                "style": "unordered",
+                "meta": [],
+                "items": [
+                    {
+                        "content": "Item 1ss",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "Item 2ss",
+                        "meta": [],
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "id": "BT2MgZ0exu",
+            "type": "code",
+            "data": {
+                "code": "\/\/ kode di sini"
+            }
+        },
+        {
+            "id": "4i8M5I7lNJ",
+            "type": "code",
+            "data": {
+                "code": "\/\/ kode di sini"
+            }
+        },
+        {
+            "id": "UT-SjBl7m5",
+            "type": "linkTool",
+            "data": {
+                "link": "https:\/\/example.com",
+                "meta": []
+            }
+        },
+        {
+            "id": "LwKNAyaGVF",
+            "type": "delimiter",
+            "data": []
+        },
+        {
+            "id": "DviKA-9Qkr",
+            "type": "list",
+            "data": {
+                "style": "unordered",
+                "meta": [],
+                "items": [
+                    {
+                        "content": "Item 1",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "Item 2",
+                        "meta": [],
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "id": "35RG8Q8lgT",
+            "type": "image",
+            "data": {
+                "caption": "Contoh gambar",
+                "withBorder": false,
+                "withBackground": false,
+                "stretched": false,
+                "file": {
+                    "url": "\/placeholder.png"
+                }
+            }
+        },
+        {
+            "id": "bPYq_0knYp",
+            "type": "header",
+            "data": {
+                "text": "Judul baru",
+                "level": 2
+            }
+        }
+    ],
+    "version": "2.31.0"
+}
