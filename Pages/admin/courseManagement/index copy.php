@@ -27,7 +27,7 @@ ob_start();
             </td>
             <td>
               <?php if (!empty($course->image)) {?>
-              <img src="<?=basefolder()?>/uploads/admin/<?=$course->image?>" alt="" srcset="" width="300px">
+              <!-- <img src="<?=basefolder()?>/uploads/admin/<?=$course->image?>" alt="" srcset="" width="300px" height="150px" style="object-fit:cover;" > -->
               <?php } else{ ?>
               <span>Tidak ada gambar</span>
               <?php } ?>

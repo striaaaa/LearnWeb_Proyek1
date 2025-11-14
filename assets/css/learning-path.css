@@ -38,7 +38,7 @@
 }
 
 .left-content {
-  width: 35%;
+  width: 80%;
   padding: 10px 0 10px 10px;
   border: 1px solid #d4d4d4;
   border-radius: 10px;
@@ -54,5 +54,5 @@
 }
 
 .list-modul {
-  padding: 5px 20px;
+  padding: 5px 20px 5px 0px;
 }

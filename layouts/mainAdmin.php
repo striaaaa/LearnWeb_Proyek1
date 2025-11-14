@@ -28,13 +28,13 @@ renderFlashAlert();
 <body>
     <div class="side-bar">
         <div class="logo">
-            <img src="../assets/img/image.png" height="60px" width="100%" alt="" srcset="" style="object-fit: cover;">
+            <img src="<?=  basefolder()?>/assets/img/image.png" height="60px" width="100%" alt="" srcset="" style="object-fit: cover;">
         </div>
         <div class="nav-link-admin">
             <div class="btn-link <?= ($current == 'dashboard') ? 'is-active is-active-line' : '' ?>">
                 <a href="<?= basefolder() ?>/admin/dashboard">
                     <div class="flex items-center">
-                        <img src="../assets/img/icon/dashboard.svg" height="24px" width="24px" alt="" srcset="" style="object-fit: cover;">
+                        <img src="<?=  basefolder()?>/assets/img/icon/dashboard.svg" height="24px" width="24px" alt="" srcset="" style="object-fit: cover;">
                         <p>
                             &nbsp;
                             Dashboard
@@ -46,7 +46,7 @@ renderFlashAlert();
             <div class="btn-link <?= ($current == 'manajemen-pengguna') ? 'is-active is-active-line' : '' ?>">
                 <a href="<?= basefolder() ?>/admin/manajemen-pengguna">
                     <div class="flex items-center">
-                        <img src="../assets/img/icon/user.svg" height="24px" width="24px" alt="" srcset="" style="object-fit: cover;">
+                        <img src="<?=  basefolder()?>/assets/img/icon/user.svg" height="24px" width="24px" alt="" srcset="" style="object-fit: cover;">
                         <p>
                             &nbsp;
                             Pengguna
@@ -58,7 +58,7 @@ renderFlashAlert();
             <div class="btn-link <?= ($current == 'manajemen-kursus') ? 'is-active is-active-line' : '' ?>">
                 <a href="<?= basefolder() ?>/admin/manajemen-kursus">
                     <div class="flex items-center">
-                        <img src="../assets/img/icon/kursus.svg" height="24px" width="24px" alt="" srcset="" style="object-fit: cover;">
+                        <img src="<?=  basefolder()?>/assets/img/icon/kursus.svg" height="24px" width="24px" alt="" srcset="" style="object-fit: cover;">
                         <p>
                             &nbsp;
                             Kursus
@@ -70,7 +70,7 @@ renderFlashAlert();
             <div class="btn-link <?= ($current == 'manajemen-modul') ? 'is-active is-active-line' : '' ?>">
                 <a href="<?= basefolder() ?>/admin/manajemen-modul">
                     <div class="flex items-center">
-                        <img src="../assets/img/icon/modul.svg" height="24px" width="24px" alt="" srcset="" style="object-fit: cover;">
+                        <img src="<?=  basefolder()?>/assets/img/icon/modul.svg" height="24px" width="24px" alt="" srcset="" style="object-fit: cover;">
                         <p>
                             &nbsp;
                             Modul
@@ -82,7 +82,7 @@ renderFlashAlert();
             <div class="btn-link <?= ($current == 'manajemen-modul-konten') ? 'is-active is-active-line' : '' ?>">
                 <a href="<?= basefolder() ?>/admin/manajemen-modul-konten">
                     <div class="flex items-center">
-                        <img src="../assets/img/icon/konten.svg" height="24px" width="24px" alt="" srcset="" style="object-fit: cover;">
+                        <img src="<?=  basefolder()?>/assets/img/icon/konten.svg" height="24px" width="24px" alt="" srcset="" style="object-fit: cover;">
                         <p>
                             &nbsp;
                             Konten
@@ -90,12 +90,6 @@ renderFlashAlert();
                     </div>
                 </a>
             </div>
-
-            <form method="post">
-                <button type="submit" name="logout" class="logout-btn">
-                    Logout
-                </button>
-            </form>
         </div>
 
     </div>
@@ -129,9 +123,11 @@ renderFlashAlert();
 
                 <!-- Dropdown Menu -->
                 <div id="profileDropdown" class="dropdown">
-                    <!-- <a href="#" class="">Profil</a>
-                    <a href="#" class="">Pengaturan</a> -->
-                    
+                   <form method="post">
+                <button type="submit" name="logout" class="logout-btn">
+                    Logout
+                </button>
+            </form>
                 </div>
             </div>
             <div class="admin-content-body">

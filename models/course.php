@@ -21,6 +21,47 @@ function getAllCourses()
         ];
     }
 }
+function getCoursesWithModulesLimit3()
+{
+    try { 
+        $sqlCourses = "SELECT course_id, title, description, image, created_at 
+                       FROM courses 
+                       ORDER BY created_at DESC 
+                       LIMIT 3";
+
+        $courses = runQuery($sqlCourses); 
+        if (!$courses) {
+            return [
+                'success' => true,
+                'data' => []
+            ];
+        } 
+        foreach ($courses as &$course) {
+            $courseId = $course->course_id;
+
+            $sqlModules = "SELECT module_id, title 
+                           FROM modules 
+                           WHERE course_id = ?
+                           ORDER BY created_at ASC";
+
+            $modules = runQuery($sqlModules, [$courseId]);
+ 
+            $course->modules = $modules ? $modules : [];
+        }
+
+        return [
+            'success' => true,
+            'data' => $courses
+        ];
+
+    } catch (\Exception $e) {
+        return [
+            'success' => false,
+            'message' => "Error mengambil data: " . $e->getMessage()
+        ];
+    }
+}
+
 function getCourseByIdWithModules($course_id)
 {
 

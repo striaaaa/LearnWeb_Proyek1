@@ -6,6 +6,7 @@ ob_start();
 global $params;
 $module_content_id = $_GET['module_content_id'] ?? 1;
 $idModule = $params['moduleId'] ?? null; 
+echo $idModule;
 
 $getDrafData = getDraft( $idModule);
 // echo $id;
@@ -243,7 +244,7 @@ const editor = new EditorJS({
 function addBlock(type) {
   editor.save().then(() => {
     const lastIndex = editor.blocks.getBlocksCount(); // total blok sekarang
-    console.log(lastIndex);
+    // console.log(lastIndex);
     
     switch (type) {
       case 'header':
@@ -301,8 +302,8 @@ async function loadDraft() {
   const draftData = <?= json_encode($getDrafData ?? null, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) ?>;
 
   if (draftData) {
-    console.log('Draft ditemukan, render langsung tanpa fetch...');
-    console.log('inidrat',draftData.data);
+    // console.log('Draft ditemukan, render langsung tanpa fetch...');
+    // console.log('inidrat',draftData.data);
     await editor.render(draftData.data);
     
   } else {
@@ -324,7 +325,7 @@ setInterval(async () => {
   })
   .then(res => res.json())
   .then(res => console.log(res.message));
-  console.log(savedData);
+  // console.log(savedData);
 }, 3000);
 </script>
 

@@ -38,6 +38,16 @@ body {
   display: flex;
   gap: 10px;
 }
+.log-btn a.regist-btn {
+  text-decoration: none;
+  color: rgb(10, 10, 10);
+
+}
+.log-btn a.login-btn {
+  text-decoration: none;
+  color: white;
+
+}
 .regist-btn {
   padding: 10px 20px;
   border: 1px solid #595959;

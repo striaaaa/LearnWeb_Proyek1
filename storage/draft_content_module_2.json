@@ -1,0 +1,151 @@
+{
+    "time": 1763082457450,
+    "blocks": [
+        {
+            "id": "header_main",
+            "type": "header",
+            "data": {
+                "text": "Materi 1 Penguasaan Dasar CSS dan Selektor",
+                "level": 1
+            }
+        },
+        {
+            "id": "intro_par_1",
+            "type": "paragraph",
+            "data": {
+                "text": "Selamat datang di materi pertama tentang CSS. CSS (Cascading Style Sheets) adalah bahasa *stylesheet* yang digunakan untuk menjelaskan tampilan dan format dokumen yang ditulis dalam bahasa *markup* (seperti HTML). CSS memungkinkan Anda mengontrol warna, *font*, tata letak, dan aspek visual lainnya dari halaman web Anda."
+            }
+        },
+        {
+            "id": "intro_par_2",
+            "type": "paragraph",
+            "data": {
+                "text": "Tanpa CSS, semua halaman web akan terlihat seperti dokumen teks sederhana tanpa gaya. Mempelajari CSS adalah langkah krusial untuk menjadi pengembang web yang kompeten, karena ia adalah jembatan antara struktur (*structure*) dan presentasi (*presentation*)."
+            }
+        },
+        {
+            "id": "delimiter_1",
+            "type": "delimiter",
+            "data": []
+        },
+        {
+            "id": "header_sub_1",
+            "type": "header",
+            "data": {
+                "text": "3 Cara Menyematkan CSS ke HTML",
+                "level": 2
+            }
+        },
+        {
+            "id": "list_embedding",
+            "type": "list",
+            "data": {
+                "style": "ordered",
+                "meta": {
+                    "counterType": "numeric"
+                },
+                "items": [
+                    {
+                        "content": "**Inline Style** Penulisan gaya langsung pada tag HTML menggunakan atribut `style` (tidak direkomendasikan untuk produksi).",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "**Internal Style Sheet** Penulisan gaya di dalam tag `<style>` di bagian `<head>` dokumen HTML.<\/style>",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "**External Style Sheet** Penulisan gaya dalam file `.css` terpisah dan dihubungkan menggunakan tag `<link>` (metode terbaik).",
+                        "meta": [],
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "id": "code_external",
+            "type": "code",
+            "data": {
+                "code": "<!DOCTYPE html>\n<html>\n  <head>\n    <title>Contoh CSS Eksternal<\/title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n  <\/head>\n  <body>\n    \n  <\/body>\n<\/html>"
+            }
+        },
+        {
+            "id": "quote_advice",
+            "type": "quote",
+            "data": {
+                "text": "Praktek terbaik dalam pengembangan web adalah selalu menggunakan External Style Sheet untuk memisahkan struktur (HTML) dari presentasi (CSS).",
+                "caption": "Penting untuk dipahami",
+                "alignment": "center"
+            }
+        },
+        {
+            "id": "header_sub_2",
+            "type": "header",
+            "data": {
+                "text": "Mengenal Berbagai Jenis Selektor Dasar",
+                "level": 2
+            }
+        },
+        {
+            "id": "par_selector_intro",
+            "type": "paragraph",
+            "data": {
+                "text": "Selektor adalah bagian terpenting dari CSS. Mereka berfungsi untuk 'memilih' elemen HTML mana yang ingin Anda beri gaya. Ada tiga jenis selektor dasar yang harus Anda kuasai"
+            }
+        },
+        {
+            "id": "list_selectors",
+            "type": "list",
+            "data": {
+                "style": "unordered",
+                "meta": [],
+                "items": [
+                    {
+                        "content": "**Selektor Elemen** Memilih semua elemen dengan nama tag tertentu (misalnya `p`, `h1`).",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "**Selektor ID** Memilih satu elemen unik dengan atribut `id` tertentu (diawali dengan `#`, misal `#logo`).",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "**Selektor Class** Memilih semua elemen dengan atribut `class` tertentu (diawali dengan `.`, misal `.tombol`).",
+                        "meta": [],
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "id": "code_selectors",
+            "type": "code",
+            "data": {
+                "code": "\/* Selektor Elemen *\/\np {\n  font-size: 16px;\n}\n\n\/* Selektor ID *\/\n#header-title {\n  color: blue;\n}\n\n\/* Selektor Class *\/\n.card {\n  border: 1px solid #ccc;\n}"
+            }
+        },
+        {
+            "id": "link_css_reference",
+            "type": "linkTool",
+            "data": {
+                "link": "https:\/\/www.w3schools.com\/css\/css_selectors.asp",
+                "meta": []
+            }
+        },
+        {
+            "id": "delimiter_final",
+            "type": "delimiter",
+            "data": []
+        },
+        {
+            "id": "par_next_step",
+            "type": "paragraph",
+            "data": {
+                "text": "Latihan praktis sangat disarankan. Setelah menguasai selektor, kita akan beralih ke materi tentang Properti Box Model di bab selanjutnya."
+            }
+        }
+    ],
+    "version": "2.31.0"
+}

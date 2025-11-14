@@ -3,7 +3,10 @@
     require_once __DIR__ . '/../controller/loginController.php';
     ?>
  <div class="nav">
-     <div class="logo">Logo</div>
+     <div class="logo">
+        
+      <img src="<?=  basefolder()?>/assets/img/image.png" height="60px" width="150px" alt="" srcset="" style="object-fit: cover;">
+     </div>
      <div class="nav-link flex items-center">
          <a href="<?= basefolder() ?>/"><span>Beranda</span></a>
          <a href="<?= basefolder() ?>/course"><span>Kursus</span></a>

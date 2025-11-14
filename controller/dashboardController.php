@@ -10,7 +10,7 @@ require_once __DIR__ . '/../components/alert.php';
 $baseFolder = basefolder();
 $login_token = $_COOKIE['login_token'] ?? NULL;
 $userLogin = getUserLogin($login_token)['data'] ?? NULL;
-$getUserGroupByMonth=getUserGroupByMonth($_POST['filterYear']??null);
+$getUserGroupByMonth=getUserGroupByMonth($_POST['filterYear']??2025);
 
 if (!empty($userLogin) && isset($userLogin->created_at)) {
     $userLogin->created_at = date('Y', strtotime($userLogin->created_at));

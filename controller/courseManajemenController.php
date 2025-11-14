@@ -79,17 +79,22 @@ function updateCourse($conn)
     die('Data kursus belum lengkap untuk update!');
   }
 
-  // Upload baru (jika ada)
   $imageName = $oldImage;
   if (!empty($_FILES['courseImage']['name'])) {
     $targetDir = "../uploads/admin/";
     if (!file_exists($targetDir)) mkdir($targetDir, 0777, true);
-    $imageName = time() . "_" . basename($_FILES["courseImage"]["name"]);
-    move_uploaded_file($_FILES["courseImage"]["tmp_name"], $targetDir . $imageName);
+    $fileExt = pathinfo($_FILES["courseImage"]["name"], PATHINFO_EXTENSION);
+    $uniqueName = uniqid('course_', true) . '.' . strtolower($fileExt);
 
-    // Hapus gambar lama kalau ada
-    if ($oldImage && file_exists($targetDir . $oldImage)) {
-      unlink($targetDir . $oldImage);
+    $targetFile = $targetDir . $uniqueName;
+    if (move_uploaded_file($_FILES["courseImage"]["tmp_name"], $targetFile)) {
+      //dlete gambar lama jika ada
+      if ($oldImage && file_exists($targetDir . $oldImage)) {
+        unlink($targetDir . $oldImage);
+      }
+      $imageName = $uniqueName;
+    } else {
+      die('Gagal mengupload gambar baru.');
     }
   }
 
@@ -97,27 +102,15 @@ function updateCourse($conn)
   $sql = "UPDATE courses
           SET title = '" . mysqli_real_escape_string($conn, $title) . "',
               description = '" . mysqli_real_escape_string($conn, $desc) . "',
-              image = '" . mysqli_real_escape_string($conn, $imageName) . "',
-              updated_at = NOW()
+              image = '" . mysqli_real_escape_string($conn, $imageName) . "'
           WHERE course_id = " . intval($id);
 
-  runQuery($sql);
+  $result = runQuery($sql);
 
-  // // Update modules (hapus dulu, lalu insert ulang biar aman)
-  // runQuery("DELETE FROM modules WHERE course_id = " . intval($id));
-
-  // foreach ($modules as $m) {
-  //   $mod_title = mysqli_real_escape_string($conn, $m['title']);
-  //   $order_no = intval($m['order_no']);
-  //   $sql_mod = "INSERT INTO modules (course_id, title, order_no, created_at)
-  //               VALUES ($id, '$mod_title', $order_no, NOW())";
-  //   runQuery($sql_mod);
-  // }
-
-  header("Location: ../views/courses_list.php?success=1");
-  // header("Location: " . baseFolder() . "/admin/manajemen-kursus");
+  var_dump($result);
   exit;
 }
+
 
 /**
  * DELETE COURSE

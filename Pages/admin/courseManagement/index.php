@@ -3,11 +3,9 @@ require_once __DIR__ . '/../../../controller/courseManajemenController.php';
 $page_css = '<link rel="stylesheet" href="' . basefolder() . '/assets/css/admin/manajemen-pengguna.css" />';
 ob_start();
 ?>
+ 
 
-<style>
-
-</style>
-
+ <a href="<?= basefolder() ?>/admin/manajemen-kursus/tambah-kursus" class="btn-aksi-default">Tambah Kursus</a>
 <div class="table-controls">
   <div class="search-wrapper" role="search" aria-label="Cari kursus">
     <svg class="search-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
@@ -25,46 +23,52 @@ ob_start();
   </select>
 </div>
 
-<a href="<?= basefolder() ?>/admin/manajemen-kursus/tambah-kursus" class="btn-aksi">Tambah Kursus</a>
 
 <div id="courseList">
   <div class="row-card-table-header">
     <div class="grid grid-cols-12">
       <div class="col-span-1">No.</div>
-      <div class="col-span-3">Judul</div>
+      <div class="col-span-2">Judul</div>
       <div class="col-span-4">Deskripsi</div>
-      <div class="col-span-3">Dibuat pada</div>
+      <div class="col-span-2">Image</div>
+      <div class="col-span-2">Dibuat pada</div>
       <div class="col-span-1">Aksi</div>
     </div>
   </div>
 
   <?php foreach ($getCourses['data'] as $index => $course): ?>
     <div class="row-card-table-course">
-     <div class="grid grid-cols-12 items-center row-card-table-course-header">
-  <div class="col-span-1 flex justify-start items-center">
-    <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 12 24"
-      onclick="toggleAccordion(this.parentElement.parentElement)">
-      <path fill="currentColor"
-        d="m7.588 12.43l-1.061 1.06L.748 7.713a.996.996 0 0 1 0-1.413L6.527.52l1.06 1.06l-5.424 5.425z"
-        transform="rotate(-180 5.02 9.505)" />
-    </svg>
-    &nbsp;
-    &nbsp;
-    <span class="ml-2"><?= $index + 1 ?>.</span>
-  </div>
-  <div class="col-span-3"><?= htmlspecialchars($course->title) ?></div>
-  <div class="col-span-4"><?= htmlspecialchars($course->description) ?></div>
-  <div class="col-span-3"><?= htmlspecialchars($course->created_at ?? '-') ?></div>
-  <div class="col-span-1 flex justify-end gap-2 items-center">
-    <button 
-  onclick='openEditModal(<?= json_encode($course, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) ?>)' 
-  class="btn-edit">
-  Edit
-</button>
+      <div class="grid grid-cols-12 items-center row-card-table-course-header">
+        <div class="col-span-1 flex justify-start items-center">
+          <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 12 24"
+            onclick="toggleAccordion(this.parentElement.parentElement)">
+            <path fill="currentColor"
+              d="m7.588 12.43l-1.061 1.06L.748 7.713a.996.996 0 0 1 0-1.413L6.527.52l1.06 1.06l-5.424 5.425z"
+              transform="rotate(-180 5.02 9.505)" />
+          </svg>
+          &nbsp;
+          &nbsp;
+          <span class="ml-2"><?= $index + 1 ?>.</span>
+        </div>
+        <div class="col-span-2"><?= htmlspecialchars($course->title) ?></div>
+        <div class="col-span-4"><?= htmlspecialchars($course->description) ?></div>
+        <div class="col-span-2"> <?php if (!empty($course->image)) { ?>
+            <img src="<?= basefolder() ?>/uploads/admin/<?= $course->image ?>" alt="" srcset="" width="130px" height="100px" style="object-fit:cover;" >
+          <?php } else { ?>
+            <span>Tidak ada gambar</span>
+            <?php } ?>
+        </div>
+        <div class="col-span-2"><?= htmlspecialchars($course->created_at ?? '-') ?></div>
+        <div class="col-span-1 flex justify-end gap-2 items-center">
+          <button
+            onclick='openEditModal(<?= json_encode($course, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) ?>)'
+            class="btn-edit">
+            Edit
+          </button>
 
-    <button onclick="openDeleteModal(<?= json_encode($course->course_id) ?>)" class="btn-delete">Hapus</button>
-  </div>
-</div>
+          <button onclick="openDeleteModal(<?= json_encode($course->course_id) ?>)" class="btn-delete">Hapus</button>
+        </div>
+      </div>
 
 
       <div class="accordion-content">
@@ -86,7 +90,7 @@ ob_start();
       </div>
     </div>
   <?php endforeach; ?>
-</div> 
+</div>
 <div id="modalEdit" class="modal hidden">
   <div class="modal-content">
     <h3>Edit Kursus</h3>
@@ -112,23 +116,23 @@ ob_start();
 
       <div class="modal-btns">
         <button type="button" id="tutupEdit" class="btn-close">Tutup</button>
-        <button type="submit" class="btn-confirm">Simpan Perubahan</button>
+        <button type="submit" class="btn-confirm-edit">Simpan Perubahan</button>
       </div>
     </form>
   </div>
 </div>
- 
+
 <div id="modalDelete" class="modal hidden">
   <div class="modal-content">
     <h3>Hapus Kursus</h3>
     <p>Apakah kamu yakin ingin menghapus kursus ini?</p>
 
     <form id="formDelete" action="<?= basefolder() ?>/controller/courseManajemenController.php?action=deleteCourse" method="POST">
-       <input type="hidden" name="course_id" id="deleteCourseId">
+      <input type="hidden" name="course_id" id="deleteCourseId">
 
       <div class="modal-btns">
         <button type="button" id="tutupDelete" class="btn-close">Batal</button>
-        <button type="submit" id="konfirmasiDelete" class="btn-confirm">Hapus</button>
+        <button type="submit" id="konfirmasiDelete" class="btn-confirm-delete">Hapus</button>
       </div>
     </form>
   </div>
@@ -232,34 +236,34 @@ ob_start();
   // Tombol tutup
   document.getElementById('tutupEdit').addEventListener('click', () => modalEdit.classList.add('hidden'));
   document.getElementById('tutupDelete').addEventListener('click', () => modalDelete.classList.add('hidden'));
- 
- function openEditModal(data) {
-  console.log("Data diterima:", data);
-  
-  // Buka modal
-  modalEdit.classList.remove('hidden');
 
-  // Isi form edit
-  document.getElementById('editId').value = data.course_id || data.course_id || '';
-  document.getElementById('editTitle').value = data.title || '';
-  document.getElementById('editDescription').value = data.description || data.desc || '';
-  document.getElementById('editOldImage').value = data.image || '';
-  
-  // (Opsional) preview gambar lama kalau ada
-  const preview = document.getElementById('previewImage');
-  if (preview) {
-    if (data.image) {
-      preview.src = "../uploads/admin/" + data.image;
-      preview.style.display = 'block';
-    } else {
-      preview.style.display = 'none';
+  function openEditModal(data) {
+    console.log("Data diterima:", data);
+
+    // Buka modal
+    modalEdit.classList.remove('hidden');
+
+    // Isi form edit
+    document.getElementById('editId').value = data.course_id || data.course_id || '';
+    document.getElementById('editTitle').value = data.title || '';
+    document.getElementById('editDescription').value = data.description || data.desc || '';
+    document.getElementById('editOldImage').value = data.image || '';
+
+    // (Opsional) preview gambar lama kalau ada
+    const preview = document.getElementById('previewImage');
+    if (preview) {
+      if (data.image) {
+        preview.src = "../uploads/admin/" + data.image;
+        preview.style.display = 'block';
+      } else {
+        preview.style.display = 'none';
+      }
     }
   }
-}
 
-function openDeleteModal(id) {
-  document.getElementById('deleteCourseId').value = id || '';
-  modalDelete.classList.remove('hidden');
+  function openDeleteModal(id) {
+    document.getElementById('deleteCourseId').value = id || '';
+    modalDelete.classList.remove('hidden');
     // bisa simpan id untuk form PHP nanti
     console.log('Buka modal delete untuk ID:', id);
   }

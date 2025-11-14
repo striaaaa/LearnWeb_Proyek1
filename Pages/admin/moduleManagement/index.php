@@ -90,8 +90,7 @@ ob_start();
   }
 </style>
 
-<div>
-  <div class="btn-aksi">Tambah Kursus</div>
+<div> 
 
   <div class="row-card-table-header">
     <div class="grid grid-cols-12">
@@ -156,11 +155,12 @@ ob_start();
               <p><?= htmlspecialchars($module->title) ?></p>
             </div>
             <div class="col-span-1 flex ">
-              <button onclick='editModule(<?= json_encode($module) ?>)'>
-                edit
+              <button onclick='editModule(<?= json_encode($module->module_id) ?>, <?= json_encode($module->title) ?>)'
+                class="btn-edit">
+                Edit
               </button>
-              <button onclick='deleteModule(<?= json_encode($module->module_id) ?>)'>
-                hapus
+              <button onclick='deleteModule(<?= json_encode($module->module_id) ?>)' class="btn-delete">
+                Hapus
               </button>
             </div>
           </div>
@@ -176,26 +176,29 @@ ob_start();
 <div id="moduleModal" class="modal hidden">
   <form action="<?= basefolder() ?>/controller/moduleManajemenController.php" method="post">
     <div class="modal-content">
-      <h3>Tambah / Edit Modul</h3>
+      <h3>Edit Modul</h3>
       <label>Judul Modul</label>
       <input type="hidden" name="action" value="updateModuleTitle">
       <input type="hidden" name="module_id" id="moduleIdInput">
       <input type="text" id="moduleTitle" name="title" placeholder="Masukkan judul modul" />
       <div class="modal-btns">
-        <button id="simpanModule" data-action="simpan" type="submit">Simpan</button>
-        <button id="tutupModal" data-action="simpan" type="button">Batal</button>
+        <button id="simpanModule" data-action="simpan" type="submit" class="btn-confirm-edit">Simpan</button>
+        <button id="tutupModal" data-action="simpan" type="button" class="btn-close">Batal</button>
       </div>
     </div>
   </form>
 </div>
 <div id="moduleModalDelete" class="modal hidden">
+
   <form action="<?= basefolder() ?>/controller/moduleManajemenController.php" method="post">
-    form delete
-    <input type="hidden" name="action" value="deleteModule">
-    <input type="hidden" name="module_id" id="moduleIdInputDelete">
-    <div class="modal-btns">
-      <button id="simpanModule" data-action="hapus" type="submit">Hapus</button>
-      <button id="tutupModal" data-action="hapus" type="button">Batal</button>
+    <div class="modal-content">
+      <h3>Hapus Modul</h3>
+      <input type="hidden" name="action" value="deleteModule">
+      <input type="hidden" name="module_id" id="moduleIdInputDelete">
+      <div class="modal-btns">
+        <button id="simpanModule" data-action="hapus" type="submit" class="btn-confirm-delete">Hapus</button>
+        <button id="tutupModal" data-action="hapus" type="button" class="btn-close">Batal</button>
+      </div>
     </div>
   </form>
 </div>
@@ -343,13 +346,13 @@ ob_start();
   });
 
 
-  function editModule(moduleData) {
+  function editModule(modId,modTitle) {
     modal.classList.remove('hidden');
+    console.log(modId, modTitle);
 
-    console.log(moduleData);
-    moduleTitleInput.value = moduleData.title.trim()
-    moduleIdInput.value = moduleData.module_id;
 
+    moduleTitleInput.value = modTitle.trim()
+    moduleIdInput.value = modId;
   }
 
   function deleteModule($moduleId) {

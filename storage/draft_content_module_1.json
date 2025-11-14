@@ -1,0 +1,58 @@
+{
+    "time": 1763090732450,
+    "blocks": [
+        {
+            "id": "intro_01",
+            "type": "paragraph",
+            "data": {
+                "text": "Pada materi ini kita akan mempelajari dasar-dasar HTML, mulai dari struktur elemen hingga cara membuat halaman web sederhana."
+            }
+        },
+        {
+            "id": "list_01",
+            "type": "list",
+            "data": {
+                "style": "unordered",
+                "meta": [],
+                "items": [
+                    {
+                        "content": "Memahami struktur dasar HTML",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "Mengenal tag dan atribut",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "Membuat halaman HTML sederhanan",
+                        "meta": [],
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "id": "code_01",
+            "type": "code",
+            "data": {
+                "code": "<!DOCTYPE html>\n<html>\n  <head>\n    <title>Belajar HTML<\/title>\n  <\/head>\n  <body>\n    <h1>Halo Dunia!<\/h1>\n    <p>Ini adalah contoh halaman HTML sederhana.<\/p>\n  <\/body>\n<\/html>"
+            }
+        },
+        {
+            "id": "link_01",
+            "type": "linkTool",
+            "data": {
+                "link": "https:\/\/developer.mozilla.org\/en-US\/docs\/Web\/HTML",
+                "meta": []
+            }
+        },
+        {
+            "id": "delimiter_01",
+            "type": "delimiter",
+            "data": []
+        }
+    ],
+    "version": "2.31.0"
+}

@@ -1,6 +1,7 @@
 <?php
 
 $page_css = '<link rel="stylesheet" href="' . basefolder() . '/assets/css/admin/manajemen-penggguna.css" />';
+$page_css2 = '<link rel="stylesheet" href="' . basefolder() . '/assets/css/admin/global-admin.css" />';
 ob_start();
 ?>
 <div class="">
@@ -21,7 +22,7 @@ ob_start();
             <label for="">Foto</label>
             <input type="file" id="courseImage" style="background-color: #ffffff;"  name="courseImage"/>
           </div>
-          <button id="simpanKursus" type="submit" class="left-card-button">Simpan</button>
+          <button id="simpanKursus" type="submit" class="btn-aksi-default">Simpan</button>
         </div>
       </div>
       <div class="col-span-1"></div>
@@ -35,7 +36,7 @@ ob_start();
               <p>asodknadwakdladnaowdnawoiawk</p>
             </div>  -->
           </div>
-          <button id="tbhModul" type="button" class="left-card-button">
+          <button id="tbhModul" type="button" class="btn-aksi-default" style="width: 100%;">
             Tambah modul
           </button>
         </div>
@@ -48,8 +49,8 @@ ob_start();
         <input type="text" id="moduleTitle" placeholder="Masukkan judul modul" />
         <input type="hidden" id="moduleIndex" />
         <div class="modal-btns">
-          <button id="simpanModule" type="button">Simpan</button>
-          <button id="tutupModal" type="button">Batal</button>
+          <button id="simpanModule" type="button" class="btn-confirm-edit">Simpan</button>
+          <button id="tutupModal" type="button" class="btn-close">Batal</button>
         </div>
       </div>
     </div>

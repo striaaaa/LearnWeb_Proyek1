@@ -16,7 +16,8 @@ ob_start();
             <div class="content-modul">
                <div class="top-content">
                   <div class="img-left-modul">
-            <img src="" alt="ajdaskjdas" />
+           
+            <img src="<?= basefolder() ?>/uploads/admin/<?= $course->image ?>" alt="" srcset="" width="130px" height="100px" style="object-fit:cover;" >
           </div>
           <div class="title-modul">
              <span><i class="ri-check-line"></i>Selesai</span>

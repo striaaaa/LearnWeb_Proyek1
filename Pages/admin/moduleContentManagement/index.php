@@ -80,8 +80,7 @@ ob_start();
   }
 </style>
 
-<div>
-  <div class="btn-aksi">Tambah Kursus</div>
+<div> 
 
   <div class="row-card-table-header">
     <div class="grid grid-cols-12">

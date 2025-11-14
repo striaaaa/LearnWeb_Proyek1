@@ -1,84 +1,37 @@
 {
-    "time": 1762865121486,
+    "time": 1763081338375,
     "blocks": [
         {
-            "id": "1gQONAL133",
+            "id": "D21ed6cEkc",
             "type": "header",
             "data": {
-                "text": "Judul bsaru",
+                "text": "Judul baru",
                 "level": 2
             }
         },
         {
-            "id": "6mymGav6Gu",
-            "type": "list",
-            "data": {
-                "style": "unordered",
-                "meta": [],
-                "items": [
-                    {
-                        "content": "Item 1",
-                        "meta": [],
-                        "items": []
-                    },
-                    {
-                        "content": "Item 2",
-                        "meta": [],
-                        "items": []
-                    }
-                ]
-            }
-        },
-        {
-            "id": "nlveIe68Y5",
-            "type": "linkTool",
-            "data": {
-                "link": "https:\/\/www.youtube.com\/watch?v=OuKnhKiNTFw&list=RDJh9Ehrd92pw&index=4",
-                "meta": []
-            }
-        },
-        {
-            "id": "r3UPyB7UPL",
+            "id": "JYmd1mSMPp",
             "type": "chunkDivider",
             "data": {
                 "type": "chunk"
             }
         },
         {
-            "id": "RlNy6iNB4O",
-            "type": "header",
+            "id": "jvtkW1uha5",
+            "type": "paragraph",
             "data": {
-                "text": "Judul qsweqwe",
-                "level": 2
+                "text": "asdas"
             }
         },
         {
-            "id": "gSwLFWbrx5",
-            "type": "header",
+            "id": "IkEYShZ-Ap",
+            "type": "code",
             "data": {
-                "text": "Judul baru",
-                "level": 2
+                "code": "echo $hqlo;"
             }
         },
         {
-            "id": "vm-5eVpmi5",
-            "type": "quote",
-            "data": {
-                "text": "quotes anjay keren",
-                "caption": "by iza",
-                "alignment": "left"
-            }
-        },
-        {
-            "id": "pgl3NGlAwo",
-            "type": "header",
-            "data": {
-                "text": "Judul baru",
-                "level": 2
-            }
-        },
-        {
-            "id": "kGft9Gc3N9",
+            "id": "ZzbjH_0_TW",
             "type": "list",
             "data": {
                 "style": "unordered",
@@ -98,7 +51,24 @@
             }
         },
         {
-            "id": "5jE34H2AYA",
+            "id": "Qud-7F2ZHd",
+            "type": "list",
+            "data": {
+                "style": "checklist",
+                "meta": [],
+                "items": [
+                    {
+                        "content": "",
+                        "meta": {
+                            "checked": false
+                        },
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "id": "kSpURoZnY6",
             "type": "image",
             "data": {
                 "caption": "Contoh gambar",
@@ -111,26 +81,26 @@
             }
         },
         {
-            "id": "6WNT26_VZN",
-            "type": "chunkDivider",
-            "data": {
-                "type": "chunk"
-            }
-        },
-        {
-            "id": "P5upxb-J5-",
+            "id": "Bewx4gtZxN",
             "type": "list",
             "data": {
-                "style": "unordered",
-                "meta": [],
+                "style": "ordered",
+                "meta": {
+                    "counterType": "numeric"
+                },
                 "items": [
                     {
-                        "content": "Item 1",
+                        "content": "as",
                         "meta": [],
                         "items": []
                     },
                     {
-                        "content": "Item 2",
+                        "content": "asd",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "asd",
                         "meta": [],
                         "items": []
                     }
@@ -138,19 +108,19 @@
             }
         },
         {
-            "id": "_TfIoCnBRx",
+            "id": "0VphD9Fo0w",
             "type": "list",
             "data": {
                 "style": "unordered",
                 "meta": [],
                 "items": [
                     {
-                        "content": "Item 1",
+                        "content": "asd",
                         "meta": [],
                         "items": []
                     },
                     {
-                        "content": "Item 2",
+                        "content": "",
                         "meta": [],
                         "items": []
                     }
@@ -158,11 +128,31 @@
             }
         },
         {
-            "id": "eTKfbw1Vvk",
+            "id": "zbk12tFcwe",
             "type": "header",
             "data": {
                 "text": "Judul baru",
                 "level": 2
+            }
+        },
+        {
+            "id": "OXeOVV_aGM",
+            "type": "linkTool",
+            "data": {
+                "link": "https:\/\/example.com",
+                "meta": []
+            }
+        },
+        {
+            "id": "J7l3s2u73j",
+            "type": "delimiter",
+            "data": []
+        },
+        {
+            "id": "MNlqk598Mg",
+            "type": "chunkDivider",
+            "data": {
+                "type": "chunk"
             }
         }
     ],

@@ -3,9 +3,19 @@ require_once __DIR__ . '/../../controller/dashboardController.php';
 $page_css = '<link rel="stylesheet" href="assets/css/admin/manajemen-penggguna.css" />';
 ob_start();
 ?>
+<style>
+    .chart-user-Permonth{
+        border-radius: 20px;
+    }
+</style>
  <div class="">
-       asddasd 
-       <!-- <div id="chartUserGroupByMonth"></div> -->
+       <br>
+       <div class="grid grid-cols-12">
+        <div class="col-span-5">
+
+            <div id="chartUserGroupByMonth" class="chart-user-Permonth"</div>
+        </div>
+       </div>
        <?php
     //    echo "<pre>";
     //    var_dump($getUserGroupByMonth['data']);
@@ -22,8 +32,7 @@ ob_start();
 <script src="https://code.highcharts.com/modules/timeline.js"></script>
 <script src="https://code.highcharts.com/modules/variable-pie.js"></script>
    
-<script>
-// Pilih chart type di sini
+<script> 
 var dataFromDB=<?=json_encode($getUserGroupByMonth['data']) ?>;
 console.log('ss',dataFromDB);
 
