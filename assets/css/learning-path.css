@@ -56,3 +56,11 @@
 .list-modul {
   padding: 5px 20px 5px 0px;
 }
+.maateri-link{ 
+  height: 100%;
+  width: 100%;
+  border: none;
+  background: none;
+  font-size: 16px;
+  text-align: start;
+}

@@ -95,20 +95,7 @@ renderFlashAlert();
     </div>
     <div class="admin-content-parent">
         <div class="admin-content">
-            <!-- <div class="header-admin flex justify-end items-center">
-                <div class="flex items-center">
-                    <div>
-
-                        <p>
-                            <?= $userLogin->name  ?>
-                        </p>
-                        <p class="role-admin-teks">Admin</p>
-                    </div>
-                    <div class="img-acc-nav">
-                        <img src="<?= $userLogin->image ? basefolder() . '/uploads/user/profil/' . $userLogin->image : 'https://image.idntimes.com/post/20230220/888355494-47236b76652f2e55025900cd98ccd09e-0759d9cc026a3c781b24c228b3d42224.jpg' ?>" alt="user" />
-                    </div>
-                </div>
-            </div> -->
+          
           <div class="header-admin flex justify-end items-center relative">
                 <div class="flex items-center " id="profileMenuBtn">
                     <div>

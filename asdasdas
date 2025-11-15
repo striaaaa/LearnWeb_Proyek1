@@ -13,3 +13,13 @@
     # Semua yang tidak ditemukan sebagai file/folder akan diarahkan ke index.php
     # dan sisanya dari URL akan dilewatkan sebagai parameter 'page'
     RewriteRule ^(.*)$ index.php?page=$1 [L,QSA]
+
+
+//   HEX_TAG: "\u003Cscript\u003Econsole.log('tes')\u003C/script\u003E & \"kutip\" 'single'"
+//buat parsing kyk & dll
+// HEX_AMP: "<script>console.log('tes')</script> \u0026 \"kutip\" 'single'"
+//buat kalo ada string dengan tanda '
+// HEX_APOS: "<script>console.log(\u0027tes\u0027)</script> & \"kutip\" \u0027single\u0027"
+// buat ""
+// HEX_QUOT: "<script>console.log('tes')</script> & \u0022kutip\u0022 'single'"
+// ALL_HEX: "\u003Cscript\u003Econsole.log(\u0027tes\u0027)\u003C/script\u003E \u0026 \u0022kutip\u0022 \u0027single\u0027"

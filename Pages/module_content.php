@@ -6,6 +6,7 @@ $module_id = $params['moduleId'] ?? null;
 $course_id = $params['courseId'] ?? null;
 $getAllModuleContentData = getAllModuleContentDatas($course_id, $module_id);
 // $page_css = '<link rel="stylesheet" href="assets/css/learning-path.css" />';
+renderFlashAlert();
 $page_css  = '<link rel="stylesheet" href="' . basefolder() . '/assets/css/learning-path.css">';
 ob_start();
 ?>
@@ -104,7 +105,7 @@ ob_start();
         text-decoration: underline;
     }
 
-    
+
 
     .code-wrapper {
         position: relative;
@@ -150,7 +151,7 @@ ob_start();
                 <?php if (!empty($blocks)): ?>
                     <?php foreach ($blocks as $block): ?>
                         <?php
-                        $type = $block['type'];
+                        $type = $block['type'] ?? '';
                         $data = $block['data'] ?? [];
                         ?>
 
@@ -186,11 +187,11 @@ ob_start();
                                 </a>
                             </div>
 
-                        <?php elseif ($type === 'code'): ?> 
+                        <?php elseif ($type === 'code'): ?>
                             <div class="code-wrapper">
                                 <button class="copy-btn">Copy</button>
                                 <pre><code class="">
-                                <?= ($data['code'] ?? '') ?>
+                                <?= htmlspecialchars($data['code'] ?? '') ?>
                                 </code>
                                 </pre>
                             </div>
@@ -203,8 +204,21 @@ ob_start();
             </article>
 
         <?php endforeach; ?>
+        <div class="flex items-center justify-between">
 
-
+            <form action="<?= basefolder() ?>/controller/homepagecontroller.php" method="post">
+                <input type="hidden" name="module_id" value="<?=$module_id?>">
+                <input type="hidden" name="course_id" value="<?= $course_id?>">
+                <input type="hidden" name="action" value="prevModuleContent">
+                <button type="submit">Sebelumnya</button>
+            </form>
+            <form action="<?= basefolder() ?>/controller/homepagecontroller.php"  method="post">
+                <input type="hidden" name="module_id" value="<?=$module_id?>">
+                <input type="hidden" name="course_id" value="<?= $course_id?>">
+                <input type="hidden" name="action" value="nextModuleContent">
+                <button type="submit">Selanjutnya</button>
+            </form>
+        </div>
 
         <!-- Highlight.js -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>

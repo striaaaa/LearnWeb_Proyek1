@@ -4,6 +4,7 @@ require_once __DIR__ . '/../helpers/url.php';
 
 require_once __DIR__ . '/../helpers/db_helper.php';
 require_once __DIR__ . '/../models/course.php';
+
  $conn = getMysqliConnection();
 
 $getCourses =getAllCourses();

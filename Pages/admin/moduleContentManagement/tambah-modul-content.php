@@ -6,7 +6,7 @@ ob_start();
 global $params;
 $module_content_id = $_GET['module_content_id'] ?? 1;
 $idModule = $params['moduleId'] ?? null; 
-echo $idModule;
+// echo $idModule;
 
 $getDrafData = getDraft( $idModule);
 // echo $id;
@@ -287,7 +287,7 @@ document.getElementById('save-button').addEventListener('click', () => {
 
 
 // setInterval(async () => {
-//   const savedData = await editor.save();
+//   const  Data = await editor.save();
 //   localStorage.setItem('editorBackup', JSON.stringify(savedData));
 //   console.log('Editor data saved to localStorage');
 // }, 3000);
@@ -298,12 +298,20 @@ async function loadDraft() {
   // if (data.success && data.data) {
   //   console.log('Draft ditemukan, render ke editor...');
   //   await editor.render(data.data);
-  // }
-  const draftData = <?= json_encode($getDrafData ?? null, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) ?>;
+  // } 
+   
+  // biar gaa lupa
+  // buattag
+
+const draftData = <?= json_encode(
+    $getDrafData ?? null,
+    JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT
+); ?>; 
+
 
   if (draftData) {
     // console.log('Draft ditemukan, render langsung tanpa fetch...');
-    // console.log('inidrat',draftData.data);
+    console.log('inidrat',draftData.data);
     await editor.render(draftData.data);
     
   } else {
@@ -314,6 +322,8 @@ async function loadDraft() {
 
 setInterval(async () => {
   const savedData = await editor.save();
+  console.log('p',savedData);
+  
   // localStorage.setItem('editorBackup', JSON.stringify(savedData));
  fetch('<?=basefolder()?>/controller/uploadController.php?action=autosave', {
     method: 'POST',

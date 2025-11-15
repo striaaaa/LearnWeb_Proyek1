@@ -5,6 +5,8 @@ require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../models/course.php';
 require_once __DIR__ . '/../models/module_content.php';
 
+require_once __DIR__ . '/../components/alert.php';
+
 function getAllModuleContentDatas ($cId,$m){
     return getAllModuleContent($cId,$m);
 }

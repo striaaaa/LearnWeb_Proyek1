@@ -37,25 +37,19 @@ function response($data, $status = 200)
     echo json_encode($data, JSON_PRETTY_PRINT);
     exit;
 }
-
-// ====== HANDLER: SAVE DRAFT ======
+ 
 function saveDraft($data)
-{
+{   
     if (!$data || !isset($data['content'])) {
         return ['success' => false, 'message' => 'Invalid data'];
     }
-
-    // Lokasi folder simpan draft
     $saveDir = __DIR__ . '/../storage/';
     if (!is_dir($saveDir)) mkdir($saveDir, 0777, true);
 
 //    $random_string = substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'), 0, 10);
     $moduleId = $data['module_id'] ?? 'unknown';
-
-    // Nama file JSON-nya
     $fileName = $saveDir . "draft_content_module_{$moduleId}.json";
 
-    // Simpan isi konten ke file
     $testPath = $saveDir . 'test.txt';
     file_put_contents($testPath, 'cek');
     $saved = file_put_contents($fileName, json_encode($data['content'], JSON_PRETTY_PRINT));
@@ -120,7 +114,7 @@ switch ($action) {
         break;
 
     default:
-        echo json_encode(['success' => 0, 'message' => 'Invalid action']);
+        // echo json_encode(['success' => 0, 'message' => 'Invalid action']);
         break;
 }
 

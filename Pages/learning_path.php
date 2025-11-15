@@ -1,10 +1,12 @@
 <?php
 // require_once __DIR__ . '../../helpers/url.php';
 require_once __DIR__ . '/../controller/courseLearningPathController.php';
+require_once __DIR__ . '/../controller/homepageController.php';
 // $page_css = '<link rel="stylesheet" href="assets/css/learning-path.css" />';
 global $params;
 $page_css  = '<link rel="stylesheet" href="' . basefolder() . '/assets/css/learning-path.css">';
 $course_id = $params['courseId'] ?? null;
+renderFlashAlert();
 ob_start();
 ?>
 
@@ -38,33 +40,41 @@ ob_start();
 ?>
 
 <style>
-  .maateri-link{
+  .maateri-link {
     text-decoration: none;
   }
 </style>
 <div class="container-border">
-  <h2>Kursus <?= var_dump($courseWithModulesResult->data) ?></h1>
   <h2>Kursus <?= $courseWithModulesResult->data->title ?></h1>
-  <div class="materi">
-    <?php foreach ($courseWithModulesResult->data->modules as $key => $course): ?>
-      <a class="maateri-link" href="<?= basefolder() ?>/course/<?= $course_id ?>/detailModule/<?= $course->module_id ?>">
+    <div class="materi">
+      <?php foreach ($courseWithModulesResult->data->modules as $key => $course): ?>
         <div class=" grid grid-cols-12">
           <div class="left-content col-span-5">
-            <div class="tahapan">
-              <span>Langkah <?= $key + 1 ?></span>
-            </div>
-            <div class="head-content">
-              <!-- <?= var_dump($course) ?> -->
-              <span><?= $course->title ?></span>
-            </div>
+            <form action="<?= basefolder() ?>/controller/homepagecontroller.php" method="post" style="height: 100%;">
+              <input type="hidden" name="course_id" value="<?= $course->course_id ?>">
+              <input type="hidden" name="module_id" value="<?= $course->module_id  ?>">
+              <input type="hidden" name="order_no" value="<?= $course->order_no ?>">
+              <input type="hidden" name="action" value="getUserProgresCheck">
+              <button class="flex items-start maateri-link justify-between " type="submit">
+                <div class="flex ">
+                  <div class="tahapan">
+                    <span>Langkah <?= $key + 1 ?>&nbsp; </span>
+                  </div>
+                  <div class="head-content">
+                    <span><?= $course->title ?></span>
+                  </div>
+                </div>
+                <p><?= $course->progress_status ?></p>
+              </button>
+            </form>
           </div>
           <div class="col-span-1">
             <div class="line"></div>
           </div>
-          
+
           <div class="left-content col-span-6">
             <div class="header-right">
-              <span><?= $course->title ?></span> 
+              <span><?= $course->title ?></span>
             </div>
 
             <div class="list-modul">
@@ -77,14 +87,14 @@ ob_start();
                   // echo "</pre>";
                   // exit;
 
-                  $blocks = json_decode($course->contents[0]->module_content); 
+                  $blocks = json_decode($course->contents[0]->module_content);
 
                   $preview = "";
 
                   foreach ($blocks as $block) {
-                    if(empty($block->type)){ 
-                      $preview= "Data tidak ada";
-                    }else{
+                    if (empty($block->type)) {
+                      $preview = "Data tidak ada";
+                    } else {
 
                       if ($block->type === "paragraph") {
                         $text = $block->data->text;
@@ -92,14 +102,14 @@ ob_start();
                         // var_dump($words);
                         $preview = implode(" ", array_slice($words, 0, 12)) . " ...";
                         // var_dump(array_slice($words, 0, 12));
-                        break; 
+                        break;
                       }
                     }
                   }
                   ?>
- 
-                    <p><?= htmlspecialchars($preview) ?></p>
-                
+
+                  <p><?= htmlspecialchars($preview) ?></p>
+
 
                 <?php else: ?>
                   <li><em>Tidak ada konten tersedia</em></li>
@@ -108,9 +118,8 @@ ob_start();
             </div>
           </div>
         </div>
-      </a>
-    <?php endforeach; ?>
-  </div>
+      <?php endforeach; ?>
+    </div>
 </div>
 
 <?php include __DIR__ . '/../components/footer.php'; ?>
