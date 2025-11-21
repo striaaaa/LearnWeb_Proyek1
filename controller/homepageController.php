@@ -29,10 +29,10 @@ switch ($action) {
         nextModuleContent();
         break;
 
-        default:
+    default:
         # code...
         break;
-    }
+}
 function getUserProgresCheckData()
 {
     global $userLogin, $module_id, $order_no;
@@ -42,70 +42,86 @@ function getUserProgresCheckData()
 
     $getUserLastProgres = getUserLastProgres($userLogin->user_id);
     $order = intval($order_no);
-    $prevOrderNoResult = ($order - 1 == 0) ? $order : $order - 1;
+    $prevOrderNoResult =  $order - 1;
+    // var_dump($prevOrderNoResult);
 
     $prevModuleExist = prevModuleExist($prevOrderNoResult);
-
+   
+    // var_dump($prevModuleExist['data']);  
     if ($prevModuleExist['data']->module_id > 0) {
 
+        if ($prevOrderNoResult == 0) {
+            $dataModuleExist = prevModuleExist($prevOrderNoResult += 1);
+            if (!empty((array)$dataModuleExist['data'])) {
+                $sql = "INSERT INTO progress (user_id, module_id, status) 
+                    VALUES (?, ?, 'in_progress') 
+                    ON DUPLICATE KEY UPDATE updated_at = NOW()";
+                runQuery($sql, [$userLogin->user_id, $module_id], 'ii');
+            }
+            header("Location: " . basefolder() . "/course/" . $course_id . "/detailModule/" . $module_id);
+            exit;
+        }
         $prevProgress = getUserProgresCheck($userLogin->user_id, $prevModuleExist['data']->module_id);
         $getModuleById = getModuleById($getUserLastProgres['data']->module_id);
 
         // Cek loncat module jauh
         if (intval($order) - intval($getModuleById['data']->order_no) > 1) {
-            setFlashAlert('error', 'Kamu melompati module terlalu jauh.'); 
-            header("Location: " . basefolder() . "/course/".$course_id);
+            setFlashAlert('error', 'Kamu melompati module terlalu jauh.');
+            header("Location: " . basefolder() . "/course/" . $course_id);
 
             exit;
         }
- 
+
         if (empty((array)$prevProgress['data'])) {
             setFlashAlert('error', 'Module sebelumnya belum pernah dikerjakan.');
-            header("Location: " . basefolder() . "/course/".$course_id);
+            header("Location: " . basefolder() . "/course/" . $course_id);
             exit;
         }
 
         $statusProgressCheck = $prevProgress['data']->status ?? '';
         if ($statusProgressCheck !== 'completed') {
             setFlashAlert('error', 'Module sebelumnya belum diselesaikan.');
-            header("Location: " . basefolder() . "/course/".$course_id);
+            header("Location: " . basefolder() . "/course/" . $course_id);
             exit;
         }
- 
+
         if ((array)$prevProgress['data'] && $statusProgressCheck === 'completed') {
             $sql = "INSERT INTO progress (user_id, module_id, status) 
                     VALUES (?, ?, 'in_progress') 
                     ON DUPLICATE KEY UPDATE updated_at = NOW()";
             runQuery($sql, [$userLogin->user_id, $module_id], 'ii');
         }
-        header("Location: " . basefolder() . "/course/".$course_id."/detailModule/".$module_id);
+        var_dump('diluar rsmua');
+        header("Location: " . basefolder() . "/course/" . $course_id . "/detailModule/" . $module_id);
     }
 }
- 
-function prevModuleContent(){
-    $module_id= $_POST['module_id']??'';
+
+function prevModuleContent()
+{
+    $module_id = $_POST['module_id'] ?? '';
     $course_id = $_POST['course_id'] ?? '';
-      if (!$module_id || !$course_id) {
+    if (!$module_id || !$course_id) {
         setFlashAlert('error', 'Data module tidak valid.');
-        header("Location: " . basefolder() . "/course/".$course_id);
+        header("Location: " . basefolder() . "/course/" . $course_id);
         exit;
     }
 
     // Ambil data module sekarang
     $currentModule = getModuleById($module_id)['data'] ?? null;
-    
+
     $currentOrder = intval($currentModule->order_no);
-    $prevModule = getModuleByOrder($course_id, $currentOrder -1);
-    if($module_id-1>0){
-        header("Location: " . basefolder() . "/course/".$course_id."/detailModule/".$prevModule['data']->module_id);
+    $prevModule = getModuleByOrder($course_id, $currentOrder - 1);
+    if ($module_id - 1 > 0) {
+        header("Location: " . basefolder() . "/course/" . $course_id . "/detailModule/" . $prevModule['data']->module_id);
         exit;
-    }else{
+    } else {
         setFlashAlert('info', 'Anda sudah berada dimodul paling pertama.');
-        header("Location: " . basefolder() . "/course/".$course_id."/detailModule/".$module_id);
+        header("Location: " . basefolder() . "/course/" . $course_id . "/detailModule/" . $module_id);
         exit;
     }
 }
-function nextModuleContent() {
+function nextModuleContent()
+{
     global $userLogin;
 
     $module_id = $_POST['module_id'] ?? '';
@@ -113,7 +129,7 @@ function nextModuleContent() {
 
     if (!$module_id || !$course_id) {
         setFlashAlert('error', 'Data module tidak valid.');
-        header("Location: " . basefolder() . "/course/".$course_id);
+        header("Location: " . basefolder() . "/course/" . $course_id);
         exit;
     }
 
@@ -121,7 +137,7 @@ function nextModuleContent() {
     $currentModule = getModuleById($module_id)['data'] ?? null;
     if (!$currentModule) {
         setFlashAlert('error', 'Module tidak ditemukan.');
-        header("Location: " . basefolder() . "/course/".$course_id);
+        header("Location: " . basefolder() . "/course/" . $course_id);
         exit;
     }
 
@@ -137,16 +153,16 @@ function nextModuleContent() {
     runQuery($sql, [$userLogin->user_id, $module_id], 'ii');
     if ((empty((array)$nextModule['data']))) {
         setFlashAlert('info', 'Anda sudah berada di modul terakhir.');
-        header("Location: " . basefolder() . "/course/".$course_id."/detailModule/".$module_id);
+        header("Location: " . basefolder() . "/course/" . $course_id . "/detailModule/" . $module_id);
         exit;
     }
- 
+
     $sql = "INSERT INTO progress (user_id, module_id, status)
             VALUES (?, ?, 'in_progress')
             ON DUPLICATE KEY UPDATE updated_at = NOW()";
     runQuery($sql, [$userLogin->user_id, $nextModule['data']->module_id], 'ii');
 
-    header("Location: " . basefolder() . "/course/".$course_id."/detailModule/".$nextModule['data']->module_id);
+    header("Location: " . basefolder() . "/course/" . $course_id . "/detailModule/" . $nextModule['data']->module_id);
     exit;
 }
 
@@ -155,22 +171,22 @@ function getUserProgresCheckData2()
     global $userLogin, $module_id, $order_no;
     // var_dump($order_no);
     // die();
-    $getUserLastProgres=getUserLastProgres($userLogin->user_id);
+    $getUserLastProgres = getUserLastProgres($userLogin->user_id);
     $order = intval($order_no);
     $prevOrderNoResult = ($order - 1 == 0) ? $order  : $order - 1;
     // var_dump($prevOrderNoResult);
 
     $prevModuleExist = prevModuleExist($prevOrderNoResult);
 
-    var_dump('moduel ',$prevModuleExist['data']);
+    // var_dump('moduel ',$prevModuleExist['data']);
 
     // $getUserProgresCheck = getUserProgresCheck($userLogin->user_id, $module_id);
-    if ($prevModuleExist['data']->module_id > 0) {
+    if ($prevModuleExist['data']->module_id > 1) {
         $prevProgress = getUserProgresCheck($userLogin->user_id, $prevModuleExist['data']->module_id);
 
-        $getModuleById=getModuleById($getUserLastProgres['data']->module_id);
-        var_dump($getModuleById['data']->order_no);
-        if ( intval($order)-intval($getModuleById['data']->order_no)> 1) {
+        $getModuleById = getModuleById($getUserLastProgres['data']->module_id);
+        // var_dump($getModuleById['data']->order_no);
+        if (intval($order) - intval($getModuleById['data']->order_no) > 1) {
             echo "kamu lompat terlalu jauh";
             return;
         } else {
@@ -180,18 +196,20 @@ function getUserProgresCheckData2()
                 return;
             }
             $statusProgressCheck = $prevProgress['data']->status ?? '';
-            
+
             if ($statusProgressCheck !== 'completed') {
                 echo "Module sebelumnya belum selesai";
                 return;
             }
-            if ((array)$prevProgress['data']&&$statusProgressCheck === 'completed') {
-                 $sql ="INSERT INTO progress (user_id, module_id, status) VALUES (?, ?, 'in_progress') ON DUPLICATE KEY UPDATE updated_at = NOW()";
-        runQuery($sql,[$userLogin->user_id, $module_id],'ii');
+            if ((array)$prevProgress['data'] && $statusProgressCheck === 'completed') {
+                $sql = "INSERT INTO progress (user_id, module_id, status) VALUES (?, ?, 'in_progress') ON DUPLICATE KEY UPDATE updated_at = NOW()";
+                runQuery($sql, [$userLogin->user_id, $module_id], 'ii');
                 return;
-
             }
         }
+    } else {
+        echo "Ini modeule pertama";
+        return;
     }
     // var_dump(($getUserProgresCheck['data']));
     // if (empty((array)$getUserProgresCheck['data'])) {

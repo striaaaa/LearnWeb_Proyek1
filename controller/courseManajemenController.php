@@ -15,7 +15,7 @@ switch ($action) {
     storeCourse($conn);
     break;
   case 'updateCourse':
-    var_dump('asd');
+    // var_dump('asd');
     updateCourse($conn);
     break;
   case 'deleteCourse':

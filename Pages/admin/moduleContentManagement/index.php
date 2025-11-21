@@ -139,7 +139,7 @@ ob_start();
               <p><?= htmlspecialchars($module->title) ?></p>
             </div>
             <div class="col-span-1 flex "> 
-              <a href="<?= basefolder() ?>/admin/manajemen-modul-konten/<?= $module->module_id?>/tambah-konten" class="btn-edit" style="margin-right:5px;" onclick="editModule(<?= htmlspecialchars(json_encode($module), ENT_QUOTES, 'UTF-8') ?>)">
+              <a href="<?= basefolder() ?>/admin/manajemen-modul-konten/<?= $module->module_id?>/tambah-konten" class="btn-edit" style="margin-right:5px;">
                 tambah konten 
               </a>
             </div>

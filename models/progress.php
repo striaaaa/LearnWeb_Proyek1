@@ -45,7 +45,7 @@ function prevModuleExist($order_no)
 
     try {
         $sql = "SELECT * from modules where order_no=? limit 1";
-
+        $order_no= ($order_no==0)?1:$order_no;
         $userLogin = runQuery($sql, [$order_no], 'i');
         return [
             'success' => true,
@@ -57,4 +57,25 @@ function prevModuleExist($order_no)
             'error' => $e->getMessage()
         ];
     }
+}
+function getUserCourseProgress($user_id, $course_id)
+{   
+    $sqlTotal = "SELECT COUNT(*) as total FROM modules WHERE course_id = ?";
+    $total = runQuery($sqlTotal, [$course_id], 'i')->total ?? 0; 
+    $sqlCompleted = "SELECT COUNT(*) as completed 
+                     FROM progress 
+                     JOIN modules ON modules.module_id = progress.module_id
+                     WHERE progress.user_id = ? 
+                     AND modules.course_id = ?
+                     AND progress.status = 'completed'";
+
+    $completed = runQuery($sqlCompleted, [$user_id, $course_id], 'ii')->completed ?? 0;
+ 
+    $percentage = ($total > 0) ? round(($completed / $total) * 100) : 0;
+
+    return [
+        'total' => $total,
+        'completed' => $completed,
+        'percentage' => $percentage
+    ];
 }

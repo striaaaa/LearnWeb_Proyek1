@@ -42,7 +42,7 @@ function getCoursesWithModulesLimit3()
             $sqlModules = "SELECT module_id, title 
                            FROM modules 
                            WHERE course_id = ?
-                           ORDER BY created_at ASC";
+                           ORDER BY created_at ASC LIMIT 3";
 
             $modules = runQuery($sqlModules, [$courseId]);
 

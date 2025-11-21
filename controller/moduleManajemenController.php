@@ -20,10 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         case 'updateModuleTitle':
             updateModuleTitle($title, $module_id);
             break;
-        case 'updateModuleOrder':
-            // echo $course_id;
-            // echo $orders_no;
-            // exit;
+        case 'updateModuleOrder': 
             updateModuleOrder($course_id, $orders_no);
             break;
         case 'deleteModule':

@@ -79,18 +79,7 @@ a{
   text-align: justify;
 }
 
-.btn-download {
-  /* width: 150px; */
-  height: 40px;
-  background: #3d3d3d;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 20px;
-}
+
 
 .line {
   height: 1px;

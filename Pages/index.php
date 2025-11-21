@@ -32,10 +32,32 @@ ob_start();
 <div class="container-2">
   <div class="header_content_2">
     <p>Mulai Belajar dari sini</p>
-  </div>
-  <?= var_dump($allCourseWithModules) ?>
+  </div> 
+  <div class="container-card-2"> 
+
+<?php foreach ($allCourseWithModules["data"] as $course): ?>
+    <div class="card_content_2"> 
+        <div class="head_card_2">
+            <img src="<?= basefolder() ?>/uploads/admin/<?= $course->image ?>" 
+                 alt="<?= $course->title ?>" />
+        </div> 
+        <div class="desc_card_2">
+            <?php foreach ($course->modules as $module): ?>
+                <p><?= $module->title ?></p>
+            <?php endforeach; ?>
+        </div> 
+        <div class="btn_card_2">
+            <p>Lihat Modul</p>
+        </div>
+
+    </div>
+
+<?php endforeach; ?>
+
+</div>
+
   <div class="container-card-2">
-    <div class="card_content_2">
+    <!-- <div class="card_content_2">
       <div class="head_card_2"> <img src="<?= basefolder() ?>/assets/card-1.png" alt=""></div>
       <div class="desc_card_2">
         <p>Pengenalan & Struktur Html</p>
@@ -88,7 +110,7 @@ ob_start();
       <div class="btn_card_2">
         <p>Lihat Modul</p>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>
 

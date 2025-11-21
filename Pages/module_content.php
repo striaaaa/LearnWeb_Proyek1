@@ -210,13 +210,13 @@ ob_start();
                 <input type="hidden" name="module_id" value="<?=$module_id?>">
                 <input type="hidden" name="course_id" value="<?= $course_id?>">
                 <input type="hidden" name="action" value="prevModuleContent">
-                <button type="submit">Sebelumnya</button>
+                <button type="submit" class="main-btn">Sebelumnya</button>
             </form>
             <form action="<?= basefolder() ?>/controller/homepagecontroller.php"  method="post">
                 <input type="hidden" name="module_id" value="<?=$module_id?>">
                 <input type="hidden" name="course_id" value="<?= $course_id?>">
                 <input type="hidden" name="action" value="nextModuleContent">
-                <button type="submit">Selanjutnya</button>
+                <button type="submit" class="main-btn">Selanjutnya</button>
             </form>
         </div>
 

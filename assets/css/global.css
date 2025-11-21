@@ -1,4 +1,13 @@
 
+.main-btn{ 
+  padding: 12px 16px;
+  background: #5D5D5D;
+  color: white;  
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer; 
+
+}
 .text-center {
   text-align: center;
 }

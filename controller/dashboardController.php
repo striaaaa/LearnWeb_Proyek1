@@ -15,7 +15,7 @@ $getUserGroupByMonth=getUserGroupByMonth($_POST['filterYear']??2025);
 if (!empty($userLogin) && isset($userLogin->created_at)) {
     $userLogin->created_at = date('Y', strtotime($userLogin->created_at));
 }
-$action = $_GET['action'] ?? '';
+$action = $_GET['action'] ?? ''; 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     switch ($action) {
         case 'editProfil':

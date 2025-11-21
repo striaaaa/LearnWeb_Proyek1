@@ -1,11 +1,23 @@
 {
-    "time": 1763162876453,
+    "time": 1763686727258,
     "blocks": [
         {
             "id": "rZYf-TgrHR",
             "type": "code",
             "data": {
                 "code": "<script>\n  const modalEdit = document.getElementById('modalEdit');\n  const modalDelete = document.getElementById('modalDelete');\n  const tutupEdit = document.getElementById('tutupEdit');\n  const tutupDelete = document.getElementById('tutupDelete');\n\n  \/\/ === Modal Edit ===\n  function openEditModal(id, title, desc, image) {\n    document.getElementById('editId').value = id;\n    document.getElementById('editTitle').value = title;\n    document.getElementById('editDescription').value = desc;\n    document.getElementById('editOldImage').value = image || '';\n    modalEdit.classList.remove('hidden');\n  }\n\n  tutupEdit.addEventListener('click', () => {\n    modalEdit.classList.add('hidden');\n  });\n\n  \/\/ === Modal Delete ===\n  function openDeleteModal(id) {\n    document.getElementById('deleteId').value = id;\n    modalDelete.classList.remove('hidden');\n  }\n\n  tutupDelete.addEventListener('click', () => {\n    modalDelete.classList.add('hidden');\n  });\n\n  \/\/ Tutup modal jika klik area luar\n  window.addEventListener('click', (e) => {\n    if (e.target === modalEdit) modalEdit.classList.add('hidden');\n    if (e.target === modalDelete) modalDelete.classList.add('hidden');\n  });\n<\/script>\n"
+            }
+        },
+        {
+            "id": "aw5qOyEAAl",
+            "type": "delimiter",
+            "data": []
+        },
+        {
+            "id": "A_l919otIr",
+            "type": "paragraph",
+            "data": {
+                "text": "asdasd"
             }
         }
     ],
