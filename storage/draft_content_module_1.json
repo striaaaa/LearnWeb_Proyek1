@@ -1,5 +1,5 @@
 {
-    "time": 1763663809090,
+    "time": 1763689864952,
     "blocks": [
         {
             "id": "intro_01",
@@ -52,6 +52,19 @@
             "id": "delimiter_01",
             "type": "delimiter",
             "data": []
+        },
+        {
+            "id": "Oy9VnY0IAT",
+            "type": "image",
+            "data": {
+                "caption": "Contoh gambar",
+                "withBorder": false,
+                "withBackground": false,
+                "stretched": false,
+                "file": {
+                    "url": "\/learnweb\/uploads\/admin\/moduleContent\/img_691fc56ab3f261.92795387.png"
+                }
+            }
         }
     ],
     "version": "2.31.0"
