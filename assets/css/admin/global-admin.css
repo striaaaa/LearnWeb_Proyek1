@@ -359,7 +359,7 @@ body {
     border: none;
     border-radius: 8px;
     text-decoration: none;
-    margin-bottom: 16px;
+    /* margin-bottom: 16px; */
     transition: 0.2s;
   }
 
