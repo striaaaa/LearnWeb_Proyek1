@@ -45,7 +45,12 @@ ob_start();
   }
 </style>
 <div class="container-border">
-  <h2>Kursus <?= $courseWithModulesResult->data->title ?></h1>
+  <?php if (empty($courseWithModulesResult->data->course_id)): ?>
+    <div>
+      Data tidak ada
+    </div>
+  <?php else: ?>
+    <h2>Kursus <?= $courseWithModulesResult->data->title ?></h2>
     <div class="materi">
       <?php foreach ($courseWithModulesResult->data->modules as $key => $course): ?>
         <div class=" grid grid-cols-12">
@@ -109,8 +114,6 @@ ob_start();
                   ?>
 
                   <p><?= htmlspecialchars($preview) ?></p>
-
-
                 <?php else: ?>
                   <li><em>Tidak ada konten tersedia</em></li>
                 <?php endif; ?>
@@ -120,6 +123,7 @@ ob_start();
         </div>
       <?php endforeach; ?>
     </div>
+  <?php endif; ?>
 </div>
 
 <?php include __DIR__ . '/../components/footer.php'; ?>

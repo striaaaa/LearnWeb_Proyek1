@@ -8,7 +8,7 @@ ob_start();
 ?>
 <div class="container-profile">
   <div class="img-radius">
-    <img  src="<?= $userLogin->image?basefolder().'/uploads/user/profil/'.$userLogin->image:'https://image.idntimes.com/post/20230220/888355494-47236b76652f2e55025900cd98ccd09e-0759d9cc026a3c781b24c228b3d42224.jpg'?>" alt="user" />
+    <img src="<?= $userLogin->image ? basefolder() . '/uploads/user/profil/' . $userLogin->image : 'https://image.idntimes.com/post/20230220/888355494-47236b76652f2e55025900cd98ccd09e-0759d9cc026a3c781b24c228b3d42224.jpg' ?>" alt="user" />
   </div>
   <div class="detail-profile">
     <h1><?= $userLogin->name ?></h1>
@@ -21,48 +21,66 @@ ob_start();
       <span><?= $userLogin->alamat ?></span>
     </div>
     <div class="btn_edit">
-      <a href="<?=basefolder()?>/dashboard/edit-profile" style="text-decoration: none"><span>Edit Profile</span></a>
+      <a href="<?= basefolder() ?>/dashboard/edit-profile" style="text-decoration: none"><span>Edit Profile</span></a>
     </div>
   </div>
 </div>
 
-<div class="modul-success">
-  <div class="content-modul">
-    <div class="top-content">
-      <div class="img-left-modul">
-        <img src="" alt="ajdaskjdas" />
-      </div>
-      <div class="title-modul">
-        <span><i class="ri-check-line"></i>Selesai</span>
-        <p class="nigga">Pengenalan Html dasar</p>
-        <span class="jam"><i class="ri-time-line"></i>45 Jam</span>
-      </div>
-    </div>
-    <p class="desc-modul">
-      Mempelajari komponen - komponen dasar Html dan CSS yang Merupakan
-      fondasi utama untuk menjadi front-end web developer
-    </p>
-    <div class="btn-download">Unduh Materi</div>
-  </div>
+<div class="modul-success grid grid-cols-12 gap-4"> 
 
-  <div class="content-modul">
-    <div class="top-content">
-      <div class="img-left-modul">
-        <img src="" alt="ajdaskjdas" />
-      </div>
-      <div class="title-modul">
-        <span><i class="ri-check-line"></i>Selesai</span>
-        <p>Pengenalan Html dasar</p>
-        <span class="jam"><i class="ri-time-line"></i>45 Jam</span>
-      </div>
+  <?php 
+  
+  $rawGetCourseCompletedUser = $getCourseCompletedUser["data"] ?? [];
+  // var_dump(empty((array)$rawGetCourseCompletedUser));
+  if (empty((array)$rawGetCourseCompletedUser)):?>
+    <div class="col-span-12">
+      <p class="text-center ">
+        Belum ada course yang selesai.
+      </p>
     </div>
-    <p class="desc-modul">
-      Mempelajari komponen - komponen dasar Html dan CSS yang Merupakan
-      fondasi utama untuk menjadi front-end web developer
-    </p>
-    <div class="btn-download">Unduh Materi</div>
-  </div>
+  <?php else: ?>
+    <?php 
+     if (!is_array($rawGetCourseCompletedUser)) {
+      $rawGetCourseCompletedUser = [$rawGetCourseCompletedUser];
+    }
+    foreach ($rawGetCourseCompletedUser as $course): ?>
+      <div class="col-span-6">
+        <div class="content-modul">
+          <div class="top-content">
+            <div class="img-left-modul">
+              <img src="<?= basefolder() ?>/uploads/admin/<?= $course->image ?>"
+                alt="<?= $course->title ?>"
+                width="130px" height="100px"
+                style="object-fit:cover;" />
+            </div>
+            <div class="title-modul">
+              <span> 
+                <?= $course->status_course ?>
+              </span>
+              <p><?= $course->title ?></p>
+              <span class="jam">
+                <i class="ri-time-line"></i>45 Jam
+              </span>
+            </div>
+          </div>
+
+          <p class="desc-modul"><?= $course->description ?></p>
+          <form action="<?=basefolder()?>/controller/dashboardController.php?action=createMaterPdfGetData" method="POST">
+            <input type="hidden" name="action" value="createMaterPdfGetData">
+            <input type="hidden" name="course_id" value="<?= $course->course_id ?>">
+            <button class="btn-download" type="submit">Unduh Materi</button>
+          </form>
+          <form action="<?=basefolder()?>/controller/dashboardController.php?action=createCertificate" method="POST">
+            <input type="hidden" name="action" value="createCertificate">
+            <input type="hidden" name="course_title" value="<?= $course->title ?>">
+            <button class="btn-download" type="submit">Unduh sertifikat</button>
+          </form>
+        </div>
+      </div>
+    <?php endforeach; ?>
+  <?php endif; ?>
 </div>
+
 
 <div class="line"></div>
 <?php

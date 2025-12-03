@@ -46,9 +46,9 @@ ob_start();
                 <p><?= $module->title ?></p>
             <?php endforeach; ?>
         </div> 
-        <div class="btn_card_2">
+        <a href="<?= basefolder() ?>/course" style="text-decoration:none;" class="btn_card_2">
             <p>Lihat Modul</p>
-        </div>
+        </a>
 
     </div>
 

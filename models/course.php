@@ -7,11 +7,66 @@ function getAllCourses()
 {
     $courses = [];
     try {
-        $sql = "SELECT course_id, title, description,image, created_at FROM courses ORDER BY created_at DESC";
+        $sql = "SELECT course_id, title, description,image,   DATE(created_at) AS created_at FROM courses ORDER BY created_at DESC";
         $courses = runQuery($sql);
         return [
             'success' => true,
             'data' => $courses
+        ];
+    } catch (\Exception $e) {
+        // Handle error database
+        return [
+            'success' => false,
+            'message' => "Error saat mengambil kursus: " . $e->getMessage()
+        ];
+    }
+}
+function getModuleswithContent($course_id)
+{
+    try {
+        $sqlModules = "SELECT *
+                       FROM modules where course_id=?
+                       ORDER BY created_at DESC  ";
+
+        $modules = runQuery($sqlModules, [$course_id], 'i');
+        if (!$modules) {
+            return [
+                'success' => true,
+                'data' => []
+            ];
+        }
+        foreach ($modules as $module) {
+            $moduleId = $module->module_id;
+            $sqlModules = "SELECT module_id, content_data 
+                           FROM modules_content 
+                           WHERE module_id = ?
+                           ORDER BY created_at ASC ";
+
+            $modulesContent = runQuery($sqlModules, [$moduleId]);
+
+            $module->modulesContent = $modulesContent ?? [];
+        }
+
+        return [
+            'success' => true,
+            'data' => $modules,
+            'courseData'=>getCourseByid($course_id)['data']
+        ];
+    } catch (\Exception $e) {
+        return [
+            'success' => false,
+            'message' => "Error mengambil data: " . $e->getMessage()
+        ];
+    }
+}
+function getCourseByid($course_id)
+{
+    try {
+        $sql = "SELECT course_id, title, description,image, created_at FROM courses WHERE course_id=?";
+        $course = runQuery($sql, [$course_id], 'i');
+        return [
+            'success' => true,
+            'data' => $course
         ];
     } catch (\Exception $e) {
         // Handle error database
@@ -150,8 +205,8 @@ ORDER BY m.order_no ASC;
             $rows = [$rows];
         }
         $courseData = (object)[
-            'course_id' => $rows[0]->course_id,
-            'title' => $rows[0]->course_title,
+            'course_id' => $rows[0]->course_id??null,
+            'title' => $rows[0]->course_title??null,
             'modules' => []
         ];
 
@@ -164,7 +219,7 @@ ORDER BY m.order_no ASC;
                 }
             }
             if ($moduleIndex === null) {
-                $status = $row->progress_status; 
+                $status = $row->progress_status??null; 
                 if ($status === "completed") {
                     $finalStatus = "completed";
                 } elseif ($status === "in_progress") {
@@ -173,11 +228,11 @@ ORDER BY m.order_no ASC;
                     $finalStatus = "locked";  
                 }
                 $newModule = (object)[
-                    'course_id' => $row->course_id,
-                    'module_id' => $row->module_id,
-                    'progress_status' => $finalStatus,
-                    'title' => $row->module_title,
-                    'order_no' => $row->order_no,
+                    'course_id' => $row->course_id ??null,
+                    'module_id' => $row->module_id ??null,
+                    'progress_status' => $finalStatus ??null,
+                    'title' => $row->module_title??null,
+                    'order_no' => $row->order_no??null,
                     'contents' => []
                 ];
                 $courseData->modules[] = $newModule;
@@ -220,7 +275,7 @@ function getCourseWithModules2()
                     mc.content_type,
                     mc.content_data AS module_content
                 FROM courses c
-                INNER JOIN modules m ON c.course_id = m.course_id
+                LEFT JOIN modules m ON c.course_id = m.course_id
                 LEFT JOIN modules_content mc ON mc.module_id = m.module_id
                 ORDER BY c.course_id, m.order_no, mc.module_content_id";
 
@@ -243,6 +298,7 @@ function getCourseWithModules2()
         foreach ($rows as $row) {
             $courseId = $row->course_id;
             $moduleId = $row->module_id;
+            
 
             if (!isset($courseData[$courseId])) {
                 $courseData[$courseId] = [
@@ -253,21 +309,24 @@ function getCourseWithModules2()
                     'modules' => []
                 ];
             }
-            if (!isset($courseData[$courseId]['modules'][$moduleId])) {
-                $courseData[$courseId]['modules'][$moduleId] = [
-                    'module_id' => $moduleId,
-                    'title' => $row->module_title,
-                    'contents' => []
-                ];
-            }
+            if ($moduleId !== null) {
+    if (!isset($courseData[$courseId]['modules'][$moduleId])) {
+        $courseData[$courseId]['modules'][$moduleId] = [
+            'module_id' => $moduleId,
+            'title' => $row->module_title,
+            'contents' => []
+        ];
+    }
 
-            if (!empty($row->module_content_id)) {
-                $courseData[$courseId]['modules'][$moduleId]['contents'][] = [
-                    'module_content_id' => $row->module_content_id,
-                    'content_type' => $row->content_type,
-                    'module_content' => $row->module_content
-                ];
-            }
+    if (!empty($row->module_content_id)) {
+        $courseData[$courseId]['modules'][$moduleId]['contents'][] = [
+            'module_content_id' => $row->module_content_id,
+            'content_type' => $row->content_type,
+            'module_content' => $row->module_content
+        ];
+    }
+}
+
         }
 
         foreach ($courseData as &$course) {

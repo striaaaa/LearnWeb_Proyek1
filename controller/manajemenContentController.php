@@ -75,37 +75,26 @@ function addOrUpdateModuleContent($module_id)
         } else {
             $currentChunk[] = $block;
         }
-    }
-
-    // simpan chunk terakhir kalau ada
-    var_dump($currentChunk);
+    } 
+    // var_dump($currentChunk);
     if (!empty($currentChunk)) {
         $chunks[] = [
             'order_no' => $chunkIndex,
             'blocks' => $currentChunk
         ];
-    }
-
-    // 🔹 Loop tiap chunk untuk insert/update
+    } 
     foreach ($chunks as $chunk) {
         $order_no = $chunk['order_no'];
-        $chunkJson = json_encode($chunk['blocks'], JSON_UNESCAPED_UNICODE);
-        // $content_type = $chunk['blocks'][0]['type'] ?? 'unknown';
-
-        // ambil semua tipe block di dalam chunk
+        $chunkJson = json_encode($chunk['blocks'], JSON_UNESCAPED_UNICODE); 
 $content_type_arr = array_values(array_unique(array_map(
     fn($b) => $b['type'] ?? 'unknown',
     $chunk['blocks']
-)));
-
-// simpan sebagai json
-$content_type_json = json_encode($content_type_arr, JSON_UNESCAPED_UNICODE);
-
-        // cek apakah data sudah ada di DB
+))); 
+$content_type_json = json_encode($content_type_arr, JSON_UNESCAPED_UNICODE); 
         $sqlCheck = "SELECT content_data FROM modules_content 
                      WHERE module_id = ? AND order_no = ? LIMIT 1";
         $checkResult = runQuery($sqlCheck, [$module_id, $order_no], 'ii');
-        var_dump('r',$checkResult);
+        // var_dump('r',$checkResult);
 
         if ($checkResult && !empty((array)$checkResult)) {
             $row = $checkResult; 

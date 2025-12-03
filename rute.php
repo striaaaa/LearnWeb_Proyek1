@@ -26,7 +26,9 @@ $routes = [
             ]
         ]
     ],
-
+    "certificate"=>[
+        ''=>"Pages/certificate_format.php"
+    ],
     "admin"     => [
         "dashboard" => "Pages/admin/dashboard-admin.php",
         "manajemen-kursus" => [

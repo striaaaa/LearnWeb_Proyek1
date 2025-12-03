@@ -1,32 +1,79 @@
 {
-    "time": 1763967691990,
+    "time": 1764300819366,
     "blocks": [
         {
-            "id": "intro_01",
-            "type": "paragraph",
+            "id": "mfa2QeJkbB",
+            "type": "header",
             "data": {
-                "text": "Pada materi ini kita akan mempelajari dasar-dasar HTML, mulai dari struktur elemen hingga cara membuat halaman web sederhana."
+                "text": "Ini judul",
+                "level": 2
             }
         },
         {
-            "id": "list_01",
+            "id": "RYanqOchrL",
+            "type": "paragraph",
+            "data": {
+                "text": "HTML (HyperText Markup Language) adalah bahasa markup yang digunakan untuk membuat struktur dan isi halaman web. HTML menandai elemen (judul, paragraf, gambar, tautan, tabel, form, dsb.) sehingga browser tahu bagaimana menampilkannya.asass"
+            }
+        },
+        {
+            "id": "pYj3GUGBL9",
+            "type": "paragraph",
+            "data": {
+                "text": "Tag HTML penting (ringkasan cepat):"
+            }
+        },
+        {
+            "id": "GEo3zaTHWU",
+            "type": "paragraph",
+            "data": {
+                "text": "Tag HTML penting (ringkasan cepat):"
+            }
+        },
+        {
+            "id": "A5N2vM85Sx",
             "type": "list",
             "data": {
                 "style": "unordered",
                 "meta": [],
                 "items": [
                     {
-                        "content": "Memahami struktur dasar H",
+                        "content": "Struktur: &lt;!DOCTYPE html&gt;, &lt;html&gt;, &lt;head&gt;, &lt;body&gt;\n",
                         "meta": [],
                         "items": []
                     },
                     {
-                        "content": "Mengenal tag dan atribut",
+                        "content": "Teks: &lt;h1&gt;\u2013&lt;h6&gt;, &lt;p&gt;, &lt;span&gt;, &lt;strong&gt;, &lt;em&gt;\n",
                         "meta": [],
                         "items": []
                     },
                     {
-                        "content": "Membuat halaman HTML sederhanan",
+                        "content": "Media: &lt;img&gt;, &lt;audio&gt;, &lt;video&gt;\n",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "Link &amp; navigasi: &lt;a&gt;, &lt;nav&gt;\n",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "Daftar: &lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;\n",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "Form: &lt;form&gt;, &lt;input&gt;, &lt;textarea&gt;, &lt;select&gt;, &lt;button&gt;\n",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "Layout semantik: &lt;header&gt;, &lt;main&gt;, &lt;section&gt;, &lt;article&gt;, &lt;aside&gt;, &lt;footer&gt;\n",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "Struktur tabel: &lt;table&gt;, &lt;tr&gt;, &lt;td&gt;, &lt;th&gt;",
                         "meta": [],
                         "items": []
                     }
@@ -34,36 +81,10 @@
             }
         },
         {
-            "id": "code_01",
+            "id": "Dnv1HsQKKu",
             "type": "code",
             "data": {
-                "code": "<!DOCTYPE html>\n<html>\n  <head>\n    <title>Belajar HTML<\/title>\n  <\/head>\n  <body>\n    <h1>Halo Dunia!<\/h1>\n    <p>Ini adalah contoh halaman HTML sederhana.<\/p>\n  <\/body>\n<\/html>"
-            }
-        },
-        {
-            "id": "link_01",
-            "type": "linkTool",
-            "data": {
-                "link": "https:\/\/developer.mozilla.org\/en-US\/docs\/Web\/HTML",
-                "meta": []
-            }
-        },
-        {
-            "id": "delimiter_01",
-            "type": "delimiter",
-            "data": []
-        },
-        {
-            "id": "Oy9VnY0IAT",
-            "type": "image",
-            "data": {
-                "caption": "Contoh gambar",
-                "withBorder": false,
-                "withBackground": false,
-                "stretched": false,
-                "file": {
-                    "url": "\/learnweb\/uploads\/admin\/moduleContent\/img_691fc56ab3f261.92795387.png"
-                }
+                "code": "<!DOCTYPE html>\n<html lang=\"id\">\n<head>\n  <meta charset=\"utf-8\" \/>\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" \/>\n  <title>Contoh Halaman<\/title>\n<\/head>\n<body>\n  <header>\n    <h1>Halo, Dunia!<\/h1>\n    <nav>\n      <a href=\"#tentang\">Tentang<\/a> |\n      <a href=\"#kontak\">Kontak<\/a>\n    <\/nav>\n  <\/header>\n\n  <main>\n    <section id=\"tentang\">\n      <h2>Tentang HTML<\/h2>\n      <p>HTML menyediakan struktur dasar halaman web.<\/p>\n      <img src=\"logo.png\" alt=\"Logo contoh\" \/>\n    <\/section>\n\n    <section id=\"kontak\">\n      <h2>Kontak<\/h2>\n      <form action=\"\/kirim\" method=\"post\">\n        <label for=\"nama\">Nama<\/label>\n        <input id=\"nama\" name=\"nama\" type=\"text\" required \/>\n        <button type=\"submit\">Kirim<\/button>\n      <\/form>\n    <\/section>\n  <\/main>\n\n  <footer>\n    <p>&copy; 2025 Contoh<\/p>\n  <\/footer>\n<\/body>\n<\/html>\n"
             }
         }
     ],

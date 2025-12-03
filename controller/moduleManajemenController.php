@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             break;
         case 'deleteModule':
             echo 'as';
-            deleteModule($module_id);
+            deleteModule($module_id, $course_id);
             break;
         default:
             break;
@@ -45,7 +45,7 @@ function addModuleTitle($title, $course_id)
         $sqlLastOrder = "SELECT MAX(order_no) as last_order FROM modules WHERE course_id = ?";
         $lastOrderResult = runQuery($sqlLastOrder, [$course_id], 'i');
         // var_dump($lastOrderResult);
-        $lastOrderNo = $lastOrderResult->last_order ?? 0; 
+        $lastOrderNo = $lastOrderResult->last_order ?? 0;
         $sqlInsert = "INSERT INTO modules (title, course_id, order_no) VALUES (?, ?, ?)";
         $addedModule = runQuery($sqlInsert, [$title, $course_id, $lastOrderNo + 1], 'sii');
         header('Location: ' . basefolder() . '/admin/manajemen-modul');
@@ -96,7 +96,7 @@ function updateModuleOrder($course_id, $module_ids)
         echo 'Error: ' . $e->getMessage();
     }
 }
-function deleteModule($module_id)
+function deleteModule($module_id, $course_id)
 {
     try {
         if (!$module_id) {
@@ -106,7 +106,18 @@ function deleteModule($module_id)
         $sql = "DELETE FROM modules WHERE module_id=?";
         //udh cascade on delete dari db
         $deletedModule = runQuery($sql, [$module_id], 'i');
-        header('Location: ' . basefolder() . '/admin/manajemen-modul');
+        $reorderSql = "UPDATE modules AS m
+    JOIN (
+        SELECT module_id, (@row := @row + 1) AS new_order
+        FROM modules, (SELECT @row := 0) AS r
+        WHERE course_id = ?
+        ORDER BY created_at ASC
+    ) AS x ON m.module_id = x.module_id
+    SET m.order_no = x.new_order";;
+        //    $reorderSql = "SET @row = 0; UPDATE modules SET order_no = (@row := @row + 1) WHERE course_id = ? ORDER BY order_no ASC;";
+ 
+        runQuery($reorderSql, [$course_id], "i");
+        header('Location: ' . basefolder() . '/admin/manajemen-msodul?success=1');
         // echo $deletedModule;
         echo 'Modul berhasil dihapus.';
 

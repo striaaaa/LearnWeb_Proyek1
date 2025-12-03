@@ -21,6 +21,35 @@ function getUserLogin($login_token)
         ];
     }
 }
+function    getCourseCompletedUser($user_id){
+    try {
+        $sql = "SELECT 
+    c.course_id,
+    c.title,
+    'Selesai' as status_course,
+    c.image,
+    c.description
+FROM courses c
+JOIN modules m ON m.course_id = c.course_id
+LEFT JOIN progress p 
+       ON p.module_id = m.module_id 
+      AND p.user_id = ? GROUP BY c.course_id HAVING COUNT(m.module_id) = COUNT(CASE WHEN p.status = 'completed' THEN 1 END);
+";
+    
+        $userLogin = runQuery($sql, [$user_id], 's');
+        return [
+            'success' => true,
+            'data' => $userLogin
+        ];
+    } catch (Exception $e) {
+        return [
+            'success' => false,
+            'error' => $e->getMessage()
+        ];
+    }
+    
+}
+
 function getUserAll()
 {
     $users = [];

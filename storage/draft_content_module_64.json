@@ -1,0 +1,29 @@
+{
+    "time": 1764300800692,
+    "blocks": [
+        {
+            "id": "cb3x1yRg1J",
+            "type": "paragraph",
+            "data": {
+                "text": "sd"
+            }
+        },
+        {
+            "id": "kdV3oR7H9y",
+            "type": "code",
+            "data": {
+                "code": "\/\/ kode di sini"
+            }
+        },
+        {
+            "id": "AttIKMK1-4",
+            "type": "quote",
+            "data": {
+                "text": "Jangan lupa makan",
+                "caption": "makanbang",
+                "alignment": "left"
+            }
+        }
+    ],
+    "version": "2.31.0"
+}

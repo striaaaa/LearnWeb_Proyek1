@@ -66,7 +66,7 @@ function getUserProgresCheckData()
 
         // Cek loncat module jauh
         if (intval($order) - intval($getModuleById['data']->order_no) > 1) {
-            setFlashAlert('error', 'Kamu melompati module terlalu jauh.');
+            setFlashAlert('error', 'Module sebelumnya belum diselesaikan .');
             header("Location: " . basefolder() . "/course/" . $course_id);
 
             exit;
@@ -133,7 +133,7 @@ function nextModuleContent()
         exit;
     }
 
-    // Ambil data module sekarang
+    // data module skrng
     $currentModule = getModuleById($module_id)['data'] ?? null;
     if (!$currentModule) {
         setFlashAlert('error', 'Module tidak ditemukan.');
@@ -143,10 +143,10 @@ function nextModuleContent()
 
     $currentOrder = intval($currentModule->order_no);
 
-    // Ambil module selanjutnya berdasarkan order_no
-    $nextModule = getModuleByOrder($course_id, $currentOrder + 1);
-    // var_dump($nextModule['data']);
+    //  module selanjutnya berdasarkan order_no
+    // var_dump($currentOrder);
     // die();
+    $nextModule = getModuleByOrder($course_id, $currentOrder + 1);
     $sql = "INSERT INTO progress (user_id, module_id, status)
             VALUES (?, ?, 'completed')
             ON DUPLICATE KEY UPDATE status = 'completed', updated_at = NOW()";
@@ -187,7 +187,7 @@ function getUserProgresCheckData2()
         $getModuleById = getModuleById($getUserLastProgres['data']->module_id);
         // var_dump($getModuleById['data']->order_no);
         if (intval($order) - intval($getModuleById['data']->order_no) > 1) {
-            echo "kamu lompat terlalu jauh";
+            echo "Module sebelumnya belum diselesaikan";
             return;
         } else {
 

@@ -24,7 +24,8 @@ ob_start();
     border-radius: 10px;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
-    cursor: default; /* cursor default karena klik hanya di arrow */
+    cursor: default;
+    /* cursor default karena klik hanya di arrow */
     transition: 0.3s ease;
   }
 
@@ -80,35 +81,53 @@ ob_start();
   }
 </style>
 
-<div> 
+<div>
   <div class="row-card-table-header">
     <div class="grid grid-cols-12">
-      <div class="col-span-1"><h4>No.</h4></div>
-      <div class="col-span-3"><h4>Judul</h4></div>
-      <div class="col-span-4"><h4>Deskripsi</h4></div>
-      <div class="col-span-3"><h4>Dibuat pada</h4></div>
-      <div class="col-span-1"><h4>Aksi</h4></div>
+      <div class="col-span-1">
+        <h4>No.</h4>
+      </div>
+      <div class="col-span-3">
+        <h4>Judul</h4>
+      </div>
+      <div class="col-span-4">
+        <h4>Deskripsi</h4>
+      </div>
+      <div class="col-span-3">
+        <h4>Dibuat pada</h4>
+      </div>
+      <div class="col-span-1">
+        <h4>Aksi</h4>
+      </div>
     </div>
-  </div>
-
-  <?php foreach ($courseWithModulesResult['data'] as $index => $course): ?>
+  </div> 
+  <?php foreach ($courseWithModulesResult['data'] as $index => $course):
+  ?>
     <div class="row-card-table-course">
       <div class="grid grid-cols-12 items-center row-card-table-course-header">
-        <div class="col-span-1"><p><?= $index + 1 ?>.</p></div>
-        <div class="col-span-3"><p><?= htmlspecialchars($course->title) ?></p></div>
-        <div class="col-span-4"><p><?= htmlspecialchars($course->description) ?></p></div>
-        <div class="col-span-2"><p><?= htmlspecialchars($course->created_at ?? '-') ?></p></div>
+        <div class="col-span-1">
+          <p><?= $index + 1 ?>.</p>
+        </div>
+        <div class="col-span-3">
+          <p><?= htmlspecialchars($course->title) ?></p>
+        </div>
+        <div class="col-span-4">
+          <p><?= htmlspecialchars($course->description) ?></p>
+        </div>
+        <div class="col-span-2">
+          <p><?= htmlspecialchars($course->created_at ?? '-') ?></p>
+        </div>
         <div class="col-span-2 flex items-center">
           <button class="btn-aksi-default" style="margin: 0px; margin-right:16px;" onclick="addModule(<?= json_encode($course->course_id) ?>)">Tambah Modul</button>
           <div class="items-center flex">
-            <svg class="arrow" 
-            onclick="toggleAccordion(this)" 
-            xmlns="http://www.w3.org/2000/svg" 
-            width="12" height="24" viewBox="0 0 12 24">
-            <path fill="currentColor" d="m7.588 12.43l-1.061 1.06L.748 7.713a.996.996 0 0 1 0-1.413L6.527.52l1.06 1.06l-5.424 5.425z" transform="rotate(-180 5.02 9.505)" />
-          </svg>
+            <svg class="arrow"
+              onclick="toggleAccordion(this)"
+              xmlns="http://www.w3.org/2000/svg"
+              width="12" height="24" viewBox="0 0 12 24">
+              <path fill="currentColor" d="m7.588 12.43l-1.061 1.06L.748 7.713a.996.996 0 0 1 0-1.413L6.527.52l1.06 1.06l-5.424 5.425z" transform="rotate(-180 5.02 9.505)" />
+            </svg>
+          </div>
         </div>
-        </div> 
       </div>
       <div class="accordion-content">
         <form action="<?= basefolder() ?>/controller/moduleManajemenController.php" method="post">
@@ -118,21 +137,39 @@ ob_start();
           <button class="save-order" type="submit" onclick="saveOrder(event,this, <?= htmlspecialchars($course->course_id) ?>)">Simpan Perubahan Urutan</button>
         </form>
         <div class="module-list" id="module-list-<?= htmlspecialchars($course->course_id) ?>">
-          <?php foreach ($course->modules as $k => $module): ?>
-            <div class="grid grid-cols-12 module-card items-center" data-id="<?= htmlspecialchars($module->module_id) ?>" draggable="true">
-              <div class="col-span-1 flex items-center justify-between" style="padding-right: 40px;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1">
-                  <path d="M3 3h.01M3 8h.01M3 13h.01M8 3h.01M8 8h.01M8 13h.01M13 3h.01M13 8h.01M13 13h.01" />
-                </svg>
-                <p><?= $k + 1 ?></p>
+          <?php if (empty((array)$course->modules)): ?>
+
+            <p class="text-gray-500">Belum ada module pada course ini.</p>
+
+          <?php else: ?>
+
+            <?php foreach ($course->modules as $k => $module): ?>
+              <div class="grid grid-cols-12 module-card items-center"
+                data-id="<?= htmlspecialchars($module->module_id) ?>"
+                draggable="true">
+
+                <div class="col-span-1 flex items-center justify-between" style="padding-right: 40px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none"
+                    stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1">
+                    <path d="M3 3h.01M3 8h.01M3 13h.01M8 3h.01M8 8h.01M8 13h.01M13 3h.01M13 8h.01M13 13h.01" />
+                  </svg>
+                  <p><?= $k + 1 ?></p>
+                </div>
+
+                <div class="col-span-9">
+                  <p><?= htmlspecialchars($module->title) ?></p>
+                </div>
+
+                <div class="col-span-1 flex">
+                  <button onclick='editModule(<?= json_encode($module->module_id) ?>, <?= json_encode($module->title) ?>)' class="btn-edit">Edit</button>
+                  <button onclick='deleteModule(<?= json_encode($module->module_id) ?>, <?= json_encode($course->course_id) ?>)' class="btn-delete">Hapus</button>
+                </div>
+
               </div>
-              <div class="col-span-9"><p><?= htmlspecialchars($module->title) ?></p></div>
-              <div class="col-span-1 flex ">
-                <button onclick='editModule(<?= json_encode($module->module_id) ?>, <?= json_encode($module->title) ?>)' class="btn-edit">Edit</button>
-                <button onclick='deleteModule(<?= json_encode($module->module_id) ?>)' class="btn-delete">Hapus</button>
-              </div>
-            </div>
-          <?php endforeach; ?>
+            <?php endforeach; ?>
+
+          <?php endif; ?>
+
         </div>
       </div>
     </div>
@@ -161,8 +198,8 @@ ob_start();
     <div class="modal-content">
       <h3>Tambah Modul</h3>
       <label>Judul Modul</label>
-      <input type="hidden" name="action" value="addModuleTitle"> 
-      <input type="hidden" name="course_id"  id="courseIdInputAdd"> 
+      <input type="hidden" name="action" value="addModuleTitle">
+      <input type="hidden" name="course_id" id="courseIdInputAdd">
       <input type="text" id="moduleTitleAdd" name="title" placeholder="Masukkan judul modul" />
       <div class="modal-btns">
         <button id="simpanModule" data-action="tambah" type="submit" class="btn-aksi-default">Tambah</button>
@@ -178,6 +215,7 @@ ob_start();
       <h3>Hapus Modul</h3>
       <input type="hidden" name="action" value="deleteModule">
       <input type="hidden" name="module_id" id="moduleIdInputDelete">
+      <input type="hidden" name="course_id" id="courseIdInputDelete">
       <div class="modal-btns">
         <button id="simpanModule" data-action="hapus" type="submit" class="btn-confirm-delete">Hapus</button>
         <button id="tutupModal" data-action="batal" type="button" class="btn-close">Batal</button>
@@ -198,105 +236,114 @@ ob_start();
   const moduleIdInputAdd = document.getElementById('moduleIdInputAdd');
   const moduleIdInput = document.getElementById('moduleIdInput');
   const moduleIdInputDelete = document.getElementById('moduleIdInputDelete');
+  const courseIdInputDelete = document.getElementById('courseIdInputDelete');
   const modalEdit = document.getElementById('moduleModal');
   const modalDelete = document.getElementById('moduleModalDelete');
-function toggleAccordion(arrowElement) {
-  const header = arrowElement.closest('.row-card-table-course-header');
-  const content = header.nextElementSibling;
-  const isOpen = content.classList.contains('open');
-  
 
-  document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('open'));
-  document.querySelectorAll('.row-card-table-course-header').forEach(h => h.classList.remove('active'));
+  function toggleAccordion(arrowElement) {
+    const header = arrowElement.closest('.row-card-table-course-header');
+    const content = header.nextElementSibling;
+    const isOpen = content.classList.contains('open');
 
-  if (!isOpen) {
-    content.classList.add('open');
-    header.classList.add('active');
+
+    document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('open'));
+    document.querySelectorAll('.row-card-table-course-header').forEach(h => h.classList.remove('active'));
+
+    if (!isOpen) {
+      content.classList.add('open');
+      header.classList.add('active');
+    }
   }
-}
 
 
-let draggedItem = null;
+  let draggedItem = null;
 
-document.querySelectorAll('.module-list').forEach(list => {
-  const saveButton = list.parentElement.querySelector('.save-order');
+  document.querySelectorAll('.module-list').forEach(list => {
+    const saveButton = list.parentElement.querySelector('.save-order');
 
-  list.addEventListener('dragstart', e => {
-    draggedItem = e.target;
-    e.target.classList.add('dragging');
+    list.addEventListener('dragstart', e => {
+      draggedItem = e.target;
+      e.target.classList.add('dragging');
+    });
+
+    list.addEventListener('dragend', e => {
+      e.target.classList.remove('dragging');
+      draggedItem = null;
+    });
+
+    list.addEventListener('dragover', e => {
+      e.preventDefault();
+      const afterElement = getDragAfterElement(list, e.clientY);
+      if (afterElement == null) {
+        list.appendChild(draggedItem);
+      } else {
+        list.insertBefore(draggedItem, afterElement);
+      }
+    });
+
+    list.addEventListener('drop', () => {
+      saveButton.style.display = 'inline-block';
+    });
   });
 
-  list.addEventListener('dragend', e => {
-    e.target.classList.remove('dragging');
-    draggedItem = null;
+  function getDragAfterElement(container, y) {
+    const draggableElements = [...container.querySelectorAll('.module-card:not(.dragging)')];
+    return draggableElements.reduce((closest, child) => {
+      const box = child.getBoundingClientRect();
+      const offset = y - box.top - box.height / 2;
+      if (offset < 0 && offset > closest.offset) {
+        return {
+          offset: offset,
+          element: child
+        };
+      } else {
+        return closest;
+      }
+    }, {
+      offset: Number.NEGATIVE_INFINITY
+    }).element;
+  }
+
+  function saveOrder(e, button, courseId) {
+    const form = button.parentElement;
+    const list = form.nextElementSibling;
+    const order = Array.from(list.children).map(card => card.dataset.id);
+    form.querySelector('[name="orders_no"]').value = JSON.stringify(order);
+    console.log("Urutan baru untuk kursus ID " + courseId + ":", order);
+  }
+
+  document.querySelectorAll('button[data-action]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const action = e.target.dataset.action;
+      if (action === 'simpan') modalEdit.classList.add('hidden');
+      else if (action === 'hapus') modalDelete.classList.add('hidden');
+      else if (action === 'tambah') moduleModalAdd.classList.add('hidden');
+      else if (action === 'batal') {
+        // sembunyikan semua modal saat klik batal
+        modalEdit.classList.add('hidden');
+        modalDelete.classList.add('hidden');
+        moduleModalAdd.classList.add('hidden');
+      }
+    });
   });
 
-  list.addEventListener('dragover', e => {
-    e.preventDefault();
-    const afterElement = getDragAfterElement(list, e.clientY);
-    if (afterElement == null) {
-      list.appendChild(draggedItem);
-    } else {
-      list.insertBefore(draggedItem, afterElement);
-    }
-  });
+  function editModule(modId, modTitle) {
+    modal.classList.remove('hidden');
+    moduleTitleInput.value = modTitle.trim();
+    moduleIdInput.value = modId;
+  }
 
-  list.addEventListener('drop', () => {
-    saveButton.style.display = 'inline-block';
-  });
-});
+  function addModule(courseId) {
+    moduleModalAdd.classList.remove('hidden');
+    // moduleIdInputAdd.value = modTitle.trim(); 
+    courseIdInputAdd.value = courseId;
+  }
 
-function getDragAfterElement(container, y) {
-  const draggableElements = [...container.querySelectorAll('.module-card:not(.dragging)')];
-  return draggableElements.reduce((closest, child) => {
-    const box = child.getBoundingClientRect();
-    const offset = y - box.top - box.height / 2;
-    if (offset < 0 && offset > closest.offset) {
-      return { offset: offset, element: child };
-    } else {
-      return closest;
-    }
-  }, { offset: Number.NEGATIVE_INFINITY }).element;
-}
-
-function saveOrder(e, button, courseId) {
-  const form = button.parentElement;
-  const list = form.nextElementSibling;
-  const order = Array.from(list.children).map(card => card.dataset.id);
-  form.querySelector('[name="orders_no"]').value = JSON.stringify(order);
-  console.log("Urutan baru untuk kursus ID " + courseId + ":", order);
-}
- 
-document.querySelectorAll('button[data-action]').forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    const action = e.target.dataset.action;
-    if (action === 'simpan') modalEdit.classList.add('hidden');
-    else if (action === 'hapus') modalDelete.classList.add('hidden');
-    else if (action === 'tambah') moduleModalAdd.classList.add('hidden');
-    else if (action === 'batal') {
-      // sembunyikan semua modal saat klik batal
-      modalEdit.classList.add('hidden');
-      modalDelete.classList.add('hidden');
-      moduleModalAdd.classList.add('hidden');
-    }
-  });
-});
-
-function editModule(modId,modTitle) {
-  modal.classList.remove('hidden');
-  moduleTitleInput.value = modTitle.trim();
-  moduleIdInput.value = modId;
-}
-function addModule(courseId) {
-  moduleModalAdd.classList.remove('hidden');
-  // moduleIdInputAdd.value = modTitle.trim(); 
-  courseIdInputAdd.value = courseId;
-}
-
-function deleteModule(moduleId) {
-  moduleModalDelete.classList.remove('hidden');
-  moduleIdInputDelete.value = moduleId;
-}
+  function deleteModule(moduleId,courseId) {
+    moduleModalDelete.classList.remove('hidden');
+    moduleIdInputDelete.value = moduleId;
+    courseIdInputDelete.value = courseId;
+  }
 </script>
 
 <?php

@@ -141,80 +141,101 @@ ob_start();
 <div class="container-border">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     <!-- <h1><?= var_dump($getAllModuleContentData['data']) ?></h1> -->
+    <div class="nav-theme">
+        <button id="toggleButton" class="btn-theme">
+            <i id="icon" class="ri-sun-fill" style="font-size: 24px"></i>
+        </button>
+    </div>
+    <?php  
+    if(empty((array)$getAllModuleContentData['data'])) :?>
+        <div>data tida ada</div>
+        <!-- <?php return ?> -->
+        <?php else:?> 
     <div class="materi">
-        <?php foreach ($getAllModuleContentData['data'] as $key => $content): ?>
-            <?php
-            $blocks = json_decode($content->content_data, true);
+        <?php $content = $getAllModuleContentData['data']; ?>
+            <?php 
+        // Cek aman: jika bukan object → skip
+    //        if (!is_object($content)) {
+    //     echo "<p><em>Tidak ada data konten</em></p>";
+    //     continue;
+    // }
+ 
+    // if (empty($content->content_data)) {
+    //     echo "<p><em>Tidak ada data konten</em></p>";
+    //     continue;
+    // }
+ 
+    $blocks = json_decode($content->content_data, true);
+
+    // if (!is_array($blocks)) {
+    //     echo "<p><em>Tidak ada data konten</em></p>";
+    //     continue;
+    // }
             ?>
 
-            <article class="module-article">
-                <?php if (!empty($blocks)): ?>
-                    <?php foreach ($blocks as $block): ?>
-                        <?php
-                        $type = $block['type'] ?? '';
-                        $data = $block['data'] ?? [];
-                        ?>
+              <article class="module-article">
+            <?php if (!empty($blocks)): ?>
+                <?php foreach ($blocks as $block): ?>
+                    <?php
+                    $type = $block['type'] ?? '';
+                    $data = $block['data'] ?? [];
+                    ?>
 
-                        <?php if ($type === 'header'): ?>
-                            <h<?= $data['level'] ?? 2 ?> class="article-header">
-                                <?= htmlspecialchars($data['text'] ?? '') ?>
-                            </h<?= $data['level'] ?? 2 ?>>
+                    <?php if ($type === 'header'): ?>
+                        <h<?= $data['level'] ?? 2 ?> class="article-header">
+                            <?= htmlspecialchars($data['text'] ?? '') ?>
+                        </h<?= $data['level'] ?? 2 ?>>
 
-                        <?php elseif ($type === 'paragraph'): ?>
-                            <p class="article-paragraph"><?= htmlspecialchars($data['text'] ?? '') ?></p>
+                    <?php elseif ($type === 'paragraph'): ?>
+                        <p class="article-paragraph"><?= htmlspecialchars($data['text'] ?? '') ?></p>
 
-                        <?php elseif ($type === 'list'): ?>
-                            <ul class="article-list <?= $data['style'] ?? 'unordered' ?>">
-                                <?php foreach ($data['items'] ?? [] as $item): ?>
-                                    <li><?= htmlspecialchars($item['content'] ?? '') ?></li>
-                                <?php endforeach; ?>
-                            </ul>
+                    <?php elseif ($type === 'list'): ?>
+                        <ul class="article-list <?= $data['style'] ?? 'unordered' ?>">
+                            <?php foreach ($data['items'] ?? [] as $item): ?>
+                                <li><?= htmlspecialchars($item['content'] ?? '') ?></li>
+                            <?php endforeach; ?>
+                        </ul>
 
-                        <?php elseif ($type === 'quote'): ?>
-                            <blockquote class="article-quote">
-                                <?= htmlspecialchars($data['text'] ?? '') ?>
-                                <?php if (!empty($data['caption'])): ?>
-                                    <br>
-                                    <br>
-                                    <div class="flex justify-end" style="font-weight: 600;">— <?= htmlspecialchars($data['caption']) ?></div>
-                                <?php endif; ?>
-                            </blockquote>
+                    <?php elseif ($type === 'quote'): ?>
+                        <blockquote class="article-quote">
+                            <?= htmlspecialchars($data['text'] ?? '') ?>
+                            <?php if (!empty($data['caption'])): ?>
+                                <br><br>
+                                <div class="flex justify-end" style="font-weight: 600;">— <?= htmlspecialchars($data['caption']) ?></div>
+                            <?php endif; ?>
+                        </blockquote>
 
-                        <?php elseif ($type === 'linkTool'): ?>
-                            <div class="article-link">
-                                <a href="<?= htmlspecialchars($data['link'] ?? '#') ?>" target="_blank">
-                                    <?= htmlspecialchars($data['link'] ?? '') ?>
-                                </a>
-                            </div>
+                    <?php elseif ($type === 'linkTool'): ?>
+                        <div class="article-link">
+                            <a href="<?= htmlspecialchars($data['link'] ?? '#') ?>" target="_blank">
+                                <?= htmlspecialchars($data['link'] ?? '') ?>
+                            </a>
+                        </div>
 
-                        <?php elseif ($type === 'code'): ?>
-                            <div class="code-wrapper">
-                                <button class="copy-btn">Copy</button>
-                                <pre><code class="">
-                                <?= htmlspecialchars($data['code'] ?? '') ?>
-                                </code>
-                                </pre>
-                            </div>
-                        <?php endif; ?>
+                    <?php elseif ($type === 'code'): ?>
+                        <div class="code-wrapper">
+                            <button class="copy-btn">Copy</button>
+                            <pre><code><?= htmlspecialchars($data['code'] ?? '') ?></code></pre>
+                        </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p><em>Tidak ada data konten</em></p>
+            <?php endif; ?>
+        </article>
 
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <p><em>Tidak ada data konten</em></p>
-                <?php endif; ?>
-            </article>
-
-        <?php endforeach; ?>
+ 
         <div class="flex items-center justify-between">
 
             <form action="<?= basefolder() ?>/controller/homepagecontroller.php" method="post">
-                <input type="hidden" name="module_id" value="<?=$module_id?>">
-                <input type="hidden" name="course_id" value="<?= $course_id?>">
+                <input type="hidden" name="module_id" value="<?= $module_id ?>">
+                <input type="hidden" name="course_id" value="<?= $course_id ?>">
                 <input type="hidden" name="action" value="prevModuleContent">
                 <button type="submit" class="main-btn">Sebelumnya</button>
             </form>
-            <form action="<?= basefolder() ?>/controller/homepagecontroller.php"  method="post">
-                <input type="hidden" name="module_id" value="<?=$module_id?>">
-                <input type="hidden" name="course_id" value="<?= $course_id?>">
+            <form action="<?= basefolder() ?>/controller/homepagecontroller.php" method="post">
+                <input type="hidden" name="module_id" value="<?= $module_id ?>">
+                <input type="hidden" name="course_id" value="<?= $course_id ?>">
                 <input type="hidden" name="action" value="nextModuleContent">
                 <button type="submit" class="main-btn">Selanjutnya</button>
             </form>
@@ -238,6 +259,7 @@ ob_start();
         </script>
 
     </div>
+    <?php endif; ?>
 
 </div>
 

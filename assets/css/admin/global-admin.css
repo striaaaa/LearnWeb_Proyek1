@@ -311,8 +311,8 @@ body {
     background: #ffffff;
     padding: 16px 20px;
     border-radius: 10px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
+    /* border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px; */
     cursor: pointer;
     transition: 0.3s ease;
   }

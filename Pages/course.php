@@ -47,7 +47,7 @@ ob_start();
                      <img src="<?= basefolder() ?>/uploads/admin/<?= $course->image ?>" alt="" srcset="" width="130px" height="100px" style="object-fit:cover;">
                   </div>
                   <div class="title-modul">
-                     <span><i class="ri-check-line"></i>Selesai</span>
+                     <!-- <span><i class="ri-check-line"></i>Selesai</span> -->
                      <p><?= $course->title ?></p>
                      <span class="jam"><i class="ri-time-line"></i>45 Jam</span>
                   </div>

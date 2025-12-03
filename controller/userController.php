@@ -8,7 +8,7 @@ require_once __DIR__ . '/../models/user.php';
 // $id = $params['courseId'] ?? null;
 $userAll = getUserAll();
 $user_id = $_POST['user_id'] ?? null;
-$isActive = $_POST['isActiveInput'] ?? null;
+$isActive = $_POST['isActiveInput'] ?? null;    
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $action = $_POST['action'] ?? '';
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         case 'create':
             break;
         case 'updateStatusUser':
-           
+            
             $updateStatusUserResult = updateStatusUser($user_id, $isActive);
             break;
         case 'delete':

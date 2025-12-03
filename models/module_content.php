@@ -10,26 +10,27 @@ function getAllModuleContent($course_id, $module_id)
         $module = runQuery($checkSql, [$module_id], 'i');
 
         // var_dump($module);
-        if (empty($module)) {
-            return ['success' => false, 'error' => 'Modul tidak ditemukan.'];
+        if (empty($course_id) ||empty($module->course_id)|| empty($module_id)) {
+            return [
+                'success' => false,
+                'error'   => 'course_id atau module_id tidak valid.',
+                'data'    => []
+            ];
         }
-
-        // Pastikan modulnya milik course yang sama
-        if ($module->course_id != $course_id) {
-            return ['success' => false, 'error' => 'Modul tidak termasuk dalam kursus ini.'];
+        if ($module?->course_id != $course_id) {
+            return ['success' => false, 'error' => 'Modul tidak termasuk dalam kursus ini.', 'data' => []];
         }
-
-        // Jika valid, ambil semua konten modul
         $sql = "SELECT * FROM modules_content WHERE module_id = ? ORDER BY order_no ASC";
         $allContent = runQuery($sql, [$module_id], 'i');
 
         return [
             'success' => true,
-            'data' => $allContent
+            'data' => $allContent 
         ];
     } catch (Exception $e) {
         return [
             'success' => false,
+            'data' => [],
             'error' => $e->getMessage()
         ];
     }

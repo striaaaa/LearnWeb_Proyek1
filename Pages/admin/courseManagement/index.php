@@ -6,6 +6,8 @@ ob_start();
  
 
  <a href="<?= basefolder() ?>/admin/manajemen-kursus/tambah-kursus" class="btn-aksi-default">Tambah Kursus</a>
+ <br>
+ <br>
 <div class="table-controls">
   <div class="search-wrapper" role="search" aria-label="Cari kursus">
     <svg class="search-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
@@ -40,12 +42,7 @@ ob_start();
     <div class="row-card-table-course">
       <div class="grid grid-cols-12 items-center row-card-table-course-header">
         <div class="col-span-1 flex justify-start items-center">
-          <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 12 24"
-            onclick="toggleAccordion(this.parentElement.parentElement)">
-            <path fill="currentColor"
-              d="m7.588 12.43l-1.061 1.06L.748 7.713a.996.996 0 0 1 0-1.413L6.527.52l1.06 1.06l-5.424 5.425z"
-              transform="rotate(-180 5.02 9.505)" />
-          </svg>
+          
           &nbsp;
           &nbsp;
           <span class="ml-2"><?= $index + 1 ?>.</span>
@@ -71,23 +68,7 @@ ob_start();
       </div>
 
 
-      <div class="accordion-content">
-        <div class="module-list">
-          <?php if (!empty($course->modules)): ?>
-            <?php foreach ($course->modules as $k => $module): ?>
-              <div class="grid grid-cols-12 module-card items-center">
-                <div class="col-span-1"><?= $k + 1 ?></div>
-                <div class="col-span-9"><?= htmlspecialchars($module->title) ?></div>
-                <div class="col-span-2 flex justify-end">
-                  <a href="#" class="btn-edit">Lihat detail</a>
-                </div>
-              </div>
-            <?php endforeach; ?>
-          <?php else: ?>
-            <p style="padding: 10px;">Belum ada modul untuk kursus ini.</p>
-          <?php endif; ?>
-        </div>
-      </div>
+      
     </div>
   <?php endforeach; ?>
 </div>
@@ -140,22 +121,7 @@ ob_start();
 
 <div class="pagination" id="pagination"></div>
 
-<script>
-  function toggleAccordion(header) {
-    const row = header.closest('.row-card-table-course');
-    const content = row.querySelector('.accordion-content');
-    const isOpen = content.classList.contains('open');
-
-    // Tutup semua accordion lain
-    document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('open'));
-    document.querySelectorAll('.row-card-table-course-header').forEach(h => h.classList.remove('active'));
-
-    // Buka yang diklik
-    if (!isOpen) {
-      content.classList.add('open');
-      header.classList.add('active');
-    }
-  }
+<script> 
 
   const rows = Array.from(document.querySelectorAll('.row-card-table-course'));
   const paginationContainer = document.getElementById('pagination');

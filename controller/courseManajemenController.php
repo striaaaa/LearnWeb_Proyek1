@@ -113,9 +113,6 @@ function updateCourse($conn)
 }
 
 
-/**
- * DELETE COURSE
- */
 function deleteCourse($conn)
 {
   $id = $_POST['course_id'] ?? 0;

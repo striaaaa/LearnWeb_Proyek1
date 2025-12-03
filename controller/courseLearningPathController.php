@@ -16,13 +16,13 @@ $userLogin = getUserLogin($login_token)['data'] ?? NULL;
 function progressBarData($course_id)
 {
     global $userLogin; 
-    $getUserCourseProgress =getUserCourseProgress($userLogin->user_id, $course_id);
+    $getUserCourseProgress =getUserCourseProgress($userLogin->user_id, $course_id)??[];
     return $getUserCourseProgress;
 }
 if ($id) {
-    $courseWithModulesResult = getCourseByIdWithModules2($id, $userLogin->user_id);
+    $courseWithModulesResult = getCourseByIdWithModules2($id, $userLogin->user_id)??[];
 }
-$courseAll = getAllCourses();
+$courseAll = getAllCourses()??[];
 
 $action = $_GET['action'] ?? $_POST['action'] ?? '';
 switch ($action) {
