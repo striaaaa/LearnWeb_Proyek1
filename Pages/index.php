@@ -1,30 +1,110 @@
 <?php
 require_once __DIR__ . '/../controller/homepageController.php';
-// require_once __DIR__ . '/../middleware/guestMiddleware.php';
-
-$page_css  = '<link rel="stylesheet" href="' . basefolder() . '/assets/css/home.css">';
+$page_css  = '<link rel="stylesheet" href="' . basefolder() . '/assets/css/main-user.css">';
 ob_start();
 ?>
+<style>
+  .container-atassindex {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* height: 400px; */
+    background: url('<?= basefolder() ?>/assets/image22.png') center/cover no-repeat;
+    border-radius: 20px;
+    /* box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15); */
+    overflow: hidden;
+  }
 
-<!-- diimport dri middleware -->
-<? #=basefolder();
-?>
+  .iconambang {
+    position: absolute;
+    cursor: grab;
+    user-select: none;
+    transition: transform 0.4s ease;
+    user-select: none;
+    -webkit-user-drag: none;
+    /* Chrome, Safari */
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+  }
 
-<div class="container-1">
-  <div class="left_content_1">
+  /* posisi awal */
+  .iconambang[data-index="1"] {
+    top: 20px;
+    left: 170px;
+    width: 100px;
+  }
+
+  .iconambang[data-index="2"] {
+    top: 290px;
+    left: 270px;
+    width: 100px;
+  }
+
+  .iconambang[data-index="3"] {
+    top: 270px;
+    left: 520px;
+    width: 100px;
+  }
+
+  .iconambang[data-index="4"] {
+    top: 230px;
+    left: 60px;
+    width: 100px;
+  }
+
+  .iconambang[data-index="5"] {
+    top: 90px;
+    left: 500px;
+    width: 100px;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+      transform: translateY(-10px) rotate(2deg);
+    }
+
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+  }
+
+
+  .floating {
+    animation: float 4s ease-in-out infinite;
+  }
+</style>
+<div class="container-1 grid grid-cols-12">
+  <div class="col-span-6">
     <div class="header_content_1">
-      <p>Belajar Web Development Dasar dengan Mudah</p>
+      <p>Belajar <span class="gradient-teks ">
+          Web Development
+
+        </span>
+        Dasar dengan Mudah</p>
     </div>
     <div class="sub_header_content_1">
       <p>Materi terstruktur untuk mahasiswa baru Teknik Informatika</p>
     </div>
-    <a href="<?= basefolder() ?>/course" class="btn_content_1">
-      <span>Belajar Sekarang</span>
-    </a>
+
+    <button class="main-btn-glow mt-4 " data-link="<?= basefolder() ?>/course">
+      Belajar Sekarang
+    </button>
   </div>
-  <div class="right_content_1">
-    <div class="box-img-1">
-      <img src="<?=basefolder() ?>/assets/image22.png" alt="ini gambar" />
+  <div class="col-span-6">
+    <div class="container-atassindex" id="area">
+      <!-- <img src="<?= basefolder() ?>/assets/image22.png" alt="ini gambar" width="600px"/> -->
+      <img src="<?= basefolder() ?>/assets/img/icon/docedit.png" class="iconambang floating" data-index="1">
+      <img src="<?= basefolder() ?>/assets/img/icon/torphy.png" class="iconambang floating" data-index="2">
+      <img src="<?= basefolder() ?>/assets/img/icon/cmdd.png" class="iconambang floating" data-index="3">
+      <img src="<?= basefolder() ?>/assets/img/icon/clipboard.png" class="iconambang floating" data-index="4">
+      <img src="<?= basefolder() ?>/assets/img/icon/Laptop.png" class="iconambang floating" data-index="5">
+
     </div>
   </div>
 </div>
@@ -32,92 +112,34 @@ ob_start();
 <div class="container-2">
   <div class="header_content_2">
     <p>Mulai Belajar dari sini</p>
-  </div> 
-  <div class="container-card-2"> 
+  </div>
+  <div class="container-card-2">
 
     <?php foreach ($allCourseWithModules["data"] as $course): ?>
-      <div class="card_content_2"> 
+      <div class="card_content_2">
         <div class="head_card_2">
-          <img src="<?= basefolder() ?>/uploads/admin/<?= $course->image ?>" 
-          alt="<?= $course->title ?>" />
-        </div> 
+          <img src="<?= basefolder() ?>/uploads/admin/<?= $course->image ?>"
+            alt="<?= $course->title ?>" />
+        </div>
         <div class="desc_card_2">
           <?php foreach ($course->modules as $module): ?>
-            <!-- <?= var_dump($module)?>
-            <?php if(empty((array)$module->title??'')): ?> -->
-              <!-- <div>modul tidak lengkap</div> -->
-              <!-- <?php else:?>
+            <!-- <?= var_dump($module) ?>
+            <?php if (empty((array)$module->title ?? '')): ?> -->
+            <!-- <div>modul tidak lengkap</div> -->
+            <!-- <?php else: ?>
                 <?php endif; ?> -->
-                <p><?= $module->title??'module tidak ada' ?></p>
-            <?php endforeach; ?>
-        </div> 
-        <a href="<?= basefolder() ?>/course" style="text-decoration:none;" class="btn_card_2">
-            <p>Lihat Modul</p>
-        </a>
-    </div>
-
-<?php endforeach; ?>
-
-</div>
-
+            <p><?= $module->title ?? 'module tidak ada' ?></p>
+          <?php endforeach; ?>
+        </div>
+        <button data-link="<?= basefolder() ?>/course" style="text-decoration:none;width:fit-content;font-size:medium;" class="main-btn-glow">
+          Lihat Modul
+        </button>
+      </div>
+    <?php endforeach; ?>
+  </div>
   <div class="container-card-2">
-    <!-- <div class="card_content_2">
-      <div class="head_card_2"> <img src="<?= basefolder() ?>/assets/card-1.png" alt=""></div>
-      <div class="desc_card_2">
-        <p>Pengenalan & Struktur Html</p>
-        <p>Pengenalan & Struktur Html</p>
-        <p>Pengenalan & Struktur Html</p>
-        <p>Pengenalan & Struktur Html</p>
-      </div>
-      <div class="btn_card_2">
-        <p>Lihat Modul</p>
-      </div>
-    </div>
-    <div class="card_content_2">
-      <div class="head_card_2">
-        <img src="<?= basefolder() ?>/assets/card-2.png" alt="">
-      </div>
-      <div class="desc_card_2">
-        <p>Pengenalan & Struktur Html</p>
-        <p>Pengenalan & Struktur Html</p>
-        <p>Pengenalan & Struktur Html</p>
-        <p>Pengenalan & Struktur Html</p>
-      </div>
-      <div class="btn_card_2">
-        <p>Lihat Modul</p>
-      </div>
-    </div>
-    <div class="card_content_2">
-      <div class="head_card_2">
-        <img src="<?= basefolder() ?>/assets/card-3.png" alt="">
-      </div>
-      <div class="desc_card_2">
-        <p>Pengenalan & Struktur Html</p>
-        <p>Pengenalan & Struktur Html</p>
-        <p>Pengenalan & Struktur Html</p>
-        <p>Pengenalan & Struktur Html</p>
-      </div>
-      <div class="btn_card_2">
-        <p>Lihat Modul</p>
-      </div>
-    </div>
-    <div class="card_content_2">
-      <div class="head_card_2">
-        <img src="<?= basefolder() ?>/assets/card-4.png" alt="">
-      </div>
-      <div class="desc_card_2">
-        <p>Pengenalan & Struktur Html</p>
-        <p>Pengenalan & Struktur Html</p>
-        <p>Pengenalan & Struktur Html</p>
-        <p>Pengenalan & Struktur Html</p>
-      </div>
-      <div class="btn_card_2">
-        <p>Lihat Modul</p>
-      </div>
-    </div> -->
   </div>
 </div>
-
 <div class="container-3">
   <div class="head-content-3">
     <h4>Kenapa belajar di LearnWeb?</h4>
@@ -193,16 +215,93 @@ ob_start();
     <!-- <div class="btn-content-4">
       <span>Mulai Belajar</span>
     </div> -->
-    <a href="<?= basefolder() ?>/course" class="btn_content_1">
-      <span>Mulai Belajar</span>
-    </a>
+    <button data-link="<?= basefolder() ?>/course" class="btn_content_1">
+      Mulai Belajar
+    </button>
   </div>
 <?php } ?>
+<script>
+  const container = document.getElementById("area");
+  const icons = document.querySelectorAll(".iconambang");
 
+  icons.forEach(icon => {
+    icon.addEventListener("dragstart", e => e.preventDefault()); // stop ghost image
 
+    let isDragging = false;
+    let offsetX = 0,
+      offsetY = 0;
+
+    const startX = icon.offsetLeft;
+    const startY = icon.offsetTop;
+
+    icon.addEventListener("mousedown", startDrag);
+    icon.addEventListener("touchstart", startDrag);
+
+    function startDrag(e) {
+      e.preventDefault();
+      isDragging = true;
+      icon.classList.remove("floating");
+      icon.style.transition = "none";
+      icon.style.cursor = "grabbing";
+
+      const rect = container.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+      offsetX = clientX - (rect.left + icon.offsetLeft);
+      offsetY = clientY - (rect.top + icon.offsetTop);
+
+      document.addEventListener("mousemove", onDrag);
+      document.addEventListener("touchmove", onDrag, {
+        passive: false
+      });
+      document.addEventListener("mouseup", endDrag);
+      document.addEventListener("touchend", endDrag);
+    }
+
+    function onDrag(e) {
+      if (!isDragging) return;
+      e.preventDefault(); // stop scroll
+
+      const rect = container.getBoundingClientRect();
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+      let x = clientX - rect.left - offsetX;
+      let y = clientY - rect.top - offsetY;
+
+      // batasi supaya tidak keluar container
+      x = Math.max(0, Math.min(x, rect.width - icon.offsetWidth));
+      y = Math.max(0, Math.min(y, rect.height - icon.offsetHeight));
+
+      icon.style.left = x + "px";
+      icon.style.top = y + "px";
+    }
+
+    function endDrag() {
+      if (!isDragging) return;
+      isDragging = false;
+      icon.style.cursor = "grab";
+
+      // icon.style.transition = "top 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55), left 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55)";
+      icon.style.transition = "top 0.8s cubic-bezier(0.22, 1, 0.36, 1), left 0.8s cubic-bezier(0.22, 1, 0.36, 1)";
+      // icon.style.transition = "top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+      icon.style.left = startX + "px";
+      icon.style.top = startY + "px";
+
+      setTimeout(() => {
+        icon.classList.add("floating");
+      }, 500);
+
+      document.removeEventListener("mousemove", onDrag);
+      document.removeEventListener("touchmove", onDrag);
+      document.removeEventListener("mouseup", endDrag);
+      document.removeEventListener("touchend", endDrag);
+    }
+  });
+</script>
 <?php include __DIR__ . '/../components/footer.php'; ?>
 <?php
 $content = ob_get_clean();
-
 include __DIR__ . '/../layouts/mainUser.php';
 ?>

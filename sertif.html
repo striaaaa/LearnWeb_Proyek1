@@ -1,41 +1,234 @@
-
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="id">
 <head>
-<style>
-body {
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    padding: 50px;
-    background: url('../assets/certificate-bg.png') no-repeat center;
-    background-size: cover;
-    font-family: 'Times New Roman';
-}
-.title {
-    font-size: 40px;
-    font-weight: bold;
-}
-.name {
-    font-size: 32px;
-    margin-top: 40px;
-    font-weight: bold;
-}
-.course {
-    font-size: 24px;
-    margin-top: 10px;
-}
-.date {
-    margin-top: 60px;
-    font-size: 18px;
-}
-</style>
-</head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Glass Pixel Card — Contoh</title>
+  <style>
+    :root{
+      --bg-1: #f6f3ff;
+      --bg-2: #e6d9ff;
+      --accent: #8b5cf6; /* ungu */
+      --glass-alpha: 0.18;
+      --tile-size: 36px; /* ubah untuk ubah ukuran 'pixel' */
+    }
 
+    /* Reset minimal */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+      background:
+        radial-gradient(1200px 600px at 10% 10%, rgba(139,92,246,0.12), transparent 10%),
+        radial-gradient(700px 400px at 90% 90%, rgba(99,102,241,0.09), transparent 10%),
+        linear-gradient(180deg, var(--bg-1), var(--bg-2));
+      min-height:100vh;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* layout */
+    .wrap{
+      width:min(980px, 92vw);
+      display:grid;
+      grid-template-columns: 420px 1fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    /* Card utama */
+    .card{
+      position:relative;
+      border-radius:18px;
+      overflow:hidden;
+      padding:28px;
+      min-height:320px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      background: linear-gradient(180deg, rgba(255,255,255,var(--glass-alpha)), rgba(255,255,255,var(--glass-alpha*0.6)));
+      box-shadow: 0 10px 30px rgba(12,15,30,0.12), inset 0 1px 0 rgba(255,255,255,0.25);
+      backdrop-filter: blur(10px) saturate(120%);
+      -webkit-backdrop-filter: blur(10px) saturate(120%);
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+
+    /* layer pixel tiles (di dalam card agar blur berlaku) */
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+
+      /* Gradient base (bisa diganti warna) */
+      background:
+        linear-gradient(135deg, rgba(139,92,246,0.10), rgba(99,102,241,0.06));
+
+      /* overlay grid untuk efek pixel/tile */
+      background-blend-mode:overlay;
+    }
+
+    /* overlay grid berupa garis horizontal & vertikal untuk membentuk tile */
+    .pixel-overlay{
+      position:absolute;
+      inset:0;
+      z-index:1;
+      pointer-events:none;
+      background-image:
+        linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: var(--tile-size) var(--tile-size);
+      mix-blend-mode: overlay;
+      opacity:0.95;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.02));
+    }
+
+    /* konten card di atas layer */
+    .card-content{
+      position:relative;
+      z-index:2;
+      color:#0f172a;
+    }
+
+    .kicker{
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      color:rgba(15,23,42,0.6);
+      margin-bottom:8px;
+    }
+
+    h1{
+      font-size:22px;
+      line-height:1.05;
+      margin-bottom:12px;
+      color: #0b1220;
+    }
+
+    p.lead{
+      color:rgba(11,18,32,0.7);
+      font-size:14px;
+      margin-bottom:18px;
+      max-width:28ch;
+    }
+
+    .meta{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      font-size:13px;
+      color:rgba(11,18,32,0.6);
+    }
+
+    .cta{
+      margin-top:18px;
+      align-self:start;
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+    }
+
+    .btn{
+      background: linear-gradient(90deg, var(--accent), #6366f1);
+      color:white;
+      border:none;
+      padding:10px 14px;
+      border-radius:10px;
+      font-weight:600;
+      cursor:pointer;
+      box-shadow: 0 6px 18px rgba(99,102,241,0.18);
+      transition:transform .18s ease, box-shadow .18s;
+    }
+    .btn:active{ transform: translateY(1px) scale(.998) }
+    .btn.ghost{
+      background:transparent;
+      color:var(--accent);
+      border:1px solid rgba(139,92,246,0.14);
+      box-shadow:none;
+    }
+
+    /* Card kanan sebagai contoh content / preview */
+    .preview{
+      border-radius:14px;
+      padding:18px;
+      min-height:320px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.5), rgba(255,255,255,0.06));
+      border:1px solid rgba(255,255,255,0.14);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:rgba(11,18,32,0.7);
+      font-size:14px;
+    }
+
+    /* Hover effect */
+    .wrap:hover .card{
+      transform:translateY(-6px);
+      transition:transform .35s cubic-bezier(.2,.9,.2,1);
+      box-shadow: 0 20px 50px rgba(12,15,30,0.16);
+    }
+
+    /* Responsive */
+    @media (max-width:900px){
+      .wrap{ grid-template-columns: 1fr; }
+      .card{ order:1 }
+      .preview{ order:2 }
+    }
+
+    /* Small helper untuk menampilkan "pixel blocks" yang lebih nyata (opsional)
+       aktifkan di dalam .card-content jika mau contoh tile-by-tile */
+    .pixel-row{
+      display:flex;
+      gap:6px;
+      margin-top:10px;
+    }
+    .pixel{
+      width:28px;height:28px;border-radius:6px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0.06));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 2px 8px rgba(11,18,32,0.04);
+      border:1px solid rgba(255,255,255,0.06);
+    }
+  </style>
+</head>
 <body>
-    <div class="title">SERTIFIKAT</div>
-    <div class="name"><?= $data['user_name'] ?></div>
-    <div class="course">Menyelesaikan: <?= $data['course_title'] ?></div>
-    <div class="date">Tanggal: <?= $data['date'] ?></div>
+  <div class="wrap">
+    <div class="card" aria-label="Design inspiration card">
+      <div class="pixel-overlay" aria-hidden="true"></div>
+
+      <div class="card-content">
+        <div class="kicker">My go-to inspiration</div>
+        <h1>Design Inspiration — beyond Instagram</h1>
+        <p class="lead">Koleksi referensi desain modern: grid tiles, glassmorphism, dan layout minimal untuk inspirasi UI/landing page.</p>
+
+        <div class="meta">
+          <div>Design · 2025</div>
+          <div>•</div>
+          <div>July</div>
+        </div>
+
+        <div class="cta">
+          <button class="btn">Visit site</button>
+          <button class="btn ghost">Explore</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="preview">
+      <div>
+        Preview area — gunakan untuk gambar, screenshot, atau content lain.
+        <div style="height:12px"></div>
+        <div class="pixel-row" aria-hidden="true">
+          <div class="pixel" style="background:linear-gradient(180deg,#f7eefc,#f0e7ff)"></div>
+          <div class="pixel" style="background:linear-gradient(180deg,#efe9ff,#e7defc)"></div>
+          <div class="pixel" style="background:linear-gradient(180deg,#efe8ff,#e4dcff)"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

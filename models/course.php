@@ -177,9 +177,11 @@ function getCourseByIdWithModules2($course_id, $user_id)
     m.module_id,
     m.course_id,
     m.order_no AS order_no,
+    m.learning_time AS learning_time,
     m.title AS module_title,
     mc.module_content_id,
     mc.content_type,
+    -- COUNT(mc.module_content_id) AS count_content,
     mc.content_data AS module_content,
     p.status AS progress_status,
     p.updated_at AS progress_updated_at
@@ -237,6 +239,9 @@ ORDER BY m.order_no ASC;
                     'progress_status' => $finalStatus ??null,
                     'title' => $row->module_title??null,
                     'order_no' => $row->order_no??null,
+                    'learning_time' => $row->learning_time??null,
+                    // 'count_content' => $row->count_content??null,
+                      'count_content' => 0,
                     'contents' => []
                 ];
                 $courseData->modules[] = $newModule;
@@ -249,6 +254,8 @@ ORDER BY m.order_no ASC;
                     'content_type' => $row->content_type,
                     'module_content' => $row->module_content
                 ];
+                
+    $courseData->modules[$moduleIndex]->count_content++;
             }
         }
 

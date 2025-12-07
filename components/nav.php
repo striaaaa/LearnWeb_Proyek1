@@ -23,15 +23,25 @@
              <?php endif; ?>
          </a>
      </div>
+               <div class="nav-theme">
+  <button id="toggleButton" class="btn-theme">
+    <i id="icon" class="toggle-dark-mode ri-sun-fill" style="font-size: 24px"></i>
+  </button>
+</div>
+
 
      <?php if (!isset($_COOKIE['login_token'])): ?>
          <div class="log-btn">
-             <a class="regist-btn" href="<?= basefolder() ?>/register">
-                 Daftar
-             </a>
-             <a class="login-btn" href="<?= basefolder() ?>/login">
-                 Masuk
-             </a>
+             <!-- <a class="regist-btn" href="<?= basefolder() ?>/login">
+                 login
+                </a> -->
+                <button class="main-btn-glow-outlined"  data-link=""="<?= basefolder() ?>/login">Login</button>
+             <button class="main-btn-glow" data-link="<?= basefolder() ?>/register">
+                Get Started
+             </button> 
+
+
+
 
          </div>
      <?php else: ?>

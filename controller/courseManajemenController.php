@@ -98,6 +98,8 @@ function updateCourse($conn)
     } else {
       die('Gagal mengupload gambar baru.');
     }
+    
+  //  header("Location: " . basefolder() . "/admin/manajemen-kursus");
   }
 
   // Update course
@@ -109,7 +111,9 @@ function updateCourse($conn)
 
   $result = runQuery($sql);
 
-  var_dump($result);
+  // var_dump($result);
+  
+   header("Location: " . basefolder() . "/admin/manajemen-kursus");
   exit;
 }
 

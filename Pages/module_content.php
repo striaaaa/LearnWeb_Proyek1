@@ -9,22 +9,7 @@ $getAllModuleContentData = getAllModuleContentDatas($course_id, $module_id);
 renderFlashAlert();
 $page_css  = '<link rel="stylesheet" href="' . basefolder() . '/assets/css/learning-path.css">';
 ob_start();
-?>
-
-<!-- <div class="path">
-      <div class="path-1">
-        <span>HTML</span>
-      </div>
-      <div class="path-1">
-        <span>CSS</span>
-      </div>
-      <div class="path-1">
-        <span>JavaScript</span>
-      </div>
-      <div class="path-1">
-        <span>PHP</span>
-      </div>
-    </div> -->
+?> 
 <style>
     /* GENERAL LAYOUT */
     .materi {

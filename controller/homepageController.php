@@ -12,6 +12,7 @@ $action = $_GET['action'] ?? $_POST['action'] ?? '';
 
 $allCourseWithModules = getCoursesWithModulesLimit3();
 $module_id = $_POST['module_id'] ?? '';
+$prev_module_id = $_POST['prev_module_id'] ?? '';
 $order_no = $_POST['order_no'] ?? '';
 
 $login_token = $_COOKIE['login_token'] ?? NULL;
@@ -35,7 +36,7 @@ switch ($action) {
 }
 function getUserProgresCheckData()
 {
-    global $userLogin, $module_id, $order_no;
+    global $userLogin, $module_id , $prev_module_id, $order_no;
     $course_id = $_POST['course_id'] ?? '';
     // var_dump($course_id);
     // die();
@@ -43,15 +44,16 @@ function getUserProgresCheckData()
     $getUserLastProgres = getUserLastProgres($userLogin->user_id);
     $order = intval($order_no);
     $prevOrderNoResult =  $order - 1;
-    // var_dump($prevOrderNoResult);
+    // var_dump($prev_module_id);
+    // var_dump($module_id);
 
-    $prevModuleExist = prevModuleExist($prevOrderNoResult);
+    $prevModuleExist = prevModuleExist($prev_module_id,$prevOrderNoResult);
    
     // var_dump($prevModuleExist['data']);  
     if ($prevModuleExist['data']->module_id > 0) {
 
         if ($prevOrderNoResult == 0) {
-            $dataModuleExist = prevModuleExist($prevOrderNoResult += 1);
+            $dataModuleExist = prevModuleExist($prev_module_id,$prevOrderNoResult += 1);
             if (!empty((array)$dataModuleExist['data'])) {
                 $sql = "INSERT INTO progress (user_id, module_id, status) 
                     VALUES (?, ?, 'in_progress') 
@@ -65,6 +67,8 @@ function getUserProgresCheckData()
         $getModuleById = getModuleById($getUserLastProgres['data']->module_id);
 
         // Cek loncat module jauh
+        // var_dump($prevProgress['data']);
+        var_dump($prevModuleExist['data']->module_id);
         if (intval($order) - intval($getModuleById['data']->order_no) > 1) {
             setFlashAlert('error', 'Module sebelumnya belum diselesaikan .');
             header("Location: " . basefolder() . "/course/" . $course_id);
@@ -72,6 +76,7 @@ function getUserProgresCheckData()
             exit;
         }
 
+        // die;
         if (empty((array)$prevProgress['data'])) {
             setFlashAlert('error', 'Module sebelumnya belum pernah dikerjakan.');
             header("Location: " . basefolder() . "/course/" . $course_id);
@@ -79,6 +84,8 @@ function getUserProgresCheckData()
         }
 
         $statusProgressCheck = $prevProgress['data']->status ?? '';
+        // var_dump($statusProgressCheck);
+        // die;
         if ($statusProgressCheck !== 'completed') {
             setFlashAlert('error', 'Module sebelumnya belum diselesaikan.');
             header("Location: " . basefolder() . "/course/" . $course_id);
@@ -176,7 +183,7 @@ function getUserProgresCheckData2()
     $prevOrderNoResult = ($order - 1 == 0) ? $order  : $order - 1;
     // var_dump($prevOrderNoResult);
 
-    $prevModuleExist = prevModuleExist($prevOrderNoResult);
+    $prevModuleExist = prevModuleExist($module_id,$prevOrderNoResult);
 
     // var_dump('moduel ',$prevModuleExist['data']);
 

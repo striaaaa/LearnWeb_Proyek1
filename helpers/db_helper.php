@@ -115,6 +115,31 @@ function runQuery($sql, $params = [], $types = '')
     }
 
     return [];
+    //   case 'SELECT':
+    //             $res = mysqli_stmt_get_result($stmt);
+    //             $result = $res ? mysqli_fetch_all($res, MYSQLI_ASSOC) : [];
+
+    //             if ($return === 'single') {
+    //             if (count($result) === 1) {
+    //                 $result = $result[0];
+    //             }
+
+    //             $result = arrayToObject($result);
+
+    //         }
+    //             // $result = array_map('arrayToObject', $result);
+    //             if ($return === 'auto') {
+    //                 if (count($result) > 1) {
+    //                     return array_map('arrayToObject', $result);
+    //                 }
+                    
+    //                 if (count($result) === 1) {
+    //                     return arrayToObject($result[0]);
+    //                 }
+                    
+    //                 return [];
+    //             }
+    //             break;
 
 
 

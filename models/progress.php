@@ -9,7 +9,7 @@ function getUserProgresCheck($user_id, $module_id)
     try {
         $sql = "SELECT * from progress where user_id=? and module_id=? limit 1";
 
-        $userLogin = runQuery($sql, [$user_id, $module_id], 'ii');
+        $userLogin = runQuery($sql, [$user_id,$module_id], 'ii',  true, 'auto');
         return [
             'success' => true,
             'data' => $userLogin
@@ -27,7 +27,7 @@ function getUserLastProgres($user_id)
     try {
         $sql = "SELECT * from progress where user_id=? order by progress_id desc limit 1";
 
-        $userLogin = runQuery($sql, [$user_id], 'i');
+        $userLogin = runQuery($sql, [$user_id], 'i', true, 'auto');
         return [
             'success' => true,
             'data' => $userLogin
@@ -40,13 +40,13 @@ function getUserLastProgres($user_id)
     }
 }
 
-function prevModuleExist($order_no)
+function prevModuleExist($module_id,$order_no)
 {
 
     try {
-        $sql = "SELECT * from modules where order_no=? limit 1";
+        $sql = "SELECT * from modules where module_id=? and order_no=? limit 1";
         $order_no= ($order_no==0)?1:$order_no;
-        $userLogin = runQuery($sql, [$order_no], 'i');
+        $userLogin = runQuery($sql, [$module_id,$order_no], 'ii', '', 'single');
         return [
             'success' => true,
             'data' => $userLogin
