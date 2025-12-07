@@ -5,48 +5,57 @@ $page_css2 = '<link rel="stylesheet" href="' . basefolder() . '/assets/css/admin
 ob_start();
 ?>
 <div class="">
-  <form  action="<?= basefolder() ?>/controller/courseManajemenController.php?action=store"
+  <form action="<?= basefolder() ?>/controller/courseManajemenController.php?action=store"
     method="POST"
     enctype="multipart/form-data"
     id="formKursus">
     <!-- <div class="btn-aksi">Tambah Kursus</div> -->
-    <div class="grid grid-cols-12 justify-between">
+    <div class="grid grid-cols-12 gap-4 justify-between">
       <div class="col-span-7">
         <div class="left-card  flex flex-col justify-between h-full">
-          <div >
+          <div>
             <h3 class="right-card-h3">Tambah Kursus</h3>
             <label for="title">Judul</label>
             <input type="text" id="courseTitle" name="title" />
-            <label for="description" >Deskripsi</label>
+            <label for="description">Deskripsi</label>
             <textarea name="description" id="courseDesc" cols="30" rows="10"></textarea>
             <label for="">Foto</label>
-            <input type="file" id="courseImage" style="background-color: #ffffff;"  name="courseImage"/>
+            <input type="file" id="courseImage" style="background-color: #ffffff;" name="courseImage" />
           </div>
           <button id="simpanKursus" type="submit" class="btn-aksi-default">Simpan</button>
         </div>
       </div>
-      <div class="col-span-1"></div>
-      <div class="col-span-4 right-card">
-        <div class="card-content-tambah">
+      <div class="col-span-5 right-card">
+        <h3 class="list-modul-teks">List Modul</h3>
+        <div class="card-content-tambah no-scrollbar">
 
-          <h3 class="right-card-h3">List Modul</h3>
-          <div class="frame-list-modul" id="modulesContainer">
+          <div class="frame-list-modul no-scrollbar" id="modulesContainer">
             <!-- <div class="list-modul">
               <span>JudulModul</span>
               <p>asodknadwakdladnaowdnawoiawk</p>
             </div>  -->
+            <!-- <div class="list-modul" draggable="true">
+              <div class="flex justify-between items-center">
+                <h3>asdasd</h2>
+                  <p>20 menit</p>
+              </div>
+            </div> -->
           </div>
-          <button id="tbhModul" type="button" class="btn-aksi-default" style="width: 100%;">
-            Tambah modul
-          </button>
+          <div class="btn-add-module">
+            <button id="tbhModul" type="button" class="btn-aksi-default " style="width: 100%;">
+              Tambah modul
+            </button>
+          </div>
         </div>
       </div>
     </div>
     <div id="moduleModal" class="modal hidden">
       <div class="modal-content">
-        <h3>Tambah / Edit Modul</h3>
+        <h3>Tambah</h3>
         <label>Judul Modul</label>
         <input type="text" id="moduleTitle" placeholder="Masukkan judul modul" />
+        <label>Waktu estimasi</label>
+        <input type="number" id="moduleLearningTime" placeholder="estimasi waktu modul" />
         <input type="hidden" id="moduleIndex" />
         <div class="modal-btns">
           <button id="simpanModule" type="button" class="btn-confirm-edit">Simpan</button>
@@ -66,17 +75,18 @@ ob_start();
   const addBtn = document.getElementById('tbhModul');
   const modal = document.getElementById('moduleModal');
   const titleInput = document.getElementById('moduleTitle');
+  const learningTimeInput = document.getElementById('moduleLearningTime');
   const indexInput = document.getElementById('moduleIndex');
   const saveBtn = document.getElementById('simpanModule');
   const closeBtn = document.getElementById('tutupModal');
   const modulesDataInput = document.getElementById('modulesData');
   const formKursus = document.getElementById("formKursus");
   let modules = [];
-formKursus.addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
-    event.preventDefault();
-  }
-});
+  formKursus.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+    }
+  });
 
   function renderModules() {
     container.innerHTML = '';
@@ -84,7 +94,15 @@ formKursus.addEventListener("keydown", function (event) {
       const div = document.createElement('div');
       div.className = 'list-modul';
       div.draggable = true;
-      div.innerHTML = `<span>${m.title}</span>`;
+      //div.innerHTML = `<span>${m.title}</span>`;
+      // div.innerHTML = `<div class="flex justify-between items-center"><h2>${m.title}</h2><p>20 menit</p></div>`;
+      div.innerHTML = `
+  <div class="flex justify-between items-center">
+    <h2>${m.title}</h2>
+    <p>${m.learning_time || 0} menit</p>
+  </div>
+`;
+
       div.addEventListener('click', () => openModal(i));
       container.appendChild(div);
     });
@@ -125,39 +143,64 @@ formKursus.addEventListener("keydown", function (event) {
     }).element;
   }
 
+  // function updateOrder() {
+  //   const list = [...container.querySelectorAll('.list-modul div h2')];
+  //   modules = list.map((el, index) => ({
+  //     title: el.textContent,
+  //     order_no: index + 1
+  //   }));
+  // }
   function updateOrder() {
-    const list = [...container.querySelectorAll('.list-modul span')];
-    modules = list.map((el, index) => ({
-      title: el.textContent,
-      order_no: index + 1
-    }));
+    const list = [...container.querySelectorAll('.list-modul')];
+
+    modules = list.map((item, index) => {
+      const title = item.querySelector('h2').textContent;
+      const moduleData = modules.find(m => m.title === title);
+
+      return {
+        title: title,
+        learning_time: moduleData?.learning_time || 0,
+        order_no: index + 1
+      };
+    });
   }
- 
+
   function openModal(index = null) {
     modal.classList.remove('hidden');
     if (index !== null) {
       titleInput.value = modules[index].title;
+      learningTimeInput.value = modules[index].learning_time || "";
       indexInput.value = index;
     } else {
       titleInput.value = '';
+      learningTimeInput.value = '';
       indexInput.value = '';
     }
+
   }
 
   closeBtn.onclick = () => modal.classList.add('hidden');
 
   saveBtn.onclick = () => {
     const title = titleInput.value.trim();
+    const learningTime = learningTimeInput.value.trim();
+
     if (!title) return alert('Judul modul wajib diisi!');
+    if (!learningTime) return alert('Learning time wajib diisi!');
+
     const idx = indexInput.value;
+
     if (idx === '') {
       modules.push({
         title,
+        learning_time: learningTime,
         order_no: modules.length + 1
       });
     } else {
       modules[idx].title = title;
+      modules[idx].learning_time = learningTime;
     }
+
     modal.classList.add('hidden');
     renderModules();
   };
@@ -170,7 +213,7 @@ formKursus.addEventListener("keydown", function (event) {
     const image = document.getElementById('courseImage').files[0];
 
     if (!title || !desc) return alert('Lengkapi judul dan deskripsi kursus!');
- modulesDataInput.value = JSON.stringify(modules);
+    modulesDataInput.value = JSON.stringify(modules);
     // const formData = new FormData();
     // formData.append('title', title);
     // formData.append('description', desc);
@@ -195,7 +238,7 @@ formKursus.addEventListener("keydown", function (event) {
       title: input.value,
       order_no: i + 1
     }));
-   
+
   });
 </script>
 <?php

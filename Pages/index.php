@@ -24,7 +24,7 @@ ob_start();
   </div>
   <div class="right_content_1">
     <div class="box-img-1">
-      <img src="https://" alt="ini gambar" />
+      <img src="<?=basefolder() ?>/assets/image22.png" alt="ini gambar" />
     </div>
   </div>
 </div>
@@ -35,21 +35,25 @@ ob_start();
   </div> 
   <div class="container-card-2"> 
 
-<?php foreach ($allCourseWithModules["data"] as $course): ?>
-    <div class="card_content_2"> 
+    <?php foreach ($allCourseWithModules["data"] as $course): ?>
+      <div class="card_content_2"> 
         <div class="head_card_2">
-            <img src="<?= basefolder() ?>/uploads/admin/<?= $course->image ?>" 
-                 alt="<?= $course->title ?>" />
+          <img src="<?= basefolder() ?>/uploads/admin/<?= $course->image ?>" 
+          alt="<?= $course->title ?>" />
         </div> 
         <div class="desc_card_2">
-            <?php foreach ($course->modules as $module): ?>
-                <p><?= $module->title ?></p>
+          <?php foreach ($course->modules as $module): ?>
+            <!-- <?= var_dump($module)?>
+            <?php if(empty((array)$module->title??'')): ?> -->
+              <!-- <div>modul tidak lengkap</div> -->
+              <!-- <?php else:?>
+                <?php endif; ?> -->
+                <p><?= $module->title??'module tidak ada' ?></p>
             <?php endforeach; ?>
         </div> 
         <a href="<?= basefolder() ?>/course" style="text-decoration:none;" class="btn_card_2">
             <p>Lihat Modul</p>
         </a>
-
     </div>
 
 <?php endforeach; ?>
@@ -186,9 +190,12 @@ ob_start();
         sekarang dan mulai belajar web development dari nol!
       </p>
     </div>
-    <div class="btn-content-4">
+    <!-- <div class="btn-content-4">
       <span>Mulai Belajar</span>
-    </div>
+    </div> -->
+    <a href="<?= basefolder() ?>/course" class="btn_content_1">
+      <span>Mulai Belajar</span>
+    </a>
   </div>
 <?php } ?>
 

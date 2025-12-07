@@ -12,16 +12,18 @@ $action = $_POST['action'] ?? '';
 $title = $_POST['title'] ?? '';
 $module_id = $_POST['module_id'] ?? '';
 $course_id = $_POST['course_id'] ?? '';
+$learning_time = $_POST['learning_time'] ?? '';
+
 // $orders_no = $_POST['orders_no']??'s';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $orders_no = json_decode($_POST['orders_no'] ?? '[]');
     switch ($action) {
         case 'addModuleTitle':
-            addModuleTitle($title, $course_id);
+            addModuleTitle($title, $course_id, $learning_time);
             break;
         case 'updateModuleTitle':
-            updateModuleTitle($title, $module_id);
+            updateModuleTitle($title, $module_id, $learning_time);
             break;
         case 'updateModuleOrder':
             updateModuleOrder($course_id, $orders_no);
@@ -34,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             break;
     }
 }
-function addModuleTitle($title, $course_id)
+function addModuleTitle($title, $course_id, $learning_time)
 {
     try {
         // var_dump($title,$course_id);
@@ -46,31 +48,38 @@ function addModuleTitle($title, $course_id)
         $lastOrderResult = runQuery($sqlLastOrder, [$course_id], 'i');
         // var_dump($lastOrderResult);
         $lastOrderNo = $lastOrderResult->last_order ?? 0;
-        $sqlInsert = "INSERT INTO modules (title, course_id, order_no) VALUES (?, ?, ?)";
-        $addedModule = runQuery($sqlInsert, [$title, $course_id, $lastOrderNo + 1], 'sii');
+        $sqlInsert = "INSERT INTO modules (title, course_id, learning_time, order_no) VALUES (?, ?,?, ?)";
+        $addedModule = runQuery($sqlInsert, [$title, $course_id,$learning_time, $lastOrderNo + 1], 'siii');
         header('Location: ' . basefolder() . '/admin/manajemen-modul');
     } catch (\Exception $e) {
         echo 'Error:' . $e->getMessage();
     }
 }
-function updateModuleTitle($title, $module_id)
+function updateModuleTitle($title, $module_id, $learning_time)
 {
-    try {
-        if (!$title) {
-            die('Data modul belum lengkap!');
-        }
-        echo $title . ' - ' .  $module_id;
-        $sql = "UPDATE modules set title=? WHERE module_id=?";
-        $updatedModule = runQuery($sql, [$title, $module_id], 'si');
-        //    header("Location: ../views/courses_list.php?success=1");
-        header('Location: ' . basefolder() . '/admin/manajemen-modul');
-        var_dump($updatedModule);
-        echo 'title modul berhasil diperbarui.';
-
-        exit;
-    } catch (\Exception $e) {
-        echo 'Error: ' . $e->getMessage();
+   try {
+    if (!$title) {
+        die('Data modul belum lengkap!');
     }
+ 
+    
+
+    echo $title . ' - ' .  $module_id; 
+    if ($learning_time !== null) {
+        $sql = "UPDATE modules SET title = ?, learning_time = ? WHERE module_id = ?";
+        $updatedModule = runQuery($sql, [$title, $learning_time, $module_id], 'sii');
+    } else { 
+        $sql = "UPDATE modules SET title = ? WHERE module_id = ?";
+        $updatedModule = runQuery($sql, [$title, $module_id], 'si');
+    }
+
+    header('Location: ' . basefolder() . '/admin/manajemen-modul');
+    exit;
+
+} catch (\Exception $e) {
+    echo 'Error: ' . $e->getMessage();
+}
+
 }
 function updateModuleOrder($course_id, $module_ids)
 {
@@ -116,11 +125,11 @@ function deleteModule($module_id, $course_id)
     SET m.order_no = x.new_order";;
         //    $reorderSql = "SET @row = 0; UPDATE modules SET order_no = (@row := @row + 1) WHERE course_id = ? ORDER BY order_no ASC;";
  
-        runQuery($reorderSql, [$course_id], "i");
-        header('Location: ' . basefolder() . '/admin/manajemen-msodul?success=1');
+        runQuery($reorderSql, [$course_id], "i"); 
+         header('Location: ' . basefolder() . '/admin/manajemen-modul');
         // echo $deletedModule;
         echo 'Modul berhasil dihapus.';
-
+        
         exit;
     } catch (\Exception $e) {
         // Handle error database

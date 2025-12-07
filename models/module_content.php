@@ -22,7 +22,14 @@ function getAllModuleContent($course_id, $module_id)
         }
         $sql = "SELECT * FROM modules_content WHERE module_id = ? ORDER BY order_no ASC";
         $allContent = runQuery($sql, [$module_id], 'i');
+          if (!$allContent) {
+        $allContent = [];
+    }
 
+    // Jika single object → jadikan array yang berisi 1 elemen
+    if (is_object($allContent)) {
+        $allContent = [$allContent];
+    }
         return [
             'success' => true,
             'data' => $allContent 

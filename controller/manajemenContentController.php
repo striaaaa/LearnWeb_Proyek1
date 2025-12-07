@@ -11,6 +11,22 @@ function getAllModuleContentDatas ($cId,$m){
     return getAllModuleContent($cId,$m);
 }
 
+    function getFirstText($block) {
+    if ($block['type'] === 'paragraph') {
+        return strip_tags($block['data']['text']);
+    }
+
+    if ($block['type'] === 'list') {
+        return strip_tags($block['data']['items'][0]['content'] ?? '');
+    }
+
+    if ($block['type'] === 'header') {
+        return strip_tags($block['data']['text']);
+    }
+
+    // fallback
+    return "Bagian";
+}
 
 
 // $module_content_id = $_POST['module_content_id'] ?? '';
