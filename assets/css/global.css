@@ -25,6 +25,14 @@
 .flex-col {
   flex-direction: column;
 }
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 .col-start-1  { grid-column-start: 1; }
 .col-start-2  { grid-column-start: 2 !important; }
 .col-start-3  { grid-column-start: 3; }

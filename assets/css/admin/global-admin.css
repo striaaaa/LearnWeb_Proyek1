@@ -5,12 +5,13 @@
 }
 :root {
   --global-primary-color: #ffffff;
-  --global-secondary-color-hover: #def4bd;
-  --global-secondary-color: #e6f7cb;
-  --global-bold-secondary-color: #395809;
+  --global-secondary-color-hover: #cbe3f7;
+  --global-secondary-color: #cbe3f7;
+  --global-bold-secondary-color: #052D80;
   /* --secondary-color: #bcf665; */
-  --global-secondary-color-darken: #96cb46;
-  --global-bg-color: #f9f9fb;
+  --global-secondary-color-darken: #4691cb;
+  --global-bg-color: #eef2fb;
+  /* --global-bg-color: #f9f9fb; */
   --global-default-text: #535353;
   --global-gray-color: #b5b5b5;
 }
@@ -32,7 +33,8 @@ body {
 }
 .admin-content-body{
     
-    padding: 30px 30px 40px 30px; 
+    margin: 30px 30px 40px 30px; 
+    /* padding: 30px 30px 40px 30px;  */
 }
 .header-admin{
     position: sticky;
@@ -52,7 +54,7 @@ body {
 }
 .is-active{
     background-color: var(--global-secondary-color);
-    border-right: #395809 solid 6px;
+    border-right: var(--global-bold-secondary-color) solid 6px;
 }
 .is-active-line{
 }
@@ -80,7 +82,7 @@ body {
   background-color: var(--global-secondary-color-hover);
 }
 .nav-link-admin .is-active:hover {
-  background-color: var(--global-secondary-color-darken);
+  background-color: var(--global-secondary-color-darken); 
 }
 .nav-link-admin .btn-link.is-active a {
   color: var(--global-bold-secondary-color) !important;
@@ -353,7 +355,7 @@ body {
 
   .btn-aksi-default {
     display: inline-block;
-    background: #256eeb;
+    background: var(--global-bold-secondary-color);
     color: #fff;
     padding: 10px 16px;
     border: none;

@@ -91,17 +91,30 @@ function runQuery($sql, $params = [], $types = '')
             //     $res = mysqli_stmt_get_result($stmt);
             //     $result = $res ? mysqli_fetch_all($res, MYSQLI_ASSOC) : [];
             //     break;
-            case 'SELECT':
-                $res = mysqli_stmt_get_result($stmt);
-                $result = $res ? mysqli_fetch_all($res, MYSQLI_ASSOC) : [];
+            // case 'SELECT':
+            //     $res = mysqli_stmt_get_result($stmt);
+            //     $result = $res ? mysqli_fetch_all($res, MYSQLI_ASSOC) : [];
 
-                if (count($result) === 1) {
-                    $result = $result[0];
-                }
+            //     if (count($result) === 1) {
+            //         $result = $result[0];
+            //     }
 
-                $result = arrayToObject($result);
-                // $result = array_map('arrayToObject', $result);
-                break;
+            //     $result = arrayToObject($result);
+            //     // $result = array_map('arrayToObject', $result);
+            //     break;
+                case 'SELECT':
+    $res = mysqli_stmt_get_result($stmt);
+    $rows = $res ? mysqli_fetch_all($res, MYSQLI_ASSOC) : [];
+
+    if (count($rows) > 1) {
+        return array_map('arrayToObject', $rows);
+    }
+
+    if (count($rows) === 1) {
+        return arrayToObject($rows[0]);
+    }
+
+    return [];
 
 
 

@@ -1,0 +1,26 @@
+{
+    "time": 1764727789384,
+    "blocks": [
+        {
+            "id": "kDCWP9CJes",
+            "type": "paragraph",
+            "data": {
+                "text": "asdasdasdasd"
+            }
+        },
+        {
+            "id": "cOvsnh3x4Z",
+            "type": "image",
+            "data": {
+                "caption": "Contoh gambar",
+                "withBorder": false,
+                "withBackground": false,
+                "stretched": false,
+                "file": {
+                    "url": "\/learnweb\/uploads\/admin\/moduleContent\/img_692f9bccc3bd45.37704520.png"
+                }
+            }
+        }
+    ],
+    "version": "2.31.0"
+}

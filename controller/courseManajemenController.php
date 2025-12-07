@@ -60,13 +60,14 @@ function storeCourse($conn) {
     // var_dump($m, $courseId);
     $mod_title = mysqli_real_escape_string($conn, $m['title']);
     $order_no = intval($m['order_no']);
-    $sql_mod = "INSERT INTO modules (course_id, title, order_no, created_at)
-                VALUES ($courseId, '$mod_title', $order_no, NOW())";
+    $learning_time = intval($m['learning_time']);
+    $sql_mod = "INSERT INTO modules (course_id, title, order_no, learning_time, created_at)
+                VALUES ($courseId, '$mod_title', $order_no, $learning_time, NOW())";
     runQuery($sql_mod);
   }
   // die();
 
-  header("Location: ../views/courses_list.php?success=1");
+   header("Location: " . basefolder() . "/admin/manajemen-kursus");
   exit;
 }
 function updateCourse($conn)

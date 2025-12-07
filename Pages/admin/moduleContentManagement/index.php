@@ -130,16 +130,14 @@ ob_start();
         <?php foreach ($course->modules as $k => $module): ?> 
           <div class="grid grid-cols-12 module-card items-center"  >
             <div class="col-span-1 flex items-center justify-between" style="padding-right: 40px;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1">
-                <path d="M3 3h.01M3 8h.01M3 13h.01M8 3h.01M8 8h.01M8 13h.01M13 3h.01M13 8h.01M13 13h.01" />
-              </svg>
+             
               <p><?= $k + 1 ?></p>
             </div>
-            <div class="col-span-9">
+            <div class="col-span-8">
               <p><?= htmlspecialchars($module->title) ?></p>
             </div>
-            <div class="col-span-1 flex "> 
-              <a href="<?= basefolder() ?>/admin/manajemen-modul-konten/<?= $module->module_id?>/tambah-konten" class="btn-edit" style="margin-right:5px;">
+            <div class="col-span-3 flex "> 
+              <a href="<?= basefolder() ?>/admin/manajemen-modul-konten/<?= $module->module_id?>/tambah-konten" class="btn-aksi-default" style="margin-right:5px;">
                 tambah konten 
               </a>
             </div>

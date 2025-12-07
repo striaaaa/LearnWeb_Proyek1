@@ -98,6 +98,10 @@ function getCoursesWithModulesLimit3()
                            FROM modules 
                            WHERE course_id = ?
                            ORDER BY created_at ASC LIMIT 3";
+            // $sqlModules = "SELECT module_id, title 
+            //                FROM modules 
+            //                WHERE course_id = ?
+            //                ORDER BY created_at ASC LIMIT 3";
 
             $modules = runQuery($sqlModules, [$courseId]);
 
@@ -271,6 +275,7 @@ function getCourseWithModules2()
                     DATE_FORMAT(c.created_at, '%Y-%m-%d') AS formated_created_at,
                     m.module_id,
                     m.title AS module_title,
+                    m.learning_time as learning_time,
                     mc.module_content_id,
                     mc.content_type,
                     mc.content_data AS module_content
@@ -314,6 +319,7 @@ function getCourseWithModules2()
         $courseData[$courseId]['modules'][$moduleId] = [
             'module_id' => $moduleId,
             'title' => $row->module_title,
+            'learning_time' => $row->learning_time .' Menit',
             'contents' => []
         ];
     }

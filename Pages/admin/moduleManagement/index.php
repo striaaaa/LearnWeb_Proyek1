@@ -100,7 +100,7 @@ ob_start();
         <h4>Aksi</h4>
       </div>
     </div>
-  </div> 
+  </div>
   <?php foreach ($courseWithModulesResult['data'] as $index => $course):
   ?>
     <div class="row-card-table-course">
@@ -156,12 +156,19 @@ ob_start();
                   <p><?= $k + 1 ?></p>
                 </div>
 
-                <div class="col-span-9">
+                <div class="col-span-6">
                   <p><?= htmlspecialchars($module->title) ?></p>
                 </div>
+                <div class="col-span-3">
+                  <p><?= htmlspecialchars($module->learning_time) ?></p>
+                </div>
 
-                <div class="col-span-1 flex">
-                  <button onclick='editModule(<?= json_encode($module->module_id) ?>, <?= json_encode($module->title) ?>)' class="btn-edit">Edit</button>
+                <div class="col-span-1 flex"><button onclick='editModule(
+                    <?= json_encode($module->module_id) ?>, 
+                    <?= json_encode($module->title) ?>,
+                    <?= json_encode($module->learning_time) ?>
+                  )' class="btn-edit">Edit</button>
+
                   <button onclick='deleteModule(<?= json_encode($module->module_id) ?>, <?= json_encode($course->course_id) ?>)' class="btn-delete">Hapus</button>
                 </div>
 
@@ -176,15 +183,19 @@ ob_start();
   <?php endforeach; ?>
 </div>
 
-
 <div id="moduleModal" class="modal hidden">
   <form action="<?= basefolder() ?>/controller/moduleManajemenController.php" method="post">
     <div class="modal-content">
       <h3>Edit Modul</h3>
+
       <label>Judul Modul</label>
       <input type="hidden" name="action" value="updateModuleTitle">
       <input type="hidden" name="module_id" id="moduleIdInput">
       <input type="text" id="moduleTitle" name="title" placeholder="Masukkan judul modul" />
+
+      <label>Learning Time (menit)</label>
+      <input type="number" id="learningTime" name="learning_time" placeholder="cth: 15">
+
       <div class="modal-btns">
         <button id="simpanModule" data-action="simpan" type="submit" class="btn-confirm-edit">Simpan</button>
         <button id="tutupModal" data-action="batal" type="button" class="btn-close">Batal</button>
@@ -192,15 +203,19 @@ ob_start();
     </div>
   </form>
 </div>
-
 <div id="moduleModalAdd" class="modal hidden">
   <form action="<?= basefolder() ?>/controller/moduleManajemenController.php" method="post">
     <div class="modal-content">
       <h3>Tambah Modul</h3>
+
       <label>Judul Modul</label>
       <input type="hidden" name="action" value="addModuleTitle">
       <input type="hidden" name="course_id" id="courseIdInputAdd">
       <input type="text" id="moduleTitleAdd" name="title" placeholder="Masukkan judul modul" />
+
+      <label>Learning Time (menit)</label>
+      <input type="number" id="learningTimeAdd" name="learning_time" placeholder="cth: 10">
+
       <div class="modal-btns">
         <button id="simpanModule" data-action="tambah" type="submit" class="btn-aksi-default">Tambah</button>
         <button id="tutupModal" data-action="batal" type="button" class="btn-close">Batal</button>
@@ -208,6 +223,7 @@ ob_start();
     </div>
   </form>
 </div>
+
 
 <div id="moduleModalDelete" class="modal hidden">
   <form action="<?= basefolder() ?>/controller/moduleManajemenController.php" method="post">
@@ -234,6 +250,9 @@ ob_start();
   const moduleTitleInput = document.getElementById('moduleTitle');
   const courseIdInputAdd = document.getElementById('courseIdInputAdd');
   const moduleIdInputAdd = document.getElementById('moduleIdInputAdd');
+  const learningTimeInput = document.getElementById('learningTime');
+  const learningTimeInputAdd = document.getElementById('learningTimeAdd');
+
   const moduleIdInput = document.getElementById('moduleIdInput');
   const moduleIdInputDelete = document.getElementById('moduleIdInputDelete');
   const courseIdInputDelete = document.getElementById('courseIdInputDelete');
@@ -327,19 +346,23 @@ ob_start();
     });
   });
 
-  function editModule(modId, modTitle) {
+  function editModule(modId, modTitle, modLearningTime) {
     modal.classList.remove('hidden');
+
     moduleTitleInput.value = modTitle.trim();
     moduleIdInput.value = modId;
+    learningTimeInput.value = modLearningTime ?? "";
   }
 
   function addModule(courseId) {
     moduleModalAdd.classList.remove('hidden');
-    // moduleIdInputAdd.value = modTitle.trim(); 
     courseIdInputAdd.value = courseId;
+    document.getElementById("moduleTitleAdd").value = "";
+    learningTimeInputAdd.value = "";
   }
 
-  function deleteModule(moduleId,courseId) {
+
+  function deleteModule(moduleId, courseId) {
     moduleModalDelete.classList.remove('hidden');
     moduleIdInputDelete.value = moduleId;
     courseIdInputDelete.value = courseId;
