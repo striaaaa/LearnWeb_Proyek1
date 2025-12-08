@@ -49,7 +49,7 @@ html:not(.dark) .content-modul  {
   border: 2px solid #404141;
 }
 html.dark .content-modul  { 
-  border: 2px solid var(--border); 
+  border: 2px solid var(--text); 
 }
 
 
@@ -173,14 +173,25 @@ html.dark .content-modul  {
    <div class="grid grid-cols-12 gap-4">
 <?php foreach ($courseAll['data'] as $key => $course): 
     $imagePath = $_SERVER['DOCUMENT_ROOT'] . basefolder() . "/uploads/admin/{$course->image}";
-    
+    $dominantColor = getDominantColor($imagePath);
+    list($r, $g, $b) = hexToRgb($dominantColor);
 ?>
 
     <div class="col-span-6">
 
-        <div class="content-modul" >
+        <div class="content-modul content-modul-<?= $key ?>"
+            style="--r: <?= $r ?>; --g: <?= $g ?>; --b: <?= $b ?>;">
             
-             
+            <style>
+               .content-modul-<?= $key ?>::before,
+.content-modul-<?= $key ?>::after {
+                     background: radial-gradient(
+        circle,
+        rgba(<?= $r ?>, <?= $g ?>, <?= $b ?>, 0.65),
+        rgba(<?= $r ?>, <?= $g ?>, <?= $b ?>, 0.08)
+    );
+                }
+            </style>
 
             <div class="top-content">
                 <div class="img-left-modul">
@@ -212,7 +223,7 @@ html.dark .content-modul  {
                 <input type="hidden" name="action" value="createFirstProgress">
                 <input type="hidden" name="course_id" value="<?= $course->course_id ?>">
                 <div class="flex justify-end">
-                    <button type="submit" class="main-btn-glow" style="width:fit-content;font-size:medium;">Mulai kerjakan</button>
+                    <button type="submit" class="main-btn">Mulai kerjakan</button>
                 </div>
             </form>
 

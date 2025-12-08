@@ -1,6 +1,4 @@
-
-
-  document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll("button[data-link]").forEach(btn => {
   btn.addEventListener("click", () => {
     window.location.href = btn.dataset.link;

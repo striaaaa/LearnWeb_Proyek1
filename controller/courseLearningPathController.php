@@ -20,7 +20,7 @@ function progressBarData($course_id)
     return $getUserCourseProgress;
 }
 if ($id) {
-    $courseWithModulesResult = getCourseByIdWithModules2($id, $userLogin->user_id)??[];
+    $courseWithModulesResult = getCourseByIdWithModules2($id, $userLogin->user_id??null)??[];
 }
 $courseAll = getAllCourses()??[];
 

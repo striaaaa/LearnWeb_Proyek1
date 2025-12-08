@@ -1,5 +1,7 @@
 <?php
-
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
 function base_url()
 {
     // otomatis sesuai environment
@@ -8,12 +10,38 @@ function base_url()
 }
 // var_dump(base_url());
 // die();
+//versi deploy
+function basefolderr()
+{
+    // ambil protocol (http/https)
+    // $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https" : "http";
+ $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') 
+        ? "https" 
+        : "https";
+    // ambil host dari request (localhost atau ngrok)
+    $host = $_SERVER['HTTP_HOST'];
+
+    // folder proyek kamu
+    $projectFolder = '/learnweb';
+
+    // gabungkan jadi URL penuh
+    return $protocol . '://' . $host ;
+}
+//versi local
 function basefolder()
 {
+//     $url = $_SERVER['REQUEST_URI'];
+//     $segments = explode('/', trim($url, '/'));
+//    return '/' . $segments[0];
+ if (php_sapi_name() === 'cli-server') {
+        return 'http://localhost:9000';
+    }
+ 
     $url = $_SERVER['REQUEST_URI'];
     $segments = explode('/', trim($url, '/'));
-   return '/' . $segments[0];
+    return '/' . ($segments[0] ?? 'learnweb');
 }
+//versi local
 function get_segments()
 {
     // var_dump($_SERVER['SCRIPT_NAME']); # /learnweb/index.php
@@ -21,7 +49,8 @@ function get_segments()
     // var_dump(dirname($_SERVER['SCRIPT_NAME'])); # ambil dir paling atas/learnweb
     $basePath = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/'); # /learnweb
     // var_dump(rtrim(dirname(('/learnweb/')),'\/'));
-    $uri      = $_SERVER['REQUEST_URI']; # /learnweb/admin/user/edit/5
+    // $uri      = $_SERVER['REQUEST_URI']; # /learnweb/admin/user/edit/5
+    $uri=parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     //     " " (spasi)
     // "\n" (new line)
     // "\r" (carriage return)
@@ -30,6 +59,9 @@ function get_segments()
     // "\0" (null byte)
 
     // buang query string
+
+    // var_dump($basePath);
+    // var_dump($qpos = strpos($uri, '?'));
     if (($qpos = strpos($uri, '?')) !== false) {
         $uri = substr($uri, 0, $qpos);
     }
@@ -38,6 +70,37 @@ function get_segments()
     $path = substr($uri, strlen($basePath)); //hilangkan /learnweb
     // var_dump($path); # /admin/user/edit/5
     $path = trim($path, '/');
+    // var_dump($path); # trim kiiri kanan    admin/user/edit/5
+
+    return $path === '' ? [] : explode('/', $path); //dipecah per /
+}
+// versi deploy
+function get_segmentsss()
+{
+    // var_dump($_SERVER['SCRIPT_NAME']); # /learnweb/index.php
+
+    // var_dump(dirname($_SERVER['SCRIPT_NAME'])); # ambil dir paling atas/learnweb
+    $basePath = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/'); # /learnweb
+    // var_dump(rtrim(dirname(('/learnweb/')),'\/'));
+    // $uri      = $_SERVER['REQUEST_URI']; # /learnweb/admin/user/edit/5
+    $uri=parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    //     " " (spasi)
+    // "\n" (new line)
+    // "\r" (carriage return)
+    // "\t" (tab)
+    // "\v" (vertical tab)
+    // "\0" (null byte)
+    // buang query string
+    // var_dump($basePath);
+    // var_dump($qpos = strpos($uri, '?'));
+    if (($qpos = strpos($uri, '?')) !== false) {
+        $uri = substr($uri, 0, $qpos);
+    }
+
+    // buang base path /learnWeb 
+    // $path = substr($uri, strlen($basePath)); //hilangkan /learnweb
+    // var_dump($path); # /admin/user/edit/5
+    $path = trim($uri, '/');
     // var_dump($path); # trim kiiri kanan    admin/user/edit/5
 
     return $path === '' ? [] : explode('/', $path); //dipecah per /

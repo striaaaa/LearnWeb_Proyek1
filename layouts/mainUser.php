@@ -7,6 +7,10 @@ renderFlashAlert();
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
     <title>Homepage</title> 
     <link rel="stylesheet" href="<?=basefolder()?>/assets/css/global.css" />
     <link rel="stylesheet" href="<?=basefolder()?>/assets/css/nav.css" />
@@ -28,8 +32,8 @@ renderFlashAlert();
         <?php if (isset($content)) echo $content; ?>
     </div>
 
-    <?php if (isset($page_js)) echo $page_js; ?>
     <script src="<?=basefolder()?>/assets/js/global.js"></script>
+    <?php if (isset($page_js)) echo $page_js; ?>
 
 </body>
 </html>

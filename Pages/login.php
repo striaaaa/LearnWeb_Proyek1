@@ -2,8 +2,7 @@
 require_once __DIR__ . '/../controller/loginController.php';
 require_once __DIR__ . '/../middleware/authMiddleware.php';
 // require_once __DIR__ . '/../components/alert.php';
- renderFlashAlert(); 
-
+ renderFlashAlert();  
 ?>
 
 <!DOCTYPE html>
@@ -12,6 +11,8 @@ require_once __DIR__ . '/../middleware/authMiddleware.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>Document</title>
 
     <link rel="stylesheet" href="<?= basefolder() ?>/assets/css/login.css" />
@@ -50,3 +51,4 @@ require_once __DIR__ . '/../middleware/authMiddleware.php';
 <script>
   
 </script>
+<!--  -->

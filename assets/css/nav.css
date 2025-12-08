@@ -1,3 +1,4 @@
+/* ========== RESET ========== */
 * {
   margin: 0;
   padding: 0;
@@ -13,15 +14,21 @@ body {
   transition: 0.5s;
 }
 
+/* ========== NAVBAR ========== */
 .nav {
-  padding: 20px;
-  /* background-color: #333; */
-  border-bottom: 0.5px solid #a6a6a6;
+  height: 70px;
+  padding: 0 20px;
+  background: var(--bg, #fff);
+  border-bottom: 1px solid var(--border, #a6a6a6);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 
+/* Desktop menu */
 .nav-link {
   display: flex;
   gap: 20px;
@@ -29,37 +36,115 @@ body {
 
 .nav-link a {
   text-decoration: none;
-  color: #595959;
+  color: var(--text, #111);
   font-weight: 500;
   cursor: pointer;
 }
 
+/* ========== LOGIN BUTTON DESKTOP ========== */
 .log-btn {
   display: flex;
   gap: 10px;
 }
+
 .log-btn a.regist-btn {
   text-decoration: none;
   color: rgb(10, 10, 10);
-
 }
+
 .log-btn a.login-btn {
   text-decoration: none;
   color: white;
-
 }
+
 .regist-btn {
   padding: 10px 20px;
   border: 1px solid #595959;
   border-radius: 8px;
 }
+
 .login-btn {
   padding: 10px 20px;
   background-color: #595959;
   border-radius: 8px;
 }
 
-/* footer*/
+/* ========== ACCOUNT NAV ========== */
+.acc-nav {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.acc-nav span {
+  font-size: 16px;
+  font-weight: 500;
+  color: #595959;
+}
+
+.img-acc-nav {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #595959;
+}
+
+.img-acc-nav img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* ========== HAMBURGER MOBILE ========== */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 26px;
+  height: 3px;
+  background: var(--text, #111);
+  border-radius: 5px;
+}
+
+/* ========== MOBILE MENU DROPDOWN ========== */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 70px;
+  left: 0;
+  width: 100%;
+  background: var(--bg, #fff);
+  padding: 20px;
+  flex-direction: column;
+  gap: 15px;
+  border-top: 1px solid #eee;
+  z-index: 99;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+
+  .nav-link,
+  .log-btn,
+  .acc-nav {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .mobile-menu {
+    display: none;
+  }
+}
+
+/* ========== FOOTER ========== */
 footer {
   width: 85%;
   height: 40vh;
@@ -72,7 +157,6 @@ footer {
   height: 40vh;
   display: flex;
   justify-content: space-between;
-  /* align-items: center; */
   padding-bottom: 20px;
   border-bottom: 1px solid #d4d4d4;
 }
@@ -108,6 +192,7 @@ footer {
   width: 35px;
   height: 35px;
 }
+
 .icon-1 img {
   width: 100%;
   height: 100%;
@@ -116,7 +201,6 @@ footer {
 .right-footer {
   display: flex;
   flex-direction: column;
-  /* gap: 5vh; */
 }
 
 .right-footer a {
@@ -125,30 +209,18 @@ footer {
 }
 
 .right-footer a:hover {
-  color: #000000;
+  color: #000;
   text-decoration: underline;
-  animation: 0.3s;
 }
 
-.link-footer h4 {
-  font-size: 20px;
-  font-weight: 600;
-  padding-bottom: 10px;
-  /* margin-bottom: 20px; */
-}
-
-.link-footer p {
-  font-size: 16px;
-  font-weight: 500;
-  padding-bottom: 10px;
-}
+.link-footer h4,
 .help-footer h4 {
   font-size: 20px;
   font-weight: 600;
   padding-bottom: 10px;
-  /* margin-bottom: 20px; */
 }
 
+.link-footer p,
 .help-footer p {
   font-size: 16px;
   font-weight: 500;
@@ -164,31 +236,4 @@ footer {
 
 .bottom-footer p {
   font-size: 14px;
-}
-
-/*  */
-.acc-nav {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.acc-nav span {
-  font-size: 16px;
-  font-weight: 500;
-  color: #595959;
-}
-
-.img-acc-nav {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  overflow: hidden;
-  background: #595959;
-}
-.img-acc-nav img{
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-
 }
