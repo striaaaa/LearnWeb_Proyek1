@@ -10,8 +10,8 @@ ob_start();
 <style>
    .container-course {
       /* max-width: 1200px;      */
-      margin-left: 100px;
-      margin-right: 100px;
+      /* margin-left: 100px;
+      margin-right: 100px; */
       margin-top: 0;
       margin-bottom: 0;
    }
@@ -44,42 +44,44 @@ ob_start();
       backdrop-filter: blur(18px);
       border-radius: 16px;
    }
-   
-html:not(.dark) .content-modul  {
-  border: 2px solid #404141;
-}
-html.dark .content-modul  { 
-  border: 2px solid var(--border); 
-}
+
+   html:not(.dark) .content-modul {
+      border: 2px solid #404141;
+   }
+
+   html.dark .content-modul {
+      border: 2px solid var(--border);
+   }
 
 
 
-/* Top right glow */
-.content-modul::before,
-.content-modul::after {
-    content: "";
-    position: absolute;
-    width: 260px;
-    height: 200px;
-    filter: blur(60px);
-    z-index: -1;
-    pointer-events: none;
-}
-
-/* posisi berbeda */
-.content-modul::before {
-    bottom: -70px;
-    right: -70px;
-      width: 400px;
-    height: 200px;
-}
-
-.content-modul::after {
-    top: -70px;
-    left: -70px;
+   /* Top right glow */
+   .content-modul::before,
+   .content-modul::after {
+      content: "";
+      position: absolute;
       width: 260px;
-    height: 200px;
-}
+      height: 200px;
+      filter: blur(60px);
+      z-index: -1;
+      pointer-events: none;
+   }
+
+   /* posisi berbeda */
+   .content-modul::before {
+      bottom: -70px;
+      right: -70px;
+      width: 400px;
+      height: 200px;
+   }
+
+   .content-modul::after {
+      top: -70px;
+      left: -70px;
+      width: 260px;
+      height: 200px;
+   }
+
    .top-content {
       display: flex;
       /* justify-content: space-between; */
@@ -162,66 +164,65 @@ html.dark .content-modul  {
 
    .course-progress-text {
       margin-top: 6px;
-      font-size: 14px; 
+      font-size: 14px;
    }
 </style>
-<div class="container-course">
+<div class="container-course mx-6 pt-6">
    <div class="header_content_2" style="text-align: start;">
       <p>Course Page</p>
    </div>
-   <p>Welcome to the course page. Here you can find various courses to enhance your skills.</p>
+   <p class="mb-4">Welcome to the course page. Here you can find various courses to enhance your skills.</p>
    <div class="grid grid-cols-12 gap-4">
-<?php foreach ($courseAll['data'] as $key => $course): 
-    $imagePath = $_SERVER['DOCUMENT_ROOT'] . basefolder() . "/uploads/admin/{$course->image}";
-    
-?>
+      <?php foreach ($courseAll['data'] as $key => $course):
+         $imagePath = $_SERVER['DOCUMENT_ROOT'] . basefolder() . "/uploads/admin/{$course->image}";
 
-    <div class="col-span-6">
+      ?>
 
-        <div class="content-modul" >
-            
-             
+         <div class="col-span-12 lg:col-span-6 md:col-span-12">
 
-            <div class="top-content">
-                <div class="img-left-modul">
-                    <img src="<?= basefolder() ?>/uploads/admin/<?= $course->image ?>"
+            <div class="content-modul">
+
+
+
+               <div class="top-content">
+                  <div class="img-left-modul">
+                     <img src="<?= basefolder() ?>/uploads/admin/<?= $course->image ?>"
                         width="130" height="100" style="object-fit:cover; border-radius: 8px;">
-                </div>
-                <div class="title-modul">
-                    <p><?= $course->title ?></p>
-                    <span class="jam"><i class="ri-time-line"></i>45 Jam</span>
-                </div>
+                  </div>
+                  <div class="title-modul">
+                     <p><?= $course->title ?></p>
+                     <span class="jam"><i class="ri-time-line"></i>45 Jam</span>
+                  </div>
+               </div>
+
+               <p class="desc-modul"><?= $course->description ?></p>
+               <?php $progressBarData = progressBarData($course->course_id); ?>
+               <div class="course-progress-wrapper">
+                  <div class="course-progress-bar">
+                     <div class="course-progress-fill"
+                        style="width: <?= $progressBarData['percentage'] ?>%"></div>
+                  </div>
+                  <p class="course-progress-text">
+                     Progress: <strong><?= $progressBarData['completed'] ?></strong>
+                     dari <strong><?= $progressBarData['total'] ?></strong> module
+                     (<strong><?= $progressBarData['percentage'] ?>%</strong>)
+                  </p>
+               </div>
+
+               <form method="post" action="<?= basefolder() ?>/controller/courseLearningPathController.php">
+                  <input type="hidden" name="action" value="createFirstProgress">
+                  <input type="hidden" name="course_id" value="<?= $course->course_id ?>">
+                  <div class="flex justify-end">
+                     <button type="submit" class="main-btn-glow" style="width:fit-content;font-size:medium;">Mulai kerjakan</button>
+                  </div>
+               </form>
+
             </div>
 
-            <p class="desc-modul"><?= $course->description ?></p>
+         </div>
 
-            <?php $progressBarData = progressBarData($course->course_id); ?>
-            <div class="course-progress-wrapper">
-                <div class="course-progress-bar">
-                    <div class="course-progress-fill"
-                         style="width: <?= $progressBarData['percentage'] ?>%"></div>
-                </div>
-                <p class="course-progress-text">
-                    Progress: <strong><?= $progressBarData['completed'] ?></strong>
-                    dari <strong><?= $progressBarData['total'] ?></strong> module
-                    (<strong><?= $progressBarData['percentage'] ?>%</strong>)
-                </p>
-            </div>
-
-            <form method="post" action="<?= basefolder() ?>/controller/courseLearningPathController.php">
-                <input type="hidden" name="action" value="createFirstProgress">
-                <input type="hidden" name="course_id" value="<?= $course->course_id ?>">
-                <div class="flex justify-end">
-                    <button type="submit" class="main-btn-glow" style="width:fit-content;font-size:medium;">Mulai kerjakan</button>
-                </div>
-            </form>
-
-        </div>
-
-    </div>
-
-<?php endforeach; ?>
-</div>
+      <?php endforeach; ?>
+   </div>
 
 
 

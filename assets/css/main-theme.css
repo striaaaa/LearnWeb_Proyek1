@@ -56,11 +56,11 @@ body {
 .main-btn-glow {
   position: relative;
   padding: 14px 34px;
-  border-radius: 16px;
+  border-radius: 12px;
   font-size: 18px;
   cursor: pointer;
 
-  background: #111;      /* BG HITAM */
+  background: #111;      
   color: #fff;
   border: 1px solid #222;
 
@@ -125,7 +125,7 @@ html.dark .main-btn-glow::after {
   ); */
    background: radial-gradient(
     circle at 35% 40%,
-    rgba(255, 255, 255, 0.35),
+    rgba(255, 255, 255, 0.75),
     transparent 70%
   );
   filter: blur(14px);

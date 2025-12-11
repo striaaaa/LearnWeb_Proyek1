@@ -7,13 +7,14 @@ ob_start();
   .container-atassindex {
     position: relative;
     width: 100%;
-    height: 100%;
-    /* height: 400px; */
-    background: url('<?= basefolder() ?>/assets/image22.png') center/cover no-repeat;
+}
+
+.container-atassindex img.bg-base {
+    width: 100%;
+    height: auto;
     border-radius: 20px;
-    /* box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15); */
-    overflow: hidden;
-  }
+    display: block;
+}
 
   .iconambang {
     position: absolute;
@@ -27,64 +28,36 @@ ob_start();
     -moz-user-drag: none;
     -o-user-drag: none;
     user-drag: none;
-  }
+    
+  transform: translate(-50%, -50%);
+  } 
+  
+/* posisi awal dalam % */
+.iconambang[data-index="1"] { top: 5%;  left: 20%;  width: 15%; }
+.iconambang[data-index="2"] { top: 40%; left: 30%;  width: 15%; }
+.iconambang[data-index="3"] { top: 38%; left: 60%;  width: 15%; }
+.iconambang[data-index="4"] { top: 32%; left: 10%;  width: 15%; }
+.iconambang[data-index="5"] { top: 12%; left: 58%;  width: 15%; }
 
-  /* posisi awal */
-  .iconambang[data-index="1"] {
-    top: 20px;
-    left: 170px;
-    width: 100px;
-  }
-
-  .iconambang[data-index="2"] {
-    top: 290px;
-    left: 270px;
-    width: 100px;
-  }
-
-  .iconambang[data-index="3"] {
-    top: 270px;
-    left: 520px;
-    width: 100px;
-  }
-
-  .iconambang[data-index="4"] {
-    top: 230px;
-    left: 60px;
-    width: 100px;
-  }
-
-  .iconambang[data-index="5"] {
-    top: 90px;
-    left: 500px;
-    width: 100px;
-  }
-
-  @keyframes float {
-    0% {
-      transform: translateY(0px) rotate(0deg);
-    }
-
-    50% {
-      transform: translateY(-10px) rotate(2deg);
-    }
-
-    100% {
-      transform: translateY(0px) rotate(0deg);
-    }
-  }
+/* =====================
+   Float Animation
+===================== */
+@keyframes float {
+  0%   { transform: translate(-50%, -50%) translateY(0px) rotate(0deg); }
+  50%  { transform: translate(-50%, -50%) translateY(-10px) rotate(2deg); }
+  100% { transform: translate(-50%, -50%) translateY(0px) rotate(0deg); }
+}
 
 
   .floating {
     animation: float 4s ease-in-out infinite;
   }
 </style>
-<div class="container-1 grid grid-cols-12">
-  <div class="col-span-6">
+<div class="container-1 grid grid-cols-12 pt-8">
+  <div class="col-span-12 order-2 lg:order-1  lg:col-span-6  p-4 lg:p-0 md:p-0">
     <div class="header_content_1">
       <p>Belajar <span class="gradient-teks ">
           Web Development
-
         </span>
         Dasar dengan Mudah</p>
     </div>
@@ -96,16 +69,17 @@ ob_start();
       Belajar Sekarang
     </button>
   </div>
-  <div class="col-span-6">
-    <div class="container-atassindex" id="area">
-      <!-- <img src="<?= basefolder() ?>/assets/image22.png" alt="ini gambar" width="600px"/> -->
-      <img src="<?= basefolder() ?>/assets/img/icon/docedit.png" class="iconambang floating" data-index="1">
-      <img src="<?= basefolder() ?>/assets/img/icon/torphy.png" class="iconambang floating" data-index="2">
-      <img src="<?= basefolder() ?>/assets/img/icon/cmdd.png" class="iconambang floating" data-index="3">
-      <img src="<?= basefolder() ?>/assets/img/icon/clipboard.png" class="iconambang floating" data-index="4">
-      <img src="<?= basefolder() ?>/assets/img/icon/Laptop.png" class="iconambang floating" data-index="5">
+  <div class="col-span-12 order-1 lg:order-2   lg:col-span-6 " style="position: relative;"> 
+   <div class="container-atassindex" id="area">
+    <img class="bg-base" src="<?= basefolder() ?>/assets/image22.png" alt="" />
 
-    </div>
+    <img src="<?= basefolder() ?>/assets/img/icon/docedit.png" class="iconambang floating" data-index="1">
+    <img src="<?= basefolder() ?>/assets/img/icon/torphy.png" class="iconambang floating" data-index="2">
+    <img src="<?= basefolder() ?>/assets/img/icon/cmdd.png" class="iconambang floating" data-index="3">
+    <img src="<?= basefolder() ?>/assets/img/icon/clipboard.png" class="iconambang floating" data-index="4">
+    <img src="<?= basefolder() ?>/assets/img/icon/Laptop.png" class="iconambang floating" data-index="5">
+</div>
+
   </div>
 </div>
 
@@ -140,22 +114,22 @@ ob_start();
   <div class="container-card-2">
   </div>
 </div>
-<div class="container-3">
-  <div class="head-content-3">
-    <h4>Kenapa belajar di LearnWeb?</h4>
+<div class="container-3 grid grid-cols-12  ">
+  <div class="col-span-12 lg:col-start-3 lg:col-span-8 md:col-start-3 md:col-span-8 head-content-3   ">
+    <h4 class="mb-4">Kenapa belajar di LearnWeb?</h4>
     <p>
       Saatnya belajar web development dengan cara yang lebih mudah.LearnWeb
       menghadirkan materi terarah dan sederhana khusus untuk mahasiswa baru
       Teknik Informatika.
     </p>
   </div>
-  <div class="main-content-3">
-    <div class="left">
+  <div class="main-content-3 col-span-12 grid grid-cols-12 px-6">
+    <div class="left col-span-12 lg:col-span-4 md:col-span-12">
       <div class="box-left">
         <img src="assets/Frame 21.png" alt="" />
       </div>
     </div>
-    <div class="right">
+    <div class="right col-span-12 lg:col-span-8 md:col-span-12">
       <div class="frame_content">
         <div class="icon">
           <img src="assets/book2.png" alt="" />

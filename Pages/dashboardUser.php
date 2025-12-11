@@ -198,7 +198,7 @@ ob_start();
       $rawGetCourseCompletedUser = [$rawGetCourseCompletedUser];
     }
     foreach ($rawGetCourseCompletedUser as $course): ?>
-      <div class="col-span-6">
+       <div class="col-span-12 lg:col-span-6 md:col-span-12">
         <div class="content-modul">
           <div class="top-content">
             <div class="img-left-modul">
