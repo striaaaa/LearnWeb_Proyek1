@@ -1,0 +1,102 @@
+{
+    "time": 1765501180382,
+    "blocks": [
+        {
+            "id": "oEnmY8s5mY",
+            "type": "header",
+            "data": {
+                "text": "Apa itu HTML?",
+                "level": 2
+            }
+        },
+        {
+            "id": "C9rhM6O567",
+            "type": "paragraph",
+            "data": {
+                "text": "HTML (HyperText Markup Language) adalah bahasa markup yang digunakan untuk membuat dan menyusun halaman web."
+            }
+        },
+        {
+            "id": "W8LyInv-xh",
+            "type": "paragraph",
+            "data": {
+                "text": "HTML bukan bahasa pemrograman, melainkan bahasa markup yang terdiri dari tag\u2013tag yang menjelaskan struktur konten."
+            }
+        },
+        {
+            "id": "rLT1QaJVKG",
+            "type": "chunkDivider",
+            "data": {
+                "type": "chunk"
+            }
+        },
+        {
+            "id": "1qnv1ZUcc0",
+            "type": "paragraph",
+            "data": {
+                "text": "Contoh konten yang diatur dengan HTML:"
+            }
+        },
+        {
+            "id": "HEFTrNdZP5",
+            "type": "list",
+            "data": {
+                "style": "unordered",
+                "meta": [],
+                "items": [
+                    {
+                        "content": "Judul halaman",
+                        "meta": [],
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "id": "O6OD49wAU9",
+            "type": "list",
+            "data": {
+                "style": "unordered",
+                "meta": [],
+                "items": [
+                    {
+                        "content": "Paragraf teks",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "Gambar",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "Tabel",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "Video",
+                        "meta": [],
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "id": "hM9ZpMQXlu",
+            "type": "list",
+            "data": {
+                "style": "unordered",
+                "meta": [],
+                "items": [
+                    {
+                        "content": "Formulir",
+                        "meta": [],
+                        "items": []
+                    }
+                ]
+            }
+        }
+    ],
+    "version": "2.31.0"
+}

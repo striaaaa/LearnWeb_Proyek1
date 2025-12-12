@@ -1,0 +1,101 @@
+{
+    "time": 1765501798177,
+    "blocks": [
+        {
+            "id": "3wnspZ7YPp",
+            "type": "header",
+            "data": {
+                "text": "Struktur Dasar Dokumen HTML",
+                "level": 2
+            }
+        },
+        {
+            "id": "D6DjvWOZBT",
+            "type": "paragraph",
+            "data": {
+                "text": "HTML (HyperText Markup Language) memiliki struktur dasar yang selalu digunakan untuk membuat halaman web. Struktur ini memberi tahu browser bagaimana membaca dan menampilkan isi halaman."
+            }
+        },
+        {
+            "id": "IQIHLtOyTD",
+            "type": "chunkDivider",
+            "data": {
+                "type": "chunk"
+            }
+        },
+        {
+            "id": "uH7LL_uQ1s",
+            "type": "paragraph",
+            "data": {
+                "text": "Setiap file HTML minimal memiliki struktur berikut:"
+            }
+        },
+        {
+            "id": "Lw2EiTwCbe",
+            "type": "code",
+            "data": {
+                "code": "<!DOCTYPE html>\n<html>\n  <head>\n    <title>Halaman Pertama Saya<\/title>\n  <\/head>\n  <body>\n    <h1>Halo Dunia!<\/h1>\n  <\/body>\n<\/html>\n"
+            }
+        },
+        {
+            "id": "nUlve_Gf1x",
+            "type": "chunkDivider",
+            "data": {
+                "type": "chunk"
+            }
+        },
+        {
+            "id": "rwQCRwK8r0",
+            "type": "paragraph",
+            "data": {
+                "text": "Penjelasan bagian\u2013bagiannya:"
+            }
+        },
+        {
+            "id": "Z3iRWDyd3s",
+            "type": "list",
+            "data": {
+                "style": "unordered",
+                "meta": [],
+                "items": [
+                    {
+                        "content": "&lt;!DOCTYPE html&gt;: Menandakan bahwa dokumen menggunakan standar HTML5.",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "&lt;html&gt;: Elemen utama yang membungkus seluruh isi halaman.",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "&lt;head&gt;: Berisi informasi tentang halaman (judul, meta data, link CSS, dll).",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "&lt;title&gt;: Judul halaman yang muncul di tab browser.",
+                        "meta": [],
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "id": "MXuaBFtbWM",
+            "type": "list",
+            "data": {
+                "style": "unordered",
+                "meta": [],
+                "items": [
+                    {
+                        "content": "&lt;body&gt;: Berisi semua konten yang tampil di layar (teks, gambar, tombol, dll).",
+                        "meta": [],
+                        "items": []
+                    }
+                ]
+            }
+        }
+    ],
+    "version": "2.31.0"
+}

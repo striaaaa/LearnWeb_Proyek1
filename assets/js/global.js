@@ -1,38 +1,64 @@
+
+// MOBILE MENU TOGGLE
+function toggleMobile() {
+    const m = document.getElementById("mobileMenu");
+    m.style.display = (m.style.display === "flex") ? "none" : "flex";
+}
+
 document.addEventListener("DOMContentLoaded", function () {
+
+    // redirect button[data-link]
     document.querySelectorAll("button[data-link]").forEach(btn => {
-  btn.addEventListener("click", () => {
-    window.location.href = btn.dataset.link;
-  });
-});
-    const toggleBtn = document.getElementById("toggleButton");
-    const icon = document.getElementById("icon");
+        btn.addEventListener("click", () => {
+            window.location.href = btn.dataset.link;
+        });
+    });
 
-    // 1. cek preferensi user
-    let theme = localStorage.getItem("theme") || "light";
+    // -----------------------------
+    // DESKTOP PROFILE DROPDOWN
+    // -----------------------------
+    const profileBtn = document.getElementById("profileMenuBtn");
+    const dropdown = document.getElementById("profileDropdown");
 
-    // 2. apply saat page load
-    if (theme === "dark") {
-        document.documentElement.classList.add("dark");
-        icon.classList.remove("ri-sun-fill");
-        icon.classList.add("ri-moon-fill");
+    if (profileBtn) {
+        profileBtn.addEventListener("click", () => {
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        });
+
+        // klik di luar → close
+        document.addEventListener("click", function (e) {
+            if (!profileBtn.contains(e.target)) dropdown.style.display = "none";
+        });
     }
 
-    // 3. toggle
-    toggleBtn.addEventListener("click", function () {
-        console.log('es');
-        
-        document.documentElement.classList.toggle("dark");
+    // -----------------------------
+    // DARK MODE DESKTOP + MOBILE
+    // -----------------------------
+    let theme = localStorage.getItem("theme") || "light";
 
-        const isDark = document.documentElement.classList.contains("dark");
+    const iconDesktop = document.getElementById("iconDesktop");
+    const toggleDesktop = document.getElementById("toggleButtonDesktop");
 
-        if (isDark) {
-            icon.classList.remove("ri-sun-fill");
-            icon.classList.add("ri-moon-fill");
-            localStorage.setItem("theme", "dark");
-        } else {
-            icon.classList.remove("ri-moon-fill");
-            icon.classList.add("ri-sun-fill");
-            localStorage.setItem("theme", "light");
-        }
-    });
+    const iconMobile = document.getElementById("iconMobile");
+    const toggleMobileBtn = document.getElementById("toggleButtonMobile");
+
+    function applyTheme() {
+        const isDark = theme === "dark";
+        document.documentElement.classList.toggle("dark", isDark);
+
+        if (iconDesktop) iconDesktop.className = isDark ? "ri-moon-fill" : "ri-sun-fill";
+        if (iconMobile) iconMobile.className = isDark ? "ri-moon-fill" : "ri-sun-fill";
+    }
+
+    applyTheme();
+
+    function toggleTheme() {
+        theme = theme === "dark" ? "light" : "dark";
+        localStorage.setItem("theme", theme);
+        applyTheme();
+    }
+
+    if (toggleDesktop) toggleDesktop.addEventListener("click", toggleTheme);
+    if (toggleMobileBtn) toggleMobileBtn.addEventListener("click", toggleTheme);
+
 });

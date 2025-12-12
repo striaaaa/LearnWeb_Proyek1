@@ -5,9 +5,8 @@ require_once __DIR__ . '/../helpers/url.php';
 function log_access_db_runQuery($userId = null, $route = null) {
      $db= getMysqliConnection();
 
-    $route = $route ?? ($_SERVER['REQUEST_URI'] ?? 'unknown');
-// $allowedIP2 = "2404:c0:6a10:ff7e:3b0:8f2c:8a83:ca34";
-$allowedIP = "180.245.31.190";
+    $route = $route ?? ($_SERVER['REQUEST_URI'] ?? 'unknown'); 
+$allowedIP = "180.245.31.190" ;
 $ip = $_SERVER['HTTP_X_FORWARDED_FOR'] ?? $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 
 if ($ip !==$allowedIP) {

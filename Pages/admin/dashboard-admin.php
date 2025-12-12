@@ -81,8 +81,7 @@ ob_start();
         <div class="col-span-6">
 
             <div id="chartUserGroupByMonth" class="chart-user-Permonth" </div>
-            </div>
-            <?= var_dump($userCourseCompleted); ?>
+            </div> 
         </div>
         <div class="col-span-6">
             <div id="courseChart" style="width:100%; height:400px;"></div>

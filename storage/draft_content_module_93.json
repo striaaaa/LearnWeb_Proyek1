@@ -1,0 +1,151 @@
+{
+    "time": 1765504198079,
+    "blocks": [
+        {
+            "id": "3-CSU5yGdI",
+            "type": "header",
+            "data": {
+                "text": "Apa itu JavaScript",
+                "level": 2
+            }
+        },
+        {
+            "id": "S-gYKGMppr",
+            "type": "paragraph",
+            "data": {
+                "text": "JavaScript (JS) adalah bahasa pemrograman yang digunakan untuk membuat halaman web menjadi interaktif. Jika HTML adalah struktur, CSS adalah tampilan, maka JavaScript adalah logika dan aksi dari sebuah website."
+            }
+        },
+        {
+            "id": "3DmzLPy-gP",
+            "type": "paragraph",
+            "data": {
+                "text": "Biasanya digunakan untuk membuat fitur seperti:"
+            }
+        },
+        {
+            "id": "GvqHr5dlIY",
+            "type": "list",
+            "data": {
+                "style": "unordered",
+                "meta": [],
+                "items": [
+                    {
+                        "content": "Tombol interaktif",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "pop-up",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "validasi-form",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "animasi-sederhana",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "manipulasi elemen HTML",
+                        "meta": [],
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "id": "gErsCxT9kg",
+            "type": "chunkDivider",
+            "data": {
+                "type": "chunk"
+            }
+        },
+        {
+            "id": "AMwLy0y2di",
+            "type": "header",
+            "data": {
+                "text": "Cara menulis JavaScript",
+                "level": 2
+            }
+        },
+        {
+            "id": "K8lUY40igW",
+            "type": "paragraph",
+            "data": {
+                "text": "JavaScript dapat ditulis di dalam halaman HTML dengan tiga cara berbeda. Ketiganya memiliki fungsi yang sama, hanya berbeda pada tempat menuliskan kodenya:"
+            }
+        },
+        {
+            "id": "q-MO5oNjsX",
+            "type": "header",
+            "data": {
+                "text": "Inline Script",
+                "level": 3
+            }
+        },
+        {
+            "id": "w5gkjS81HI",
+            "type": "paragraph",
+            "data": {
+                "text": "JavaScript ditulis langsung pada atribut elemen HTML. Cocok untuk aksi kecil seperti tombol klik."
+            }
+        },
+        {
+            "id": "TqOMw7PvwB",
+            "type": "code",
+            "data": {
+                "code": "<button onclick=\"alert('Halo!')\">Klik Saya<\/button>\n"
+            }
+        },
+        {
+            "id": "bSyjgag3b5",
+            "type": "header",
+            "data": {
+                "text": "Internal Script",
+                "level": 3
+            }
+        },
+        {
+            "id": "8wKDU3twi8",
+            "type": "paragraph",
+            "data": {
+                "text": "Kodenya ditulis di dalam tag &lt;script&gt; pada file HTML yang sama. Cocok untuk logika yang tidak terlalu panjang."
+            }
+        },
+        {
+            "id": "LliDUCebvv",
+            "type": "code",
+            "data": {
+                "code": "<script>\n  console.log(\"Ini adalah script internal\");\n<\/script>\n"
+            }
+        },
+        {
+            "id": "K2vy7mI8D5",
+            "type": "header",
+            "data": {
+                "text": "External Script",
+                "level": 3
+            }
+        },
+        {
+            "id": "GC2t4CfMRE",
+            "type": "paragraph",
+            "data": {
+                "text": "JavaScript ditulis di file terpisah (misalnya app.js) lalu dipanggil dengan tag &lt;script src=\"\"&gt;. Cara ini paling rapi dan direkomendasikan untuk project."
+            }
+        },
+        {
+            "id": "seiMJxOS75",
+            "type": "code",
+            "data": {
+                "code": "<script src=\"app.js\"><\/script>\n"
+            }
+        }
+    ],
+    "version": "2.31.0"
+}

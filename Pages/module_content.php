@@ -30,8 +30,8 @@ ob_start();
     /* HEADERS */
     .article-header {
         font-family: "Georgia", serif;
-        font-weight: 700;
-        color: #111;
+        font-weight: 700; 
+        color: var(--text);
         margin: 20px 0 10px;
     }
 
@@ -49,6 +49,7 @@ ob_start();
 
     /* PARAGRAPH */
     .article-paragraph {
+        color: var(--text);
         font-size: 1.1em;
         margin: 10px 0;
     }
@@ -81,7 +82,8 @@ ob_start();
         font-style: normal;
         font-weight: bold;
         margin-top: 5px;
-        color: #333;
+        
+        color: var(--text);
     }
 
     /* LINK */
@@ -123,7 +125,7 @@ ob_start();
     }
 
     .left-col-module {
-        padding: 40px 0px;
+        padding: 100px 0px;
         position: sticky;
         top: 0;
     }
@@ -131,7 +133,7 @@ ob_start();
     /* Indicator gentle bounce */
     #indicator {
         width: 3px;
-        background: #b084ff;
+        background: #5a81ffff;
         position: absolute;
         left: -3px;
         height: 0px;
@@ -150,14 +152,16 @@ ob_start();
 
     .toc-item {
         margin: 10px 0;
-        font-size: 15px;
+        font-size: 20px;
         cursor: pointer;
         transition: 0.2s;
+        
+        color: var(--text);
         padding: 4px 0;
     }
 
     .toc-item:hover {
-        color: #8d5aff;
+        color: #5a81ffff;
     }
 
     /* Active */
@@ -166,12 +170,13 @@ ob_start();
     }
 
     .congrats-box {
-        background: #f3e8ff;
+        background: #e8f6ffff;
         padding: 15px;
         border-radius: 10px;
         margin-top: 30px;
+        margin-right: 20px;
         display: none;
-        border-left: 5px solid #bb7bff;
+        border-left: 5px solid #5a81ffff;
     }
 </style>
 
@@ -200,8 +205,8 @@ ob_start();
                         </div>
 
                         <div id="congrats" class="congrats-box">
-                            <b>🎉 Congratulations!</b><br>
-                            You've thoroughly explored this topic!
+                            <b>🎉 Selamat!</b><br>
+                           Andah berhasil menyelesaikan modul ini
                         </div>
                     </div>
                 </div>
@@ -212,7 +217,7 @@ ob_start();
                             <?php foreach ($contents as $block_perContent): ?>
 
                                 <?php
-                                var_dump($block_perContent->module_content_id);
+                                // var_dump($block_perContent->module_content_id);
                                 $blocks = json_decode($block_perContent->content_data, true);
                                 ?>
                                 <?php if (!empty($blocks)): ?>
@@ -294,7 +299,6 @@ ob_start();
                             <button type="submit" class="main-btn">Selanjutnya</button>
                         </form>
                     </div>
-                    <?= var_dump($firstDtaBlock) ?>
                 </div>
             </div>
 
@@ -363,39 +367,6 @@ ob_start();
                             if (rect.top <= 150) index = i;
                         });
 
-                        // DOMRect {
-                        //     x: 556.3125,
-                        //     y: 267.51251220703125,
-                        //     width: 1112.6375732421875,
-                        //     height: 40.79999923706055,
-                        //     top: 267.51251220703125,
-                        //     …
-                        // }
-                        // bottom
-                        //     :
-                        //     308.3125114440918
-                        // height
-                        //     :
-                        //     40.79999923706055
-                        // left
-                        //     :
-                        //     556.3125
-                        // right
-                        //     :
-                        //     1668.9500732421875
-                        // top
-                        //     :
-                        //     267.51251220703125
-                        // width
-                        //     :
-                        //     1112.6375732421875
-                        // x
-                        //     :
-                        //     556.3125
-                        // y
-                        //     :
-                        //     267.51251220703125[[Prototype]]:
-                        //     DOMRect
                         if (index >= 0) {
                             tocItems.forEach((t) => t.classList.remove("active"));
                             tocItems[index].classList.add("active");
@@ -438,7 +409,7 @@ ob_start();
 
                             if (!hasFired) {
                                 hasFired = true;
-                                fireConfetti();
+                                // fireConfetti();
                             }
                         }
                         // if (progress >= 99 && !hasFired) {

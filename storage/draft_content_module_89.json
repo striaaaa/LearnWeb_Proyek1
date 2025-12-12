@@ -1,0 +1,177 @@
+{
+    "time": 1765502335264,
+    "blocks": [
+        {
+            "id": "kUlJ1HKeo7",
+            "type": "header",
+            "data": {
+                "text": "Tag, Elemen, dan Atribut",
+                "level": 2
+            }
+        },
+        {
+            "id": "JO3gg-jgHD",
+            "type": "paragraph",
+            "data": {
+                "text": "HTML tersusun dari tiga konsep dasar: tag, elemen, dan atribut. Ketiganya bekerja bersama untuk membentuk struktur halaman web."
+            }
+        },
+        {
+            "id": "yVuVaUr0Cn",
+            "type": "chunkDivider",
+            "data": {
+                "type": "chunk"
+            }
+        },
+        {
+            "id": "zA5oyuNKwj",
+            "type": "header",
+            "data": {
+                "text": "Tag",
+                "level": 3
+            }
+        },
+        {
+            "id": "leAZMtdgJj",
+            "type": "paragraph",
+            "data": {
+                "text": "Tag adalah tanda yang digunakan untuk menandai bagian HTML.\nBentuk umum tag:&nbsp;&nbsp;"
+            }
+        },
+        {
+            "id": "MJrPIhLF57",
+            "type": "code",
+            "data": {
+                "code": "\/\/ kode di sini"
+            }
+        },
+        {
+            "id": "f9dbeFIeIX",
+            "type": "paragraph",
+            "data": {
+                "text": "Tag terdiri dari dua bagian:"
+            }
+        },
+        {
+            "id": "JBOcR_byN2",
+            "type": "paragraph",
+            "data": {
+                "text": "Beberapa tag tidak memiliki penutup (self-closing), misalnya:\n\n"
+            }
+        },
+        {
+            "id": "uI1sIoUQCo",
+            "type": "code",
+            "data": {
+                "code": "<br>\n<img>\n<hr>\n"
+            }
+        },
+        {
+            "id": "XNCQBj7R3B",
+            "type": "chunkDivider",
+            "data": {
+                "type": "chunk"
+            }
+        },
+        {
+            "id": "OyaoHABSHa",
+            "type": "header",
+            "data": {
+                "text": "Elemen",
+                "level": 3
+            }
+        },
+        {
+            "id": "XrOfPkG1Ub",
+            "type": "paragraph",
+            "data": {
+                "text": "Elemen adalah tag + isi konten.&nbsp;&nbsp;"
+            }
+        },
+        {
+            "id": "4iaqBXGfCR",
+            "type": "paragraph",
+            "data": {
+                "text": "Contoh Element:"
+            }
+        },
+        {
+            "id": "ayCpjMtxUe",
+            "type": "code",
+            "data": {
+                "code": "<h1>Judul Besar<\/h1>\n"
+            }
+        },
+        {
+            "id": "uMDU2Nrsmf",
+            "type": "paragraph",
+            "data": {
+                "text": "Semua itu bersama-sama disebut elemen &lt;h1&gt;."
+            }
+        },
+        {
+            "id": "3rMqciIpCG",
+            "type": "chunkDivider",
+            "data": {
+                "type": "chunk"
+            }
+        },
+        {
+            "id": "pt_wg19gP5",
+            "type": "header",
+            "data": {
+                "text": "Atribut",
+                "level": 3
+            }
+        },
+        {
+            "id": "F7ivlEOSnR",
+            "type": "paragraph",
+            "data": {
+                "text": "Atribut memberikan informasi tambahan tentang elemen."
+            }
+        },
+        {
+            "id": "qW5cZgzW2v",
+            "type": "paragraph",
+            "data": {
+                "text": "Contoh Atribut:"
+            }
+        },
+        {
+            "id": "g93gj9YgTC",
+            "type": "code",
+            "data": {
+                "code": "<img src=\"foto.jpg\" width=\"300\">\n"
+            }
+        },
+        {
+            "id": "Hic6ZaKvtQ",
+            "type": "paragraph",
+            "data": {
+                "text": "Atribut yang digunakan:"
+            }
+        },
+        {
+            "id": "3uFW23myKv",
+            "type": "list",
+            "data": {
+                "style": "unordered",
+                "meta": [],
+                "items": [
+                    {
+                        "content": "src \u2192 lokasi gambar\n",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "width \u2192 lebar gambar",
+                        "meta": [],
+                        "items": []
+                    }
+                ]
+            }
+        }
+    ],
+    "version": "2.31.0"
+}

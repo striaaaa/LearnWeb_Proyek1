@@ -54,10 +54,9 @@ ob_start();
 }
 
 .left-content {
-  width: 80%; 
-  border: 1px solid #d4d4d4;
-  border-radius: 10px;
-  display: flex;
+  /* width: 80%;  */
+  border: 2px solid var(--border);
+  border-radius: 10px; 
   flex-direction: column;
   gap: 10px;
 }
@@ -79,6 +78,13 @@ ob_start();
   font-size: 16px;
   text-align: start;
 }
+button{
+  color: var(--text);
+}
+.progress-status{
+  background: green;
+} 
+
 
 </style>
 <div class="container-border">
@@ -93,7 +99,7 @@ ob_start();
 
     
 ?>
-    <p class="header_content_2" style="text-align: start;">Kursus <?= $courseWithModulesResult->data->title ?></p>
+    <p class="header_content_2 p-4" style="text-align: start;">Kursus <?= $courseWithModulesResult->data->title ?></p>
     <div class="materi">
       <?php
       $modulesss = $courseWithModulesResult->data->modules;
@@ -102,7 +108,7 @@ foreach ($modulesss as $key => $course):
     // var_dump($prev_module_id_input);
 ?>
         <div class=" grid grid-cols-12">
-          <div class="left-content col-span-5 p-4">
+          <div class="left-content flex col-span-12 lg:col-span-5 md:col-span-5 p-4">
             <form action="<?= basefolder() ?>/controller/homepagecontroller.php" method="post" style="height: 100%;">
               <input type="hidden" name="course_id" value="<?= $course->course_id ?>">
               <input type="hidden" name="module_id" value="<?= $course->module_id  ?>">
@@ -111,7 +117,7 @@ foreach ($modulesss as $key => $course):
               <input type="hidden" name="action" value="getUserProgresCheck">
               <button class="flex items-start maateri-link justify-between " type="submit">
                 <div class=" ">
-                  <div class="tahapan">
+                  <div class="">
                     <p>
 
                       Langkah <?= $key + 1 ?>&nbsp; 
@@ -123,29 +129,40 @@ foreach ($modulesss as $key => $course):
                   <h4 style="font-weight: 500;"><i class="ri-time-fill"></i> &nbsp;<?= $course->learning_time ?> Menit</h4>
                   <h4 style="font-weight: 500;"><i class="ri-time-fill"></i> &nbsp;<?= $course->count_content ?> Sesi</h4>
                 </div>
-                <p><?= $course->progress_status ?></p>
+            <?php
+$status = strtolower($course->progress_status); 
+$chipClass = "";
+
+if ($status === "completed") {
+    $chipClass = "chip-green";
+} elseif ($status === "progress") {
+    $chipClass = "chip-yellow";
+} elseif ($status === "locked") {
+    $chipClass = "chip-red";
+} else {
+    $chipClass = "chip-yellow";  
+}
+?>
+
+<p class="chip <?= $chipClass; ?>">
+    <?= ucfirst($course->progress_status); ?>
+</p>
+
               </button>
             </form>
           </div>
-          <div class="col-span-1">
+          <div class="col-span-1 hidden lg:flex md:flex justify-center items-center">
             <div class="line"></div>
           </div>
 
-          <div class="left-content col-span-6">
-            <div class="header-right">
-              <span><?= $course->title ?></span>
-            </div>
+          <div class="left-content hidden  lg:flex md:flex  col-span-6 p-4">
+           <h3 style="font-weight: 500;"> <?= $course->title ?></h3>
 
             <div class="list-modul">
-              <ul>
+              <ul class="pl-6">
                 <?php if (!empty($course->contents)): ?>
 
-                  <?php
-                  //                   echo "<pre>";
-                  // var_dump(json_decode($course->contents[0]->module_content));
-                  // echo "</pre>";
-                  // exit;
-
+                  <?php 
                   $blocks = json_decode($course->contents[0]->module_content);
 
                   $preview = "";
@@ -166,10 +183,12 @@ foreach ($modulesss as $key => $course):
                     }
                   }
                   ?>
+          <li>
 
-                  <p><?= htmlspecialchars($preview) ?></p>
+            <p><?= htmlspecialchars($preview) ?></p>
+          </li>
                 <?php else: ?>
-                  <li><em>Tidak ada konten tersedia</em></li>
+                  <li><p>Tidak ada konten tersedia</p></li>
                 <?php endif; ?>
               </ul>
             </div>

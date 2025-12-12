@@ -156,11 +156,7 @@ html.dark .card_content_2 {
 .box-left img {
   width: 100%;
   height: 100%;
-}
-/* 
-.right {
-  padding-top: 50px;
-} */
+} 
 
 .frame_content {
   display: flex;

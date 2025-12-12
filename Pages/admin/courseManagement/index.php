@@ -45,7 +45,7 @@ ob_start();
           
           &nbsp;
           &nbsp;
-          <span class="ml-2"><?= $index + 1 ?>.</span>
+          <span class="ml-2"><?= $index ?>.</span>
         </div>
         <div class="col-span-2"><?= htmlspecialchars($course->title) ?></div>
         <div class="col-span-4"><?= htmlspecialchars($course->description) ?></div>

@@ -1,0 +1,199 @@
+{
+    "time": 1765504548503,
+    "blocks": [
+        {
+            "id": "a2OnArMMJY",
+            "type": "header",
+            "data": {
+                "text": "Cara Menghubungkan CSS ke HTML",
+                "level": 2
+            }
+        },
+        {
+            "id": "ygDIQ_rcpy",
+            "type": "paragraph",
+            "data": {
+                "text": "Dalam pengembangannya, CSS dapat dimasukkan ke dalam halaman HTML dengan tiga cara utama. Setiap cara memiliki kelebihan dan kekurangan, serta digunakan untuk kebutuhan yang berbeda."
+            }
+        },
+        {
+            "id": "_G9XS7mQJe",
+            "type": "paragraph",
+            "data": {
+                "text": "Ketiga cara ini memberikan fleksibilitas kepada developer: mulai dari penulisan langsung pada elemen, menaruh style dalam halaman yang sama, hingga memisahkan CSS ke file terpisah agar lebih rapi dan mudah dikelola."
+            }
+        },
+        {
+            "id": "LsYD1ApkQi",
+            "type": "chunkDivider",
+            "data": {
+                "type": "chunk"
+            }
+        },
+        {
+            "id": "hgXuQRellw",
+            "type": "header",
+            "data": {
+                "text": "Inline CSS",
+                "level": 3
+            }
+        },
+        {
+            "id": "Unki2ewp9v",
+            "type": "paragraph",
+            "data": {
+                "text": "Menulis CSS langsung pada atribut style di dalam tag HTML."
+            }
+        },
+        {
+            "id": "OnzMuUicms",
+            "type": "paragraph",
+            "data": {
+                "text": "Contoh:"
+            }
+        },
+        {
+            "id": "maTVHekIYD",
+            "type": "code",
+            "data": {
+                "code": "<p style=\"color: blue;\">Ini teks berwarna biru.<\/p>\n"
+            }
+        },
+        {
+            "id": "mfKax_-aM0",
+            "type": "paragraph",
+            "data": {
+                "text": "Kelebihan:<b> <\/b>Cepat untuk styling kecil"
+            }
+        },
+        {
+            "id": "AyMhqt4deP",
+            "type": "paragraph",
+            "data": {
+                "text": "Kekurangan: Tidak rapi, sulit dikelola jika banyak elemen"
+            }
+        },
+        {
+            "id": "jTmygpwIQX",
+            "type": "paragraph",
+            "data": {
+                "text": "&nbsp;&nbsp;"
+            }
+        },
+        {
+            "id": "vrTwm002_X",
+            "type": "chunkDivider",
+            "data": {
+                "type": "chunk"
+            }
+        },
+        {
+            "id": "IrV59fxRrv",
+            "type": "header",
+            "data": {
+                "text": "Internal CSS",
+                "level": 3
+            }
+        },
+        {
+            "id": "a4yF7Tbxpl",
+            "type": "paragraph",
+            "data": {
+                "text": "Menulis CSS di dalam tag &lt;style&gt; pada bagian &lt;head&gt;."
+            }
+        },
+        {
+            "id": "l_1NTPZdM_",
+            "type": "paragraph",
+            "data": {
+                "text": "Contoh:"
+            }
+        },
+        {
+            "id": "OfNo9gWMAi",
+            "type": "code",
+            "data": {
+                "code": "<head>\n  <style>\n    p {\n      color: red;\n    }\n  <\/style>\n<\/head>\n"
+            }
+        },
+        {
+            "id": "mYAKmEeYOv",
+            "type": "paragraph",
+            "data": {
+                "text": "&nbsp;Kelebihan: Cocok untuk satu halaman\nKekurangan: Tidak bisa dipakai ulang antar halaman&nbsp;&nbsp;"
+            }
+        },
+        {
+            "id": "j_08p9oh5y",
+            "type": "chunkDivider",
+            "data": {
+                "type": "chunk"
+            }
+        },
+        {
+            "id": "SJsZIvqC9T",
+            "type": "header",
+            "data": {
+                "text": "External CSS",
+                "level": 3
+            }
+        },
+        {
+            "id": "BEl89LJMAh",
+            "type": "paragraph",
+            "data": {
+                "text": "Menulis CSS di file terpisah, misalnya style.css, lalu menghubungkannya dengan tag &lt;link&gt;."
+            }
+        },
+        {
+            "id": "DAk8S6vMPF",
+            "type": "paragraph",
+            "data": {
+                "text": "Contoh:"
+            }
+        },
+        {
+            "id": "HlGH-SemEW",
+            "type": "paragraph",
+            "data": {
+                "text": "Pada file html:"
+            }
+        },
+        {
+            "id": "t99s6NMcGT",
+            "type": "code",
+            "data": {
+                "code": "<link rel=\"stylesheet\" href=\"style.css\">\n"
+            }
+        },
+        {
+            "id": "V7oFaEs-Ly",
+            "type": "paragraph",
+            "data": {
+                "text": "Pada file css style.css"
+            }
+        },
+        {
+            "id": "AuzqpdYuEj",
+            "type": "code",
+            "data": {
+                "code": "p {\n  color: green;\n}\n"
+            }
+        },
+        {
+            "id": "sqGkB1d5qu",
+            "type": "paragraph",
+            "data": {
+                "text": "Kelebihan: Rapi, bisa dipakai untuk banyak halaman, dan mudah dipelihara"
+            }
+        },
+        {
+            "id": "1jyS7wXCNY",
+            "type": "paragraph",
+            "data": {
+                "text": "Kekurangan: Butuh file terpisah dan harus dipanggil melalui file html (tidak bisa berdiri sendiri)"
+            }
+        }
+    ],
+    "version": "2.31.0"
+}

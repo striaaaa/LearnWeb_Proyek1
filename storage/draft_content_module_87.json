@@ -1,0 +1,88 @@
+{
+    "time": 1765501530887,
+    "blocks": [
+        {
+            "id": "f56HPWwS2j",
+            "type": "header",
+            "data": {
+                "text": "Bagaimana Browser Membaca HTML?",
+                "level": 2
+            }
+        },
+        {
+            "id": "jxwT3m_vdQ",
+            "type": "paragraph",
+            "data": {
+                "text": "Browser (seperti Chrome, Firefox, Edge, Safari):"
+            }
+        },
+        {
+            "id": "2nXGQSexPQ",
+            "type": "list",
+            "data": {
+                "style": "ordered",
+                "meta": {
+                    "counterType": "numeric"
+                },
+                "items": [
+                    {
+                        "content": "Mendownload file HTML dari server atau memuatnya dari komputer.",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "Membaca setiap tag HTML dari atas ke bawah.",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "Mengubah tag menjadi elemen visual, misalnya &lt;h1&gt;, &lt;p&gt;, &lt;img&gt;",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "Merender halaman web sehingga pengguna melihat tampilan akhirnya.",
+                        "meta": [],
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "id": "xcUGREvv3L",
+            "type": "paragraph",
+            "data": {
+                "text": "Secara sederhana:\nHTML = struktur halaman \u2192 Browser = penerjemah struktur menjadi tampilan.&nbsp;&nbsp;"
+            }
+        },
+        {
+            "id": "bxIhbscU6b",
+            "type": "chunkDivider",
+            "data": {
+                "type": "chunk"
+            }
+        },
+        {
+            "id": "C_bJqkfgdC",
+            "type": "paragraph",
+            "data": {
+                "text": "Browser membaca setiap baris HTML secara berurutan."
+            }
+        },
+        {
+            "id": "BnfJ76s2jf",
+            "type": "paragraph",
+            "data": {
+                "text": "Contoh:"
+            }
+        },
+        {
+            "id": "D9gJ6z5dsk",
+            "type": "code",
+            "data": {
+                "code": "<h1>Halo<\/h1>\n<p>Selamat datang<\/p>\n<img src=\"foto.png\">\n"
+            }
+        }
+    ],
+    "version": "2.31.0"
+}

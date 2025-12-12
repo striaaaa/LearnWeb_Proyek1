@@ -259,3 +259,49 @@ html.dark .main-btn-glow-outlined::after {
   0% { background-position: 300% 300%; }
   100% { background-position: -300% -300%; }
 }
+/* BASE CHIP */
+.chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    gap: 6px;
+    user-select: none;
+    transition: 0.2s ease;
+}
+ 
+html:not(.dark) .chip-green {
+    background: #CFF2DA;
+    color: #1A6A2C;
+    border: 1px solid #A8E2BD;
+}
+ 
+html:not(.dark) .chip-yellow {
+    background: #FFF8D9;
+    color: #8A6A00;
+    border: 1px solid #F3E29B;
+} 
+html:not(.dark) .chip-red {
+    background: #ffdddd;
+    color: #a81e1e;
+    border: 1px solid #ffb5b5;
+}
+
+ 
+html.dark .chip-green {
+    background: #1E3B2A;
+    color: #A6EBC0;
+    border: 1px solid #2F5F3E;
+}
+ 
+html.dark .chip-yellow {
+    background: #3F3614;
+    color: #FFEAA3;
+    border: 1px solid #6F5D20;
+} 
+html.dark .chip-red {
+    background: #3f1818;
+    color: #ffa9a9;
+    border: 1px solid #6d2c2c;}

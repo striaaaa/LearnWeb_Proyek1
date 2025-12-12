@@ -55,8 +55,8 @@ $finalDataDraft = getFinalModule($idModule);
     <div class="col-span-3 element-sidebar">
       <div style="position: sticky;top:0;">
         <h2>Tambah modul konten</h1>
-          <p>Lorem ipsum dolor sit amet consectetur.</p>
-          <input type="text" placeholder="Cari">
+          <p>ini adalah halaman untuk menambah konten.</p>
+          <!-- <input type="text" placeholder="Cari"> -->
           <div>
             <h2>Tambah element</h2>
             <div>

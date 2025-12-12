@@ -191,7 +191,7 @@ ob_start();
                   </div>
                   <div class="title-modul">
                      <p><?= $course->title ?></p>
-                     <span class="jam"><i class="ri-time-line"></i>45 Jam</span>
+                     <!-- <span class="jam"><i class="ri-time-line"></i>45 Jam</span> -->
                   </div>
                </div>
 

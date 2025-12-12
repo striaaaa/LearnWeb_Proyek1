@@ -1,0 +1,101 @@
+{
+    "time": 1765504446917,
+    "blocks": [
+        {
+            "id": "C0JjeRAUSO",
+            "type": "header",
+            "data": {
+                "text": "Apa itu variabel",
+                "level": 2
+            }
+        },
+        {
+            "id": "Jjsa3VfZg5",
+            "type": "paragraph",
+            "data": {
+                "text": "Variabel adalah wadah untuk menyimpan data di JavaScript, seperti teks, angka, atau nilai lain. Dengan variabel, kita bisa menyimpan nilai, mengubahnya, dan menggunakannya kembali dalam program."
+            }
+        },
+        {
+            "id": "vFNTJcrikN",
+            "type": "paragraph",
+            "data": {
+                "text": "JavaScript memiliki tiga cara membuat variabel:"
+            }
+        },
+        {
+            "id": "h47HBTckui",
+            "type": "chunkDivider",
+            "data": {
+                "type": "chunk"
+            }
+        },
+        {
+            "id": "i52F0gKSo8",
+            "type": "header",
+            "data": {
+                "text": "let",
+                "level": 3
+            }
+        },
+        {
+            "id": "uLx6o_weBY",
+            "type": "paragraph",
+            "data": {
+                "text": "Variabel yang nilainya dapat diubah setelah dibuat.\nDigunakan untuk data yang bersifat dinamis.&nbsp;&nbsp;"
+            }
+        },
+        {
+            "id": "5akfaluyd4",
+            "type": "code",
+            "data": {
+                "code": "let skor = 10;\nskor = 15;\n"
+            }
+        },
+        {
+            "id": "nIlMHhcrc0",
+            "type": "header",
+            "data": {
+                "text": "const",
+                "level": 3
+            }
+        },
+        {
+            "id": "AatwHTKMg5",
+            "type": "paragraph",
+            "data": {
+                "text": "Variabel yang nilainya tetap dan tidak bisa diubah.\nDigunakan untuk data yang bersifat tetap atau tidak boleh berubah.&nbsp;&nbsp;"
+            }
+        },
+        {
+            "id": "T5w3Fd2Sb8",
+            "type": "code",
+            "data": {
+                "code": "const apiKey = \"12345\";\n"
+            }
+        },
+        {
+            "id": "C20SBsuW7x",
+            "type": "header",
+            "data": {
+                "text": "var",
+                "level": 3
+            }
+        },
+        {
+            "id": "Egrf2gAjn8",
+            "type": "paragraph",
+            "data": {
+                "text": "Cara lama untuk membuat variabel.\nMasih bisa digunakan, tapi tidak direkomendasikan karena perilakunya kurang konsisten.&nbsp;&nbsp;"
+            }
+        },
+        {
+            "id": "ghEMrbY7uc",
+            "type": "code",
+            "data": {
+                "code": "var nama = \"Aslam\";\n"
+            }
+        }
+    ],
+    "version": "2.31.0"
+}

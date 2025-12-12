@@ -234,3 +234,66 @@ footer {
 .bottom-footer p {
   font-size: 14px;
 }
+
+.acc-nav {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-dropdown {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: white;
+    width: 200px;
+    border-radius: 8px;
+    padding: 10px 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 9999;
+}
+
+.profile-dropdown button,
+.profile-dropdown a {
+    width: 100%;
+    padding: 10px 16px;
+    border: none;
+    background: none;
+    text-align: left;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.profile-dropdown button:hover,
+.profile-dropdown a:hover {
+    background: #f3f3f3;
+}
+
+.separator {
+    height: 1px;
+    background: #ddd;
+    margin: 8px 0;
+}
+ 
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    padding: 20px; 
+    position: absolute;
+    top: 70px;
+    right: 10px;
+    width: 230px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 9999;
+}
+
+.mobile-menu a,
+.mobile-menu button {
+    margin-bottom: 10px;
+    width: 100%;
+    text-align: left;
+}

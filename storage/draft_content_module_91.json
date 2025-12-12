@@ -1,0 +1,195 @@
+{
+    "time": 1765503620239,
+    "blocks": [
+        {
+            "id": "fkceLUN8QK",
+            "type": "header",
+            "data": {
+                "text": "Konsep Dasar CSS",
+                "level": 2
+            }
+        },
+        {
+            "id": "O0Kuq4jD-G",
+            "type": "header",
+            "data": {
+                "text": "Selector",
+                "level": 3
+            }
+        },
+        {
+            "id": "RnssxJMbxw",
+            "type": "paragraph",
+            "data": {
+                "text": "Digunakan untuk memilih elemen HTML yang ingin diberi gaya. selector juga memiliki jenisnya&nbsp; dan berikut yang umumnya dipakai:"
+            }
+        },
+        {
+            "id": "kG4Qgig0v0",
+            "type": "list",
+            "data": {
+                "style": "unordered",
+                "meta": [],
+                "items": [
+                    {
+                        "content": "Tag - p {} : untuk memilih semua &lt;p&gt;",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "Class - .judul{} : Memilih elemen dengan class \"judul\"Id - #header{} Memilih elemen dengan id \"header\"",
+                        "meta": [],
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "id": "tMQj2sth-9",
+            "type": "paragraph",
+            "data": {
+                "text": "Contoh kode:"
+            }
+        },
+        {
+            "id": "zAkOWCwQUR",
+            "type": "chunkDivider",
+            "data": {
+                "type": "chunk"
+            }
+        },
+        {
+            "id": "g7OJAJtI2t",
+            "type": "header",
+            "data": {
+                "text": "Property",
+                "level": 3
+            }
+        },
+        {
+            "id": "a_8_J8Oh2i",
+            "type": "paragraph",
+            "data": {
+                "text": "Bagian yang menentukan aspek apa yang ingin diubah."
+            }
+        },
+        {
+            "id": "GEeJnsmt5h",
+            "type": "paragraph",
+            "data": {
+                "text": "Contoh property:"
+            }
+        },
+        {
+            "id": "B2gqVPwdk8",
+            "type": "list",
+            "data": {
+                "style": "unordered",
+                "meta": [],
+                "items": [
+                    {
+                        "content": "color - mengubah warna tulisan",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "background-color - warna latar",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "font-size - ukuran teks",
+                        "meta": [],
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "id": "-ZHNJaBLcZ",
+            "type": "chunkDivider",
+            "data": {
+                "type": "chunk"
+            }
+        },
+        {
+            "id": "EAyE32vK5A",
+            "type": "header",
+            "data": {
+                "text": "Value",
+                "level": 3
+            }
+        },
+        {
+            "id": "OocRFudsBw",
+            "type": "paragraph",
+            "data": {
+                "text": "Nilai dari properti yang diberikan."
+            }
+        },
+        {
+            "id": "PLgeAdlp1j",
+            "type": "paragraph",
+            "data": {
+                "text": "Contoh:"
+            }
+        },
+        {
+            "id": "qg7TXjG_KS",
+            "type": "list",
+            "data": {
+                "style": "unordered",
+                "meta": [],
+                "items": [
+                    {
+                        "content": "red, blue, #ffffff - contoh value dari property color\/background-color",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "20px, 2rem - contoh ukuran, salah sataunya font-size menerapkan ini",
+                        "meta": [],
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "id": "HWBOPoo_xr",
+            "type": "chunkDivider",
+            "data": {
+                "type": "chunk"
+            }
+        },
+        {
+            "id": "if6SXX3N_m",
+            "type": "header",
+            "data": {
+                "text": "Contoh struktur css",
+                "level": 3
+            }
+        },
+        {
+            "id": "g9wOki1lEj",
+            "type": "code",
+            "data": {
+                "code": "selector {\n  property: value;\n}\n"
+            }
+        },
+        {
+            "id": "vfH4UkF2Iv",
+            "type": "paragraph",
+            "data": {
+                "text": "Contoh nyata:"
+            }
+        },
+        {
+            "id": "OTemJ-Nyin",
+            "type": "code",
+            "data": {
+                "code": "h1 {\n  color: blue;\n  font-size: 30px;\n}\n"
+            }
+        }
+    ],
+    "version": "2.31.0"
+}
