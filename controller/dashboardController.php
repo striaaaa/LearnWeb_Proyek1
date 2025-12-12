@@ -198,15 +198,19 @@ function createCertificate()
 
     // PdfHelper::generateCertificatePDF($CourseTitle, $userLogin->name);
      session_start();
-
-    $CourseTitle = $_POST['course_title'] ?? '';
-    global $userLogin;
-
-    $_SESSION['certificate_data'] = [
-        'course_title' => $CourseTitle,
-        'user_name' => $userLogin->name,
-        'date' => date('d-m-Y')
-    ];
+     
+$signatureBase64 = $_POST['signature_b64'] ?? '';
+     //  var_dump($_SESSION['signature']);
+     //  die;
+     $CourseTitle = $_POST['course_title'] ?? '';
+     global $userLogin;
+     
+  $_SESSION['certificate_data'] = [
+    'course_title' => $CourseTitle,
+    'user_name' => $userLogin->name,
+    'date' => date('d-m-Y'),
+    'signature' => $signatureBase64
+];
 
       header("Location: " . basefolder() . "/certificate");
     exit;

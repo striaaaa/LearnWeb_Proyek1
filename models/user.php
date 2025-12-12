@@ -21,20 +21,25 @@ function getUserLogin($login_token)
         ];
     }
 }
-function    getCourseCompletedUser($user_id){
+function getCourseCompletedUser($user_id){
     try {
-        $sql = "SELECT 
-    c.course_id,
-    c.title,
-    'Selesai' as status_course,
-    c.image,
-    c.description
-FROM courses c
-JOIN modules m ON m.course_id = c.course_id
-LEFT JOIN progress p 
-       ON p.module_id = m.module_id 
-      AND p.user_id = ? GROUP BY c.course_id HAVING COUNT(m.module_id) = COUNT(CASE WHEN p.status = 'completed' THEN 1 END);
-";
+        $sql = "
+        SELECT 
+            c.course_id,
+            c.title,
+            'Selesai' AS status_course,
+            c.image,
+            c.description,
+            IFNULL(SUM(m.learning_time),0) AS total_learning_time
+        FROM courses c
+        JOIN modules m ON m.course_id = c.course_id
+        LEFT JOIN progress p 
+               ON p.module_id = m.module_id 
+              AND p.user_id = ?
+        GROUP BY c.course_id
+        HAVING COUNT(m.module_id) = COUNT(CASE WHEN p.status = 'completed' THEN 1 END)
+        ORDER BY c.title ASC
+        ";
     
         $userLogin = runQuery($sql, [$user_id], 's');
         return [
@@ -47,8 +52,8 @@ LEFT JOIN progress p
             'error' => $e->getMessage()
         ];
     }
-    
 }
+
 
 function getUserAll()
 {

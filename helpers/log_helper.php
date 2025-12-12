@@ -44,7 +44,7 @@ if ($ip !==$allowedIP) {
         return;  
     }
  
-    $stmt = $db->prepare("INSERT INTO access_dlogs (user_id, ip_address, route, user_agent) VALUES (?, ?, ?, ?)");
+    $stmt = $db->prepare("INSERT INTO access_logs (user_id, ip_address, route, user_agent) VALUES (?, ?, ?, ?)");
     $stmt->bind_param('isss', $userId, $ip, $route, $userAgent);
     $stmt->execute();
     $stmt->close();

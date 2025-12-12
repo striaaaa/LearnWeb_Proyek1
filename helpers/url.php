@@ -75,7 +75,7 @@ function get_segments()
     return $path === '' ? [] : explode('/', $path); //dipecah per /
 }
 // versi deploy
-function get_segmentsss()
+function get_segmentss()
 {
     // var_dump($_SERVER['SCRIPT_NAME']); # /learnweb/index.php
 

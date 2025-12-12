@@ -3,24 +3,55 @@
 require_once __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/../config/database.php';
 
+// function getAllCourses()
+// {
+//     $courses = [];
+//     try {
+//         $sql = "SELECT course_id, title, description,image,   DATE(created_at) AS created_at FROM courses ORDER BY created_at DESC";
+//         $courses = runQuery($sql);
+//         return [
+//             'success' => true,
+//             'data' => $courses
+//         ];
+//     } catch (\Exception $e) {
+//         // Handle error database
+//         return [
+//             'success' => false,
+//             'message' => "Error saat mengambil kursus: " . $e->getMessage()
+//         ];
+//     }
+// }
 function getAllCourses()
 {
     $courses = [];
     try {
-        $sql = "SELECT course_id, title, description,image,   DATE(created_at) AS created_at FROM courses ORDER BY created_at DESC";
+        $sql = "
+        SELECT 
+            c.course_id,
+            c.title,
+            c.description,
+            c.image,
+            DATE(c.created_at) AS created_at,
+            IFNULL(SUM(m.learning_time),0) AS total_learning_time
+        FROM courses c
+        LEFT JOIN modules m ON c.course_id = m.course_id
+        GROUP BY c.course_id
+        ORDER BY c.created_at DESC
+        ";
+        
         $courses = runQuery($sql);
         return [
             'success' => true,
             'data' => $courses
         ];
     } catch (\Exception $e) {
-        // Handle error database
         return [
             'success' => false,
             'message' => "Error saat mengambil kursus: " . $e->getMessage()
         ];
     }
 }
+
 function getModuleswithContent($course_id)
 {
     try {

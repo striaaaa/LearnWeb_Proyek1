@@ -69,8 +69,8 @@ ob_start();
 
 .content-modul {
   /* width: 100%; */
-  height: 100%;
-  padding: 15px 30px;
+  /* height: 100%; */
+  padding: 24px 30px;
   /* background: #ff6c6c; */
   border-radius: 16px;
   border: 1px solid #afafaf;
@@ -213,21 +213,32 @@ ob_start();
               </span>
               <p><?= $course->title ?></p>
               <span class="jam">
-                <i class="ri-time-line"></i>45 Jam
+                <i class="ri-time-line"></i><?= $course->total_learning_time ?> Menit
               </span>
             </div>
           </div>
-          <p class="desc-modul"><?= $course->description ?></p>
-          <form action="<?=basefolder()?>/controller/dashboardController.php?action=createMaterPdfGetData" method="POST">
+          <p class="desc-modul mb-8"><?= $course->description ?></p>
+          <div class="flex justify-end">
+
+            <form action="<?=basefolder()?>/controller/dashboardController.php?action=createMaterPdfGetData" method="POST">
             <input type="hidden" name="action" value="createMaterPdfGetData">
             <input type="hidden" name="course_id" value="<?= $course->course_id ?>">
-            <button class="btn-download" type="submit">Unduh Materi</button>
+            <button  class=" main-btn-glow mr-4 " style="font-size: medium;" type="submit">Unduh Materi</button>
           </form>
-          <form action="<?=basefolder()?>/controller/dashboardController.php?action=createCertificate" method="POST">
+          <!-- <form action="<?=basefolder()?>/controller/dashboardController.php?action=createCertificate" method="POST" class="form-btn-download-certif">
             <input type="hidden" name="action" value="createCertificate">
             <input type="hidden" name="course_title" value="<?= $course->title ?>">
+            <input type="hidden" id="signature_b64" name="signature_b64">
             <button class="btn-download" type="submit">Unduh sertifikat</button>
+          </form> -->
+          <form action="<?=basefolder()?>/controller/dashboardController.php?action=createCertificate" method="POST" class="form-btn-download-certif">
+            <input type="hidden" name="course_title" value="<?= $course->title ?>">
+            <input type="hidden" id="signature_b64" name="signature_b64">
+            <button class=" main-btn-glow" style="font-size: medium;" type="submit">Unduh sertifikat</button>
           </form>
+        </div>
+
+
         </div>
       </div>
     <?php endforeach; ?>
@@ -236,6 +247,33 @@ ob_start();
 
 
 <div class="line"></div>
+<script>
+  document.querySelectorAll('.form-btn-download-certif').forEach(form => {
+    form.addEventListener('submit', function(e){
+        const input = form.querySelector('#signature_b64'); 
+        const img = new Image();
+        img.crossOrigin = "Anonymous";
+        img.onload = function(){
+            const canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img,0,0);
+            input.value = canvas.toDataURL('image/png');
+ 
+            form.submit();
+        }
+        img.onerror = function(){
+            alert('Gagal load tanda tangan');
+        }
+        img.src = "<?= basefolder() ?>/assets/ttd2.jpg?v="+Date.now();
+ 
+        e.preventDefault();
+    });
+});
+
+</script>
+
 <?php
 $content = ob_get_clean();
 include __DIR__ . '/../layouts/mainUser.php';

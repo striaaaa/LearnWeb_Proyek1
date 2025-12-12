@@ -7,15 +7,18 @@ ob_start();
 
 <div class="main">
     <!-- Sidebar -->
-    <div class="sidebar">
-        <h2>Pengaturan</h2>
+     <div class="grid grid-cols-12 gap-4 mt-4">
+        
+    <div class="card col-span-12 lg:col-span-3 md:col-span-3 ">
+        <h2 class="mb-4">Pengaturan</h2>
         <div class="nav-linkk active" data-target="data-pribadi">
             Data Pribadi
         </div>
         <div class="nav-linkk" data-target="akun">Akun</div>
+        <br>
     </div>
 
-    <div class="content">
+    <div class="col-span-12 lg:col-span-9 md:col-span-9">
         <!-- Data Pribadi -->
         <form action="<?= basefolder() ?>/controller/dashboardController.php?action=editProfil" method="post" enctype="multipart/form-data">
             <div id="data-pribadi" class="card">
@@ -77,6 +80,8 @@ ob_start();
      </form>
         </div>
     </div>
+    
+     </div>
 </div>
 
 <!-- JS -->
