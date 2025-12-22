@@ -168,7 +168,7 @@ html.dark .card_content_2 {
 }
 .box-left img {
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
 } 
 
 .frame_content {
@@ -263,7 +263,12 @@ html.dark .card_content_2 {
   }
 
   .box-left {
+      justify-content: center;
     height: 60vh;
+  }
+  .box-left img{
+    width:auto;
+height: 100%;
   }
 
   .head-content-4 h4 {
@@ -343,7 +348,12 @@ html.dark .card_content_2 {
 
   .box-left {
     height: 45vh;
+    justify-content: center;
     margin-bottom: 30px;
+  }
+  .box-left img{
+    width:auto;
+height: 100%;
   }
 
   .frame_content {

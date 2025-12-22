@@ -267,7 +267,7 @@ ob_start();
 });
 
 </script>
-
+<?php include __DIR__ . '/../components/footer.php'; ?>
 <?php
 $content = ob_get_clean();
 include __DIR__ . '/../layouts/mainUser.php';

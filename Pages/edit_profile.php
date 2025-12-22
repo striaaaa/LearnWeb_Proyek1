@@ -28,7 +28,7 @@ ob_start();
                         <label for="foto">Pilih foto</label>
                         <img
                             id="preview"
-                            src="<?= $userLogin->image?basefolder().'/uploads/user/profil/'.$userLogin->image:'https://image.idntimes.com/post/20230220/888355494-47236b76652f2e55025900cd98ccd09e-0759d9cc026a3c781b24c228b3d42224.jpg'?>"
+                            src="<?= $userLogin->image?basefolder().'/uploads/user/profil/'.$userLogin->image:'https://img.freepik.com/premium-vector/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-vector-illustration_561158-3407.jpg'?>"
                             class="profile-pic"
                             alt="Foto Profil" />
                     </div>

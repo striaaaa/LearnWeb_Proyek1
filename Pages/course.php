@@ -13,7 +13,8 @@ ob_start();
       /* margin-left: 100px;
       margin-right: 100px; */
       margin-top: 0;
-      margin-bottom: 0;
+      padding-bottom: 80px;
+     border-bottom: 1px solid #767676;
    }
 
    a {
@@ -160,7 +161,7 @@ ob_start();
       font-size: 14px;
    }
 </style>
-<div class="container-course mx-6 pt-6">
+<div class="container-course px-6 pt-6">
    <div class="header_content_2" style="text-align: start;">
       <p>Course Page</p>
    </div>

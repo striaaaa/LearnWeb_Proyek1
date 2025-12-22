@@ -125,12 +125,14 @@ ob_start();
   </div>
   <div class="main-content-3 col-span-12 grid grid-cols-12 px-6">
     <div class="left col-span-12 lg:col-span-4 md:col-span-12">
-      <div class="box-left">
+      <div class="box-left flex items-center ">
         <img src="assets/Frame 21.png" alt="" />
       </div>
     </div>
     <div class="right col-span-12 lg:col-span-8 md:col-span-12">
-      <div class="frame_content">
+   <div class="flex items-center" style="height: 100%;width:100%;">
+    <div style="width:100%;">
+         <div class="frame_content">
         <div class="icon">
           <img src="assets/book2.png" alt="" />
         </div>
@@ -174,6 +176,8 @@ ob_start();
           </p>
         </div>
       </div>
+    </div>
+   </div>
     </div>
   </div>
 </div>
