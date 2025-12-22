@@ -90,14 +90,7 @@ ob_start();
       margin-bottom: 20px;
    }
 
-   .img-left-modul {
-      width: 80px;
-      height: 80px;
-      background: #d9d9d9;
-      border-radius: 12px;
-      overflow: hidden;
-   }
-
+  
    .title-modul {
       display: flex;
       flex-direction: column;
@@ -173,7 +166,7 @@ ob_start();
    </div>
    <p class="mb-4">Welcome to the course page. Here you can find various courses to enhance your skills.</p>
    <div class="grid grid-cols-12 gap-4">
-      <?php foreach ($courseAll['data'] as $key => $course): 
+      <?php foreach ($courseAll['data'] as $key => $course):
          $imagePath = $_SERVER['DOCUMENT_ROOT'] . basefolder() . "/uploads/admin/{$course->image}";
 
       ?>
@@ -191,7 +184,7 @@ ob_start();
                   </div>
                   <div class="title-modul">
                      <p><?= $course->title ?></p>
-                     <span class="jam"><i class="ri-time-line"></i><?=$course->total_learning_time?> Menit</span>
+                     <span class="jam"><i class="ri-time-line"></i><?= $course->total_learning_time ?> Menit</span>
                   </div>
                </div>
 

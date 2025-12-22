@@ -6,16 +6,16 @@ function log_access_db_runQuery($userId = null, $route = null) {
      $db= getMysqliConnection();
 
     $route = $route ?? ($_SERVER['REQUEST_URI'] ?? 'unknown'); 
-$allowedIP = "180.245.31.190" ;
+// $allowedIP = "180.245.31.190" ;
 $ip = $_SERVER['HTTP_X_FORWARDED_FOR'] ?? $_SERVER['REMOTE_ADDR'] ?? 'unknown';
 
-if ($ip !==$allowedIP) {
-    echo '<script>
-        console.log("haihitam 123");
-        alert("maintenece bangg sabar");
-    </script>';
-    die;
-}
+// if ($ip !==$allowedIP) {
+//     echo '<script>
+//         console.log("haihitam 123");
+//         alert("maintenece bangg sabar");
+//     </script>';
+//     die;
+// }
 // if ($ip === $allowedIP2) {
 //     echo '<script>
 //         console.log("haihitam 123");

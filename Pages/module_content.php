@@ -1,15 +1,17 @@
 <?php
 // require_once __DIR__ . '../../helpers/url.php';
 require_once __DIR__ . '/../controller/manajemenContentController.php';
+require_once __DIR__ . '/../components/alert.php';
+renderFlashAlert();  
 global $params;
 $module_id = $params['moduleId'] ?? null;
 $course_id = $params['courseId'] ?? null;
 $getAllModuleContentData = getAllModuleContentDatas($course_id, $module_id);
 // $page_css = '<link rel="stylesheet" href="assets/css/learning-path.css" />';
-renderFlashAlert();
 $page_css  = '<link rel="stylesheet" href="' . basefolder() . '/assets/css/learning-path.css">';
 ob_start();
-?> 
+renderFlashAlert();
+?>
 <style>
     /* GENERAL LAYOUT */
     .materi {
@@ -17,8 +19,8 @@ ob_start();
         margin: 40px auto;
         font-family: "Georgia", serif;
         line-height: 1.7;
-        color: #222;
-        padding: 0 20px;
+        color: var(--text);
+        /* padding: 0 20px; */
     }
 
     .module-article {
@@ -30,7 +32,7 @@ ob_start();
     /* HEADERS */
     .article-header {
         font-family: "Georgia", serif;
-        font-weight: 700; 
+        font-weight: 700;
         color: var(--text);
         margin: 20px 0 10px;
     }
@@ -82,7 +84,7 @@ ob_start();
         font-style: normal;
         font-weight: bold;
         margin-top: 5px;
-        
+
         color: var(--text);
     }
 
@@ -155,7 +157,7 @@ ob_start();
         font-size: 20px;
         cursor: pointer;
         transition: 0.2s;
-        
+
         color: var(--text);
         padding: 4px 0;
     }
@@ -192,12 +194,12 @@ ob_start();
 
         <div>data tida ada</div>
     <?php else: ?>
-        <div class="materi">
+        <div class="materi px-8">
             <?php $contents = $getAllModuleContentData['data']; ?>
             <?php
             ?>
             <div class="grid grid-cols-12">
-                <div class="col-span-3 ">
+                <div class="lg:col-span-3 hidden lg:block ">
                     <div class="left-col-module">
 
                         <div id="toc">
@@ -206,11 +208,11 @@ ob_start();
 
                         <div id="congrats" class="congrats-box">
                             <b>🎉 Selamat!</b><br>
-                           Andah berhasil menyelesaikan modul ini
+                            Andah berhasil menyelesaikan modul ini
                         </div>
                     </div>
                 </div>
-                <div class="col-span-9">
+                <div class="col-span-12 lg:col-span-9">
                     <article class="module-article" id="module-area">
                         <?php if (!empty($contents)): ?>
                             <!-- ini daata modul konten -->
@@ -286,24 +288,28 @@ ob_start();
                     </article>
                     <div class="flex items-center justify-between">
 
-                        <form action="<?= basefolder() ?>/controller/homepagecontroller.php" method="post">
+                        <form class="flex justify-start" style="width: 100%;" action="<?= basefolder() ?>/controller/homepagecontroller.php" method="post">
                             <input type="hidden" name="module_id" value="<?= $module_id ?>">
                             <input type="hidden" name="course_id" value="<?= $course_id ?>">
                             <input type="hidden" name="action" value="prevModuleContent">
-                            <button type="submit" class="main-btn">Sebelumnya</button>
+                            <button type="submit" class="main-btn-glow">Sebelumnya</button>
                         </form>
-                        <form action="<?= basefolder() ?>/controller/homepagecontroller.php" method="post">
+                        <form class="flex justify-end" style="width: 100%;" action="<?= basefolder() ?>/controller/homepagecontroller.php" method="post">
                             <input type="hidden" name="module_id" value="<?= $module_id ?>">
                             <input type="hidden" name="course_id" value="<?= $course_id ?>">
                             <input type="hidden" name="action" value="nextModuleContent">
-                            <button type="submit" class="main-btn">Selanjutnya</button>
+                            <button type="submit" class="main-btn-glow">Selanjutnya</button>
+                        </form>
+                        <form id="onScrollCompletedModuleForm" action="<?= basefolder() ?>/controller/homepagecontroller.php?action=onScrollCompletedModuleForm" method="post">
+                            <input type="hidden" name="module_id" value="<?= $module_id ?>">
+                            <input type="hidden" name="course_id" value="<?= $course_id ?>">
+                            <!-- <input type="hidden" name="action" value="onScrollCompletedModuleForm"> -->
+                            <!-- <button type="submit" class="main-btn">Selanjutnya</button> -->
                         </form>
                     </div>
                 </div>
             </div>
 
-
-            <!-- Highlight.js -->
             <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 
             <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -327,7 +333,7 @@ ob_start();
                         item.className = "toc-item";
 
                         const title = marker.dataset.title || `Bagian ${index + 1}`;
-                          item.textContent = title.substring(0, 50);
+                        item.textContent = title.substring(0, 50);
 
                         item.addEventListener("click", () => {
                             marker.scrollIntoView({
@@ -356,37 +362,65 @@ ob_start();
                     //     tocItems.push(item);
                     // });
 
-                    function updateIndicator() {
-                        let index = -1;
+                    
+                    // Submit hanya sekali
+let hasSubmitted = false;
 
-                        markers.forEach((h, i) => {
-                            // console.log('ini loop',h,i);
-                            // console.log('ini loop',h.getBoundingClientRect(),i);
+function updateIndicator() {
+    let index = -1;
 
-                            const rect = h.getBoundingClientRect();
-                            if (rect.top <= 150) index = i;
-                        });
+    markers.forEach((h, i) => {
+        const rect = h.getBoundingClientRect();
+        if (rect.top <= 150) index = i;
+    });
 
-                        if (index >= 0) {
-                            tocItems.forEach((t) => t.classList.remove("active"));
-                            tocItems[index].classList.add("active");
+    if (index >= 0) {
+        tocItems.forEach((t) => t.classList.remove("active"));
+        tocItems[index].classList.add("active");
 
-                            const active = tocItems[index];
-                            const offsetTop = active.offsetTop;
-                            const height = active.offsetHeight;
+        const active = tocItems[index];
+        const offsetTop = active.offsetTop;
+        const height = active.offsetHeight;
 
-                            indicator.style.top = offsetTop + "px";
-                            indicator.style.height = height + "px";
-                        }
-                        const last = markers[markers.length - 1].getBoundingClientRect();
-                        if (last.top <= 300) {
-                            document.getElementById("congrats").style.display = "block";
+        indicator.style.top = offsetTop + "px";
+        indicator.style.height = height + "px";
+    }
 
-                        }
-                    }
+    const last = markers[markers.length - 1].getBoundingClientRect();
 
-                    updateIndicator();
-                    document.addEventListener("scroll", updateIndicator);
+    // Scroll sudah sampai akhir
+    if (last.top <= 300 && !hasSubmitted) {
+        hasSubmitted = true;
+
+        // Tampilkan congrats
+        document.getElementById("congrats").style.display = "block";
+
+        const form = document.getElementById("onScrollCompletedModuleForm");
+         <?php setFlashAlert('info', 'Kamu sudah berada dipaling bawah.');?>
+        console.log('form.action =', form.action);
+        const formData = new FormData(form); // FormData langsung
+
+        // Pastikan URL string di fetch
+        fetch(form.action, {
+            method: form.method,
+            body: formData
+        })
+        .then(res => res.text())
+        .then(result => {
+            console.log('Server response:', result); // Lihat response PHP di console
+        })
+        .catch(err => console.error('Error submitting form:', err));
+    }
+}
+
+// Pasang listener scroll
+window.addEventListener('scroll', updateIndicator);
+
+// Jalankan sekali untuk cek posisi awal
+updateIndicator();
+
+ 
+                    // document.addEventListener("scroll", updateIndicator);
 
                     let hasFired = false;
                     window.addEventListener("scroll", () => {
@@ -409,6 +443,7 @@ ob_start();
 
                             if (!hasFired) {
                                 hasFired = true;
+
                                 // fireConfetti();
                             }
                         }

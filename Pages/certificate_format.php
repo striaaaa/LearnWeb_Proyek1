@@ -144,8 +144,8 @@ ob_start();
       </div>
 
       <div class="meta-row">
-        <div class="k">Durasi Kursus</div>
-        <div class="v"><?= htmlspecialchars($data['duration'] ?? "N/A") ?></div>
+        <div class="k">Total durasi Kursus</div>
+        <div class="v"><?= htmlspecialchars($data['total_learning_time'] ?? "N/A") ?> Menit</div>
       </div>
     </div>
 

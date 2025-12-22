@@ -73,11 +73,11 @@ ob_start();
    <div class="container-atassindex" id="area">
     <img class="bg-base" src="<?= basefolder() ?>/assets/image22.png" alt="" />
 
-    <img src="<?= basefolder() ?>/assets/img/icon/docedit.png" class="iconambang floating" data-index="1">
+    <!-- <img src="<?= basefolder() ?>/assets/img/icon/docedit.png" class="iconambang floating" data-index="1">
     <img src="<?= basefolder() ?>/assets/img/icon/torphy.png" class="iconambang floating" data-index="2">
     <img src="<?= basefolder() ?>/assets/img/icon/cmdd.png" class="iconambang floating" data-index="3">
     <img src="<?= basefolder() ?>/assets/img/icon/clipboard.png" class="iconambang floating" data-index="4">
-    <img src="<?= basefolder() ?>/assets/img/icon/Laptop.png" class="iconambang floating" data-index="5">
+    <img src="<?= basefolder() ?>/assets/img/icon/Laptop.png" class="iconambang floating" data-index="5"> -->
 </div>
 
   </div>
@@ -105,7 +105,7 @@ ob_start();
             <p><?= $module->title ?? 'module tidak ada' ?></p>
           <?php endforeach; ?>
         </div>
-        <button data-link="<?= basefolder() ?>/course" style="text-decoration:none;width:fit-content;font-size:medium;" class="main-btn-glow">
+        <button data-link="<?= basefolder() ?>/course/<?=$course->course_id ?>" style="text-decoration:none;width:fit-content;font-size:medium;" class="main-btn-glow">
           Lihat Modul
         </button>
       </div>
@@ -189,90 +189,93 @@ ob_start();
     <!-- <div class="btn-content-4">
       <span>Mulai Belajar</span>
     </div> -->
-    <button data-link="<?= basefolder() ?>/course" class="btn_content_1">
-      Mulai Belajar
-    </button>
+    <div class="flex justify-center">
+
+      <button data-link="<?= basefolder() ?>/course" class="main-btn-glow" style="min-width:350px; font-size:medium;">
+        Mulai Belajar
+      </button>
+    </div>
   </div>
 <?php } ?>
 <script>
-  const container = document.getElementById("area");
-  const icons = document.querySelectorAll(".iconambang");
+  // const container = document.getElementById("area");
+  // const icons = document.querySelectorAll(".iconambang");
 
-  icons.forEach(icon => {
-    icon.addEventListener("dragstart", e => e.preventDefault()); // stop ghost image
+  // icons.forEach(icon => {
+  //   icon.addEventListener("dragstart", e => e.preventDefault()); // stop ghost image
 
-    let isDragging = false;
-    let offsetX = 0,
-      offsetY = 0;
+  //   let isDragging = false;
+  //   let offsetX = 0,
+  //     offsetY = 0;
 
-    const startX = icon.offsetLeft;
-    const startY = icon.offsetTop;
+  //   const startX = icon.offsetLeft;
+  //   const startY = icon.offsetTop;
 
-    icon.addEventListener("mousedown", startDrag);
-    icon.addEventListener("touchstart", startDrag);
+  //   icon.addEventListener("mousedown", startDrag);
+  //   icon.addEventListener("touchstart", startDrag);
 
-    function startDrag(e) {
-      e.preventDefault();
-      isDragging = true;
-      icon.classList.remove("floating");
-      icon.style.transition = "none";
-      icon.style.cursor = "grabbing";
+  //   function startDrag(e) {
+  //     e.preventDefault();
+  //     isDragging = true;
+  //     icon.classList.remove("floating");
+  //     icon.style.transition = "none";
+  //     icon.style.cursor = "grabbing";
 
-      const rect = container.getBoundingClientRect();
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+  //     const rect = container.getBoundingClientRect();
+  //     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  //     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
 
-      offsetX = clientX - (rect.left + icon.offsetLeft);
-      offsetY = clientY - (rect.top + icon.offsetTop);
+  //     offsetX = clientX - (rect.left + icon.offsetLeft);
+  //     offsetY = clientY - (rect.top + icon.offsetTop);
 
-      document.addEventListener("mousemove", onDrag);
-      document.addEventListener("touchmove", onDrag, {
-        passive: false
-      });
-      document.addEventListener("mouseup", endDrag);
-      document.addEventListener("touchend", endDrag);
-    }
+  //     document.addEventListener("mousemove", onDrag);
+  //     document.addEventListener("touchmove", onDrag, {
+  //       passive: false
+  //     });
+  //     document.addEventListener("mouseup", endDrag);
+  //     document.addEventListener("touchend", endDrag);
+  //   }
 
-    function onDrag(e) {
-      if (!isDragging) return;
-      e.preventDefault(); // stop scroll
+  //   function onDrag(e) {
+  //     if (!isDragging) return;
+  //     e.preventDefault(); // stop scroll
 
-      const rect = container.getBoundingClientRect();
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+  //     const rect = container.getBoundingClientRect();
+  //     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  //     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
 
-      let x = clientX - rect.left - offsetX;
-      let y = clientY - rect.top - offsetY;
+  //     let x = clientX - rect.left - offsetX;
+  //     let y = clientY - rect.top - offsetY;
 
-      // batasi supaya tidak keluar container
-      x = Math.max(0, Math.min(x, rect.width - icon.offsetWidth));
-      y = Math.max(0, Math.min(y, rect.height - icon.offsetHeight));
+  //     // batasi supaya tidak keluar container
+  //     x = Math.max(0, Math.min(x, rect.width - icon.offsetWidth));
+  //     y = Math.max(0, Math.min(y, rect.height - icon.offsetHeight));
 
-      icon.style.left = x + "px";
-      icon.style.top = y + "px";
-    }
+  //     icon.style.left = x + "px";
+  //     icon.style.top = y + "px";
+  //   }
 
-    function endDrag() {
-      if (!isDragging) return;
-      isDragging = false;
-      icon.style.cursor = "grab";
+  //   function endDrag() {
+  //     if (!isDragging) return;
+  //     isDragging = false;
+  //     icon.style.cursor = "grab";
 
-      // icon.style.transition = "top 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55), left 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55)";
-      icon.style.transition = "top 0.8s cubic-bezier(0.22, 1, 0.36, 1), left 0.8s cubic-bezier(0.22, 1, 0.36, 1)";
-      // icon.style.transition = "top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
-      icon.style.left = startX + "px";
-      icon.style.top = startY + "px";
+  //     // icon.style.transition = "top 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55), left 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55)";
+  //     icon.style.transition = "top 0.8s cubic-bezier(0.22, 1, 0.36, 1), left 0.8s cubic-bezier(0.22, 1, 0.36, 1)";
+  //     // icon.style.transition = "top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+  //     icon.style.left = startX + "px";
+  //     icon.style.top = startY + "px";
 
-      setTimeout(() => {
-        icon.classList.add("floating");
-      }, 500);
+  //     setTimeout(() => {
+  //       icon.classList.add("floating");
+  //     }, 500);
 
-      document.removeEventListener("mousemove", onDrag);
-      document.removeEventListener("touchmove", onDrag);
-      document.removeEventListener("mouseup", endDrag);
-      document.removeEventListener("touchend", endDrag);
-    }
-  });
+  //     document.removeEventListener("mousemove", onDrag);
+  //     document.removeEventListener("touchmove", onDrag);
+  //     document.removeEventListener("mouseup", endDrag);
+  //     document.removeEventListener("touchend", endDrag);
+  //   }
+  //});
 </script>
 <?php include __DIR__ . '/../components/footer.php'; ?>
 <?php

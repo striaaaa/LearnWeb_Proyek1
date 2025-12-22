@@ -1,64 +1,71 @@
-
 // MOBILE MENU TOGGLE
-function toggleMobile() {
-    const m = document.getElementById("mobileMenu");
-    m.style.display = (m.style.display === "flex") ? "none" : "flex";
-}
+// function toggleMobile() {
+//   const m = document.getElementById("mobileMenu");
+//   m.style.display = m.style.display === "flex" ? "none" : "flex";
+// }
 
 document.addEventListener("DOMContentLoaded", function () {
+  // redirect button[data-link]
+  document.querySelectorAll("button[data-link]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      window.location.href = btn.dataset.link;
+    });
+  });
 
-    // redirect button[data-link]
-    document.querySelectorAll("button[data-link]").forEach(btn => {
-        btn.addEventListener("click", () => {
-            window.location.href = btn.dataset.link;
-        });
+  // -----------------------------
+  // DESKTOP PROFILE DROPDOWN
+  // -----------------------------
+  const profileBtn = document.getElementById("profileMenuBtn");
+  const dropdown = document.getElementById("profileDropdown");
+
+  if (profileBtn) {
+    profileBtn.addEventListener("click", () => {
+      dropdown.style.display =
+        dropdown.style.display === "block" ? "none" : "block";
     });
 
-    // -----------------------------
-    // DESKTOP PROFILE DROPDOWN
-    // -----------------------------
-    const profileBtn = document.getElementById("profileMenuBtn");
-    const dropdown = document.getElementById("profileDropdown");
+    // klik di luar → close
+    document.addEventListener("click", function (e) {
+      if (!profileBtn.contains(e.target)) dropdown.style.display = "none";
+    });
+  }
 
-    if (profileBtn) {
-        profileBtn.addEventListener("click", () => {
-            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-        });
+  // -----------------------------
+  // DARK MODE DESKTOP + MOBILE
+  // -----------------------------
+  let theme = localStorage.getItem("theme") || "light";
 
-        // klik di luar → close
-        document.addEventListener("click", function (e) {
-            if (!profileBtn.contains(e.target)) dropdown.style.display = "none";
-        });
-    }
+  const iconDesktop = document.getElementById("iconDesktop");
+  const toggleDesktop = document.getElementById("toggleButtonDesktop");
 
-    // -----------------------------
-    // DARK MODE DESKTOP + MOBILE
-    // -----------------------------
-    let theme = localStorage.getItem("theme") || "light";
+  const iconMobile = document.getElementById("iconMobile");
+  const toggleMobileBtn = document.getElementById("toggleButtonMobile");
 
-    const iconDesktop = document.getElementById("iconDesktop");
-    const toggleDesktop = document.getElementById("toggleButtonDesktop");
+  const textDesktop = document.getElementById("textDesktop");
+  const textMobile = document.getElementById("textMobile");
 
-    const iconMobile = document.getElementById("iconMobile");
-    const toggleMobileBtn = document.getElementById("toggleButtonMobile");
+  function applyTheme() {
+    const isDark = theme === "dark";
+    document.documentElement.classList.toggle("dark", isDark); 
+    iconDesktop?.classList.remove("ri-sun-fill", "ri-moon-fill");
+    iconDesktop?.classList.add(isDark ? "ri-moon-fill" : "ri-sun-fill");
 
-    function applyTheme() {
-        const isDark = theme === "dark";
-        document.documentElement.classList.toggle("dark", isDark);
+    iconMobile?.classList.remove("ri-sun-fill", "ri-moon-fill");
+    iconMobile?.classList.add(isDark ? "ri-moon-fill" : "ri-sun-fill"); 
+    if (textDesktop)
+      textDesktop.textContent = isDark ? "Mode Gelap" : "Mode Terang";
+    if (textMobile)
+      textMobile.textContent = isDark ? "Mode Gelap" : "Mode Terang";
+  }
 
-        if (iconDesktop) iconDesktop.className = isDark ? "ri-moon-fill" : "ri-sun-fill";
-        if (iconMobile) iconMobile.className = isDark ? "ri-moon-fill" : "ri-sun-fill";
-    }
+  applyTheme();
 
+  function toggleTheme() {
+    theme = theme === "dark" ? "light" : "dark";
+    localStorage.setItem("theme", theme);
     applyTheme();
+  }
 
-    function toggleTheme() {
-        theme = theme === "dark" ? "light" : "dark";
-        localStorage.setItem("theme", theme);
-        applyTheme();
-    }
-
-    if (toggleDesktop) toggleDesktop.addEventListener("click", toggleTheme);
-    if (toggleMobileBtn) toggleMobileBtn.addEventListener("click", toggleTheme);
-
+  if (toggleDesktop) toggleDesktop.addEventListener("click", toggleTheme);
+  if (toggleMobileBtn) toggleMobileBtn.addEventListener("click", toggleTheme);
 });

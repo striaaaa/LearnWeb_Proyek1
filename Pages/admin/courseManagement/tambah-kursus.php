@@ -15,10 +15,13 @@ ob_start();
         <div class="left-card  flex flex-col justify-between h-full">
           <div>
             <h3 class="right-card-h3">Tambah Kursus</h3>
+            <label for="title">Judul Cover</label>
+            <input type="text" id="courseTitle" name="coverTitle" />
             <label for="title">Judul</label>
             <input type="text" id="courseTitle" name="title" />
             <label for="description">Deskripsi</label>
             <textarea name="description" id="courseDesc" cols="30" rows="10"></textarea>
+            <!-- <label for="title">List yang dipelajari</label>  -->
             <label for="">Foto</label>
             <input type="file" id="courseImage" style="background-color: #ffffff;" name="courseImage" />
           </div>

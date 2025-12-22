@@ -12,6 +12,14 @@ renderFlashAlert();
 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
     <title>Homepage</title> 
+    <script>
+       (function() {
+    const theme = localStorage.getItem('theme') || 'light';
+    if(theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  })();
+    </script>
     <link rel="stylesheet" href="<?=basefolder()?>/assets/css/global.css" />
     <link rel="stylesheet" href="<?=basefolder()?>/assets/css/nav.css" />
     <link rel="stylesheet" href="<?=basefolder()?>/assets/css/main-theme.css" />

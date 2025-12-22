@@ -1,25 +1,31 @@
 <?php
+require_once 'helpers/loadenv.php';
 require_once 'helpers/url.php';
 require_once 'helpers/log_helper.php';
+loadEnv();
+// var_dump(getenv('MODE'));
+// die;
 $uri = urldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 $requested = __DIR__ . $uri;
 $loginToken = $_COOKIE['login_token'] ?? null;
 $userId = null;
 
-// if ($loginToken) {
-//     $user = runQuery("SELECT user_id FROM users WHERE login_token = ?", [$loginToken]);
-//     if ($user) {
-//         $userId = $user->user_id;
-//     }
-// }
-// $ext = pathinfo($_SERVER['REQUEST_URI'], PATHINFO_EXTENSION);
-// if (!in_array($ext, ['css','js','png','jpg','jpeg','gif','ico','svg'])) {
-//     log_access_db_runQuery($userId, $_SERVER['REQUEST_URI']);
-// }
+ if (getenv('MODE') === 'deploy') {
+    if ($loginToken) {
+    $user = runQuery("SELECT user_id FROM users WHERE login_token = ?", [$loginToken]);
+    if ($user) {
+        $userId = $user->user_id;
+    }
+}
+$ext = pathinfo($_SERVER['REQUEST_URI'], PATHINFO_EXTENSION);
+if (!in_array($ext, ['css','js','png','jpg','jpeg','gif','ico','svg'])) {
+    log_access_db_runQuery($userId, $_SERVER['REQUEST_URI']);
+}
  
-// if ($uri !== '/' && file_exists($requested)) {
-//     return false;
-// }
+if ($uri !== '/' && file_exists($requested)) {
+    return false;
+}
+ }
 $segments = [];
 for ($i = 0; $i < 20; $i++) {
     $seg = url_segment($i);

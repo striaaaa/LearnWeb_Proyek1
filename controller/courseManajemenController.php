@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../helpers/url.php';
+require_once __DIR__ . '/../helpers/imgGenerate.php';
 
 require_once __DIR__ . '/../helpers/db_helper.php';
 require_once __DIR__ . '/../models/course.php';
@@ -39,10 +40,20 @@ function storeCourse($conn) {
   // var_dump($_FILES['courseImage']);
   // die();
   if (!empty($_FILES['courseImage']['name'])) {
+  //  $savePathCover = generateCourseCover($_POST, $_FILES['courseImage'], '../uploads/admin/', 'preview');
+  //  die;
+   $savePathCover = generateCourseCover($_POST, $_FILES['courseImage'], '', 'return');
+
+    
     $targetDir = "../uploads/admin/";
     if (!file_exists($targetDir)) mkdir($targetDir, 0777, true);
-    $imageName = time() . "_" . basename($_FILES["courseImage"]["name"]);
-    move_uploaded_file($_FILES["courseImage"]["tmp_name"], $targetDir . $imageName);
+    $imageName = $savePathCover['filename'];
+    // $imageName = time() . "_" . basename($_FILES["courseImage"]["name"]);
+    $fullPath = $targetDir . '/' . $savePathCover['filename'];
+
+imagepng($savePathCover['image'], $fullPath);
+imagedestroy($savePathCover['image']);
+    // move_uploaded_file($_FILES["courseImage"]["tmp_name"], $targetDir . $imageName);
   }
 
   // simpan course

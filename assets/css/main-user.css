@@ -91,7 +91,7 @@ html.dark .card_content_2 {
 .head_card_2 img  {
   object-fit: cover;
   width: 100%;
-  height: 200px;
+  height: 215px;
   /* background-color: red; */
   border-radius: 16px;
   /* overflow: hidden;
@@ -116,7 +116,20 @@ html.dark .card_content_2 {
   cursor: pointer;
 }
 
-/*  */
+ .img-left-modul {
+      width: 80px;
+      height: 80px;
+      background: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+   }
+   .img-left-modul img{
+    width:100%;
+    height:100%;
+      object-position: 125%;
+      object-fit: cover;
+   }
+
 .container-3 {
   padding-top: 100px;
   /* background-color: #595959; */
@@ -224,4 +237,139 @@ html.dark .card_content_2 {
 }
 .btn-content-4:hover {
   background-color: #404141;
+}
+@media (max-width: 1024px) {
+
+  .header_content_1 {
+    font-size: 48px;
+    max-width: 90%;
+  }
+
+  .sub_header_content_1 {
+    font-size: 18px;
+    max-width: 90%;
+  }
+
+  .right_content_1 {
+    width: 100%;
+  }
+
+  .container-card-2 {
+    justify-content: flex-start;
+  }
+
+  .card_content_2 {
+    min-width: 300px;
+  }
+
+  .box-left {
+    height: 60vh;
+  }
+
+  .head-content-4 h4 {
+    font-size: 36px;
+  }
+
+  .btn-content-4 {
+    width: 30%;
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* ===== CONTAINER 1 ===== */
+  .container-1 {
+    padding: 0;
+  }
+
+  .left_content_1 {
+    padding: 30px 20px;
+  }
+
+  .header_content_1 {
+    font-size: 36px;
+    max-width: 100%;
+  }
+
+  .sub_header_content_1 {
+    font-size: 16px;
+    max-width: 100%;
+  }
+
+  .btn_content_1 {
+    padding: 12px 24px;
+  }
+
+  .right_content_1 {
+    width: 100%;
+    padding: 0;
+  }
+
+  /* ===== CONTAINER 2 ===== */
+  .container-2 {
+    padding-top: 60px;
+  }
+
+  .header_content_2 {
+    font-size: 28px;
+  }
+
+  .container-card-2 {
+    padding: 10px;
+    gap: 15px;
+  }
+
+  .card_content_2 {
+    min-width: 280px;
+  }
+
+  .btn_card_2 {
+    width: 60%;
+  }
+
+  /* ===== CONTAINER 3 ===== */
+  .container-3 {
+    padding-top: 60px;
+  }
+
+  .head-content-3 {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+
+  .head-content-3 p {
+    font-size: 16px;
+  }
+
+  .box-left {
+    height: 45vh;
+    margin-bottom: 30px;
+  }
+
+  .frame_content {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .frame_content h4 {
+    font-size: 20px;
+  }
+
+  /* ===== CONTAINER 4 ===== */
+  .container-4 {
+    padding: 60px 20px;
+  }
+
+  .head-content-4 h4 {
+    font-size: 30px;
+  }
+
+  .head-content-4 p {
+    max-width: 100%;
+    font-size: 16px;
+  }
+
+  .btn-content-4 {
+    width: 60%;
+  }
 }

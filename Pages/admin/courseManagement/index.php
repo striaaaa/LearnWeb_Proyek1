@@ -28,11 +28,10 @@ ob_start();
 
 <div id="courseList">
   <div class="row-card-table-header">
-    <div class="grid grid-cols-12">
-      <div class="col-span-1">No.</div>
+    <div class="grid grid-cols-12"> 
       <div class="col-span-2">Judul</div>
       <div class="col-span-4">Deskripsi</div>
-      <div class="col-span-2">Image</div>
+      <div class="col-span-3">Image</div>
       <div class="col-span-2">Dibuat pada</div>
       <div class="col-span-1">Aksi</div>
     </div>
@@ -41,16 +40,21 @@ ob_start();
   <?php foreach ($getCourses['data'] as $index => $course): ?>
     <div class="row-card-table-course">
       <div class="grid grid-cols-12 items-center row-card-table-course-header">
-        <div class="col-span-1 flex justify-start items-center">
+        <!-- <div class="col-span-1 flex justify-start items-center">
           
           &nbsp;
           &nbsp;
-          <span class="ml-2"><?= $index ?>.</span>
+          <span class="ml-2">.</span>
+        </div> -->
+        <div class="col-span-2 flex gap-4">
+          <p><?= $index ?>.</p>
+          <p>
+            <?= htmlspecialchars($course->title) ?>
+          </p>
         </div>
-        <div class="col-span-2"><?= htmlspecialchars($course->title) ?></div>
         <div class="col-span-4"><?= htmlspecialchars($course->description) ?></div>
-        <div class="col-span-2"> <?php if (!empty($course->image)) { ?>
-            <img src="<?= basefolder() ?>/uploads/admin/<?= $course->image ?>" alt="" srcset="" width="130px" height="100px" style="object-fit:cover;" >
+        <div class="col-span-3"> <?php if (!empty($course->image)) { ?>
+            <img src="<?= basefolder() ?>/uploads/admin/<?= $course->image ?>" alt="" srcset="" width="200px" height="123px" style="object-fit:cover;" >
           <?php } else { ?>
             <span>Tidak ada gambar</span>
             <?php } ?>

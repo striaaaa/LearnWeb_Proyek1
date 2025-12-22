@@ -68,7 +68,7 @@ ob_start();
 }
 
 .content-modul {
-  /* width: 100%; */
+  width: 100%;
   /* height: 100%; */
   padding: 24px 30px;
   /* background: #ff6c6c; */
@@ -82,16 +82,7 @@ ob_start();
   align-items: center;
   gap: 20px;
   margin-bottom: 20px;
-}
-
-.img-left-modul {
-  width: 80px;
-  height: 80px;
-  background: #d9d9d9;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
+} 
 .title-modul {
   display: flex;
   flex-direction: column;
@@ -100,7 +91,7 @@ ob_start();
   font-weight: 600;
 }
 
-.title-modul span {
+.title-modul .status {
   color: #4db029;
   display: flex;
   gap: 10px;
@@ -115,14 +106,13 @@ ob_start();
   gap: 10px;
   align-items: center;
   font-size: 16px;
-  font-weight: 400;
-  color: #4f4f4f;
+  font-weight: 400; 
 }
 
 .content-modul .desc-modul {
   font-size: 16px;
   font-weight: 400;
-  color: #4f4f4f;
+  /* color: #4f4f4f; */
   line-height: 1.5;
   text-align: justify;
 }
@@ -158,15 +148,17 @@ ob_start();
   justify-content: center;
   align-items: center;
   background: #676767;
+  font-size:large;
   border-radius: 8px;
   margin-top: 20px;
   cursor: pointer;
+  color:white;
 }
 
 </style>
 <div class="container-profile">
   <div class="img-radius">
-    <img src="<?= $userLogin->image ? basefolder() . '/uploads/user/profil/' . $userLogin->image : 'https://image.idntimes.com/post/20230220/888355494-47236b76652f2e55025900cd98ccd09e-0759d9cc026a3c781b24c228b3d42224.jpg' ?>" alt="user" />
+    <img src="<?= $userLogin->image ? basefolder() . '/uploads/user/profil/' . $userLogin->image : 'https://img.freepik.com/premium-vector/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-vector-illustration_561158-3407.jpg' ?>" alt="user" />
   </div>
   <div class="detail-profile">
     <h1><?= $userLogin->name ?></h1>
@@ -178,9 +170,10 @@ ob_start();
       <i class="ri-map-pin-2-fill"></i>
       <span><?= $userLogin->alamat ?></span>
     </div>
-    <div class="btn_edit">
-      <a href="<?= basefolder() ?>/dashboard/edit-profile" style="text-decoration: none"><span>Edit Profile</span></a>
-    </div>
+    <button class="btn_edit " data-link="<?= basefolder() ?>/dashboard/edit-profile">
+    
+    Edit Profile
+    </button>
   </div>
 </div>
 <div class="modul-success grid grid-cols-12 gap-4"> 
@@ -198,7 +191,7 @@ ob_start();
       $rawGetCourseCompletedUser = [$rawGetCourseCompletedUser];
     }
     foreach ($rawGetCourseCompletedUser as $course): ?>
-       <div class="col-span-12 lg:col-span-6 md:col-span-12">
+       <div class="col-span-12 lg:col-span-6 md:col-span-12 flex items-stretch ">
         <div class="content-modul">
           <div class="top-content">
             <div class="img-left-modul">
@@ -207,10 +200,10 @@ ob_start();
                 width="130px" height="100px"
                 style="object-fit:cover;" />
             </div>
-            <div class="title-modul">
-              <span> 
-                <?= $course->status_course ?>
-              </span>
+            <div class="title-modul"> 
+                <span class="chip chip-green" style="width: fit-content;"> 
+                  <?= $course->status_course ?>
+                </span> 
               <p><?= $course->title ?></p>
               <span class="jam">
                 <i class="ri-time-line"></i><?= $course->total_learning_time ?> Menit
@@ -218,7 +211,7 @@ ob_start();
             </div>
           </div>
           <p class="desc-modul mb-8"><?= $course->description ?></p>
-          <div class="flex justify-end">
+          <div class="flex justify-start">
 
             <form action="<?=basefolder()?>/controller/dashboardController.php?action=createMaterPdfGetData" method="POST">
             <input type="hidden" name="action" value="createMaterPdfGetData">
@@ -233,6 +226,7 @@ ob_start();
           </form> -->
           <form action="<?=basefolder()?>/controller/dashboardController.php?action=createCertificate" method="POST" class="form-btn-download-certif">
             <input type="hidden" name="course_title" value="<?= $course->title ?>">
+            <input type="hidden" name="total_learning_time" value="<?= $course->total_learning_time ?>">
             <input type="hidden" id="signature_b64" name="signature_b64">
             <button class=" main-btn-glow" style="font-size: medium;" type="submit">Unduh sertifikat</button>
           </form>

@@ -29,6 +29,9 @@ switch ($action) {
     case 'nextModuleContent':
         nextModuleContent();
         break;
+    case 'onScrollCompletedModuleForm':
+        onScrollCompletedModuleForm();
+        break;
 
     default:
         # code...
@@ -170,6 +173,54 @@ function nextModuleContent()
     runQuery($sql, [$userLogin->user_id, $nextModule['data']->module_id], 'ii');
 
     header("Location: " . basefolder() . "/course/" . $course_id . "/detailModule/" . $nextModule['data']->module_id);
+    exit;
+}
+function onScrollCompletedModuleForm()
+{
+    // var_dump('masuk');
+    // die;
+    global $userLogin;
+
+    $module_id = $_POST['module_id'] ?? '';
+    $course_id = $_POST['course_id'] ?? '';
+
+    if (!$module_id || !$course_id) {
+        setFlashAlert('error', 'Data module tidak valid.');
+        header("Location: " . basefolder() . "/course/" . $course_id);
+        exit;
+    }
+
+    // data module skrng
+    $currentModule = getModuleById($module_id)['data'] ?? null;
+    if (!$currentModule) {
+        setFlashAlert('error', 'Module tidak ditemukan.');
+        header("Location: " . basefolder() . "/course/" . $course_id);
+        exit;
+    }
+
+    $currentOrder = intval($currentModule->order_no);
+
+    //  module selanjutnya berdasarkan order_no
+    // var_dump($currentOrder);
+    // die();
+    $nextModule = getModuleByOrder($course_id, $currentOrder + 1);
+    $sql = "INSERT INTO progress (user_id, module_id, status)
+            VALUES (?, ?, 'completed')
+            ON DUPLICATE KEY UPDATE status = 'completed', updated_at = NOW()";
+    runQuery($sql, [$userLogin->user_id, $module_id], 'ii');
+    if ((empty((array)$nextModule['data']))) {
+        setFlashAlert('info', 'Anda sudah berada di modul terakhir.');
+        header("Location: " . basefolder() . "/course/" . $course_id . "/detailModule/" . $module_id);
+        exit;
+    }
+
+    $sql = "INSERT INTO progress (user_id, module_id, status)
+            VALUES (?, ?, 'in_progress')
+            ON DUPLICATE KEY UPDATE updated_at = NOW()";
+    runQuery($sql, [$userLogin->user_id, $nextModule['data']->module_id], 'ii');
+
+    
+    header("Location: " . basefolder() . "/course/" . $course_id . "/detailModule/" . $module_id);
     exit;
 }
 

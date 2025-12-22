@@ -207,6 +207,7 @@ $signatureBase64 = $_POST['signature_b64'] ?? '';
      
   $_SESSION['certificate_data'] = [
     'course_title' => $CourseTitle,
+    'total_learning_time' => $_POST['total_learning_time']??'N/A',
     'user_name' => $userLogin->name,
     'date' => date('d-m-Y'),
     'signature' => $signatureBase64
