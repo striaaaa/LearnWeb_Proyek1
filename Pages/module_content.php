@@ -2,7 +2,7 @@
 // require_once __DIR__ . '../../helpers/url.php';
 require_once __DIR__ . '/../controller/manajemenContentController.php';
 require_once __DIR__ . '/../components/alert.php';
-renderFlashAlert();  
+renderFlashAlert();
 global $params;
 $module_id = $params['moduleId'] ?? null;
 $course_id = $params['courseId'] ?? null;
@@ -271,6 +271,21 @@ renderFlashAlert();
                                                 </a>
                                             </div>
 
+                                       <?php elseif ($type === 'image'): ?>
+    <?php 
+        $file = $data['file'] ?? [];
+        $url = $file['url'] ?? '';
+        $caption = $data['caption'] ?? '';
+        $border = !empty($data['withBorder']) ? 'border' : '';
+        $background = !empty($data['withBackground']) ? 'bg' : '';
+        $stretched = !empty($data['stretched']) ? 'stretched' : '';
+    ?>
+    <div class="article-image <?= $border ?> <?= $background ?> <?= $stretched ?>">
+        <img src="<?= htmlspecialchars($url) ?>" alt="<?= htmlspecialchars($caption) ?>" style="max-width:100%; height:auto;">
+        <?php if ($caption): ?>
+            <div class="image-caption"><?= htmlspecialchars($caption) ?></div>
+        <?php endif; ?>
+    </div> 
                                         <?php elseif ($type === 'code'): ?>
                                             <div class="code-wrapper">
                                                 <button class="copy-btn">Copy</button>
@@ -362,64 +377,64 @@ renderFlashAlert();
                     //     tocItems.push(item);
                     // });
 
-                    
+
                     // Submit hanya sekali
-let hasSubmitted = false;
+                    let hasSubmitted = false;
 
-function updateIndicator() {
-    let index = -1;
+                    function updateIndicator() {
+                        let index = -1;
 
-    markers.forEach((h, i) => {
-        const rect = h.getBoundingClientRect();
-        if (rect.top <= 150) index = i;
-    });
+                        markers.forEach((h, i) => {
+                            const rect = h.getBoundingClientRect();
+                            if (rect.top <= 150) index = i;
+                        });
 
-    if (index >= 0) {
-        tocItems.forEach((t) => t.classList.remove("active"));
-        tocItems[index].classList.add("active");
+                        if (index >= 0) {
+                            tocItems.forEach((t) => t.classList.remove("active"));
+                            tocItems[index].classList.add("active");
 
-        const active = tocItems[index];
-        const offsetTop = active.offsetTop;
-        const height = active.offsetHeight;
+                            const active = tocItems[index];
+                            const offsetTop = active.offsetTop;
+                            const height = active.offsetHeight;
 
-        indicator.style.top = offsetTop + "px";
-        indicator.style.height = height + "px";
-    }
+                            indicator.style.top = offsetTop + "px";
+                            indicator.style.height = height + "px";
+                        }
 
-    const last = markers[markers.length - 1].getBoundingClientRect();
+                        const last = markers[markers.length - 1].getBoundingClientRect();
 
-    // Scroll sudah sampai akhir
-    if (last.top <= 300 && !hasSubmitted) {
-        hasSubmitted = true;
+                        // Scroll sudah sampai akhir
+                        if (last.top <= 300 && !hasSubmitted) {
+                            hasSubmitted = true;
 
-        // Tampilkan congrats
-        document.getElementById("congrats").style.display = "block";
+                            // Tampilkan congrats
+                            document.getElementById("congrats").style.display = "block";
 
-        const form = document.getElementById("onScrollCompletedModuleForm");
-         <?php setFlashAlert('info', 'Kamu sudah berada dipaling bawah.');?>
-        console.log('form.action =', form.action);
-        const formData = new FormData(form); // FormData langsung
+                            const form = document.getElementById("onScrollCompletedModuleForm");
+                            <?php setFlashAlert('info', 'Kamu sudah berada dipaling bawah.'); ?>
+                            console.log('form.action =', form.action);
+                            const formData = new FormData(form); // FormData langsung
 
-        // Pastikan URL string di fetch
-        fetch(form.action, {
-            method: form.method,
-            body: formData
-        })
-        .then(res => res.text())
-        .then(result => {
-            console.log('Server response:', result); // Lihat response PHP di console
-        })
-        .catch(err => console.error('Error submitting form:', err));
-    }
-}
+                            // Pastikan URL string di fetch
+                            fetch(form.action, {
+                                    method: form.method,
+                                    body: formData
+                                })
+                                .then(res => res.text())
+                                .then(result => {
+                                    console.log('Server response:', result); // Lihat response PHP di console
+                                })
+                                .catch(err => console.error('Error submitting form:', err));
+                        }
+                    }
 
-// Pasang listener scroll
-window.addEventListener('scroll', updateIndicator);
+                    // Pasang listener scroll
+                    window.addEventListener('scroll', updateIndicator);
 
-// Jalankan sekali untuk cek posisi awal
-updateIndicator();
+                    // Jalankan sekali untuk cek posisi awal
+                    updateIndicator();
 
- 
+
                     // document.addEventListener("scroll", updateIndicator);
 
                     let hasFired = false;

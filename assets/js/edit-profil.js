@@ -2,7 +2,7 @@
 console.log('tes');
 
 const navLinks = document.querySelectorAll(".nav-linkk");
-const sections = document.querySelectorAll(".card");
+const sections = document.querySelectorAll(".card-section");
 
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {

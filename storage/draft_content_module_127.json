@@ -1,0 +1,244 @@
+{
+    "time": 1766448408582,
+    "blocks": [
+        {
+            "id": "E-5MdMCOQV",
+            "type": "header",
+            "data": {
+                "text": "Struktur Kontrol (Control Structures)",
+                "level": 2
+            }
+        },
+        {
+            "id": "AimeudDgIL",
+            "type": "paragraph",
+            "data": {
+                "text": "Struktur kontrol digunakan untuk mengatur alur program berdasarkan kondisi tertentu atau perulangan. Dengan memahami struktur kontrol, pengguna dapat membuat program yang fleksibel dan responsif terhadap input atau situasi yang berbeda."
+            }
+        },
+        {
+            "id": "2qQU5KVgdS",
+            "type": "chunkDivider",
+            "data": {
+                "type": "chunk"
+            }
+        },
+        {
+            "id": "9yBdmAEAiH",
+            "type": "header",
+            "data": {
+                "text": "Percabangan (If, Else, Elseif)",
+                "level": 2
+            }
+        },
+        {
+            "id": "8fYbd-iSgZ",
+            "type": "paragraph",
+            "data": {
+                "text": "Percabangan digunakan untuk mengeksekusi kode tertentu berdasarkan kondisi. Misalnya, menilai nilai ujian siswa:"
+            }
+        },
+        {
+            "id": "m0AvaHQsfc",
+            "type": "code",
+            "data": {
+                "code": "<?php\n$nilai = 80;\n\nif ($nilai >= 85) {\n    echo \"Nilai Anda A\";\n} elseif ($nilai >= 70) {\n    echo \"Nilai Anda B\";\n} else {\n    echo \"Nilai Anda C\";\n}\n?>\n"
+            }
+        },
+        {
+            "id": "XPDgSquxNh",
+            "type": "paragraph",
+            "data": {
+                "text": "Penjelasan:"
+            }
+        },
+        {
+            "id": "Zu_IrjH8ny",
+            "type": "list",
+            "data": {
+                "style": "unordered",
+                "meta": [],
+                "items": [
+                    {
+                        "content": "if mengecek kondisi pertama.",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "elseif mengecek kondisi tambahan jika if tidak terpenuhi.",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "else mengeksekusi kode jika semua kondisi sebelumnya gagal.",
+                        "meta": [],
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "id": "Eig_VdhfrX",
+            "type": "paragraph",
+            "data": {
+                "text": "Hasil:"
+            }
+        },
+        {
+            "id": "JTp-fPfLqK",
+            "type": "paragraph",
+            "data": {
+                "text": "Nilai Anda B"
+            }
+        },
+        {
+            "id": "8UMEWZLCST",
+            "type": "chunkDivider",
+            "data": {
+                "type": "chunk"
+            }
+        },
+        {
+            "id": "v2HW5VbLjD",
+            "type": "header",
+            "data": {
+                "text": "Switch Case",
+                "level": 2
+            }
+        },
+        {
+            "id": "iu3yp5cLN7",
+            "type": "paragraph",
+            "data": {
+                "text": "Digunakan sebagai alternatif percabangan jika ada banyak kondisi. Contohnya, menampilkan aktivitas berdasarkan hari:"
+            }
+        },
+        {
+            "id": "XuBiKVFUwN",
+            "type": "code",
+            "data": {
+                "code": "<?php\n$hari = \"Senin\";\n\nswitch ($hari) {\n    case \"Senin\":\n        echo \"Hari ini masuk sekolah\";\n        break;\n    case \"Sabtu\":\n        echo \"Hari ini libur\";\n        break;\n    default:\n        echo \"Hari biasa\";\n}\n?>\n"
+            }
+        },
+        {
+            "id": "uBD90tmZ_1",
+            "type": "paragraph",
+            "data": {
+                "text": "Penjelasan:"
+            }
+        },
+        {
+            "id": "bk5p2hJiG5",
+            "type": "list",
+            "data": {
+                "style": "unordered",
+                "meta": [],
+                "items": [
+                    {
+                        "content": "switch mengecek nilai variabel.",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "case menentukan kondisi yang cocok.",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "default dijalankan jika tidak ada kondisi yang sesuai.",
+                        "meta": [],
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "id": "htF6RQMw_N",
+            "type": "paragraph",
+            "data": {
+                "text": "Hasil:"
+            }
+        },
+        {
+            "id": "TzkRen6p8B",
+            "type": "paragraph",
+            "data": {
+                "text": "Hari ini masuk sekolah"
+            }
+        },
+        {
+            "id": "Kn8hrixB6b",
+            "type": "chunkDivider",
+            "data": {
+                "type": "chunk"
+            }
+        },
+        {
+            "id": "tSGLPi8NuK",
+            "type": "header",
+            "data": {
+                "text": "Perlulangan",
+                "level": 2
+            }
+        },
+        {
+            "id": "Qiv2QQUXxo",
+            "type": "paragraph",
+            "data": {
+                "text": "Perulangan memungkinkan program mengulang eksekusi kode tanpa menulis ulang kode yang sama."
+            }
+        },
+        {
+            "id": "XEaQWKket9",
+            "type": "header",
+            "data": {
+                "text": "For Loop",
+                "level": 3
+            }
+        },
+        {
+            "id": "wYsOhcRQUM",
+            "type": "code",
+            "data": {
+                "code": "<?php\nfor ($i = 1; $i <= 5; $i++) {\n    echo \"Nomor: $i <br>\";\n}\n?>\n"
+            }
+        },
+        {
+            "id": "_2zBwFQeXb",
+            "type": "header",
+            "data": {
+                "text": "While Loop",
+                "level": 3
+            }
+        },
+        {
+            "id": "Vt-tY-Hf9O",
+            "type": "code",
+            "data": {
+                "code": "<?php\n$i = 1;\nwhile ($i <= 5) {\n    echo \"Nomor: $i <br>\";\n    $i++;\n}\n?>\n"
+            }
+        },
+        {
+            "id": "0gVV7wYUDs",
+            "type": "paragraph",
+            "data": {
+                "text": "for digunakan jika jumlah iterasi sudah diketahui. Sedangkan&nbsp;while digunakan jika iterasi tergantung kondisi tertentu."
+            }
+        },
+        {
+            "id": "CPj8aCfvVu",
+            "type": "paragraph",
+            "data": {
+                "text": "Hasil:"
+            }
+        },
+        {
+            "id": "4K2-noFbUg",
+            "type": "code",
+            "data": {
+                "code": "Nomor: 1\nNomor: 2\nNomor: 3\nNomor: 4\nNomor: 5\n"
+            }
+        }
+    ],
+    "version": "2.31.0"
+}

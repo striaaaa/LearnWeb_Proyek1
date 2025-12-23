@@ -103,7 +103,7 @@ renderFlashAlert();
                         <p class="role-admin-teks ">Admin</p>
                     </div>
                     <div class="img-acc-nav">
-                        <img src="<?= $userLogin->image ? basefolder() . '/uploads/user/profil/' . $userLogin->image : 'https://image.idntimes.com/post/20230220/888355494-47236b76652f2e55025900cd98ccd09e-0759d9cc026a3c781b24c228b3d42224.jpg' ?>"
+                        <img src="<?= $userLogin->image ? basefolder() . '/uploads/user/profil/' . $userLogin->image : 'https://img.freepik.com/premium-vector/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-vector-illustration_561158-3407.jpg' ?>"
                             alt="user" class="w-full h-full object-cover" />
                     </div>
                 </div>

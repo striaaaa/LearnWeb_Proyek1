@@ -21,7 +21,7 @@ ob_start();
     <div class="col-span-12 lg:col-span-9 md:col-span-9">
         <!-- Data Pribadi -->
         <form action="<?= basefolder() ?>/controller/dashboardController.php?action=editProfil" method="post" enctype="multipart/form-data">
-            <div id="data-pribadi" class="card">
+            <div id="data-pribadi" class="card-section card">
                 <h3 class="section-title">Data Pribadi</h3>
                 <div class="pilih-foto">    
                     <div class="left">
@@ -63,7 +63,7 @@ ob_start();
         </form>
 
         <!-- Akun -->
-        <div id="akun" class="card hidden">
+        <div id="akun" class="card-section card hidden">
             <h3 class="section-title">Akun</h3>
      <form action="<?= basefolder() ?>/controller/dashboardController.php?action=changePassword" method="post">
             <label class="top">Email</label>

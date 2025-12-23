@@ -417,3 +417,60 @@ body {
   .pagination button:hover:not(.active) {
     background: #f3f4f6;
   }
+/* Style input modal */
+.default-modal {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.default-modal label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.default-modal input,
+.default-modal textarea {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.default-modal input:focus,
+.default-modal textarea:focus {
+  outline: none;
+  border-color: #4f46e5; /* warna focus */
+}
+
+/* Tombol modal */
+.modal-btns {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-close {
+  background: #f3f3f3;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-confirm-edit {
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-confirm-edit:hover {
+  background: #0b9164;
+}

@@ -161,7 +161,7 @@ $finalDataDraft = getFinalModule($idModule);
 
         <div style="position: sticky;bottom:0;" class="flex justify-end">
           <input type="hidden" name="module_id" value="<?= $idModule ?>">
-          <button class="" id="save-button" name='action' value='addOrUpdateModuleContent'>Simpan</button>
+          <button class="btn-aksi-default" id="save-button" name='action' value='addOrUpdateModuleContent' >Simpan</button>
         </div>
       </form>
     </div>

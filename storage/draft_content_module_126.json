@@ -1,0 +1,228 @@
+{
+    "time": 1766447825451,
+    "blocks": [
+        {
+            "id": "NUOo9NETnR",
+            "type": "header",
+            "data": {
+                "text": "Apa itu PHP?",
+                "level": 2
+            }
+        },
+        {
+            "id": "dgz3foQUHH",
+            "type": "paragraph",
+            "data": {
+                "text": "PHP adalah bahasa pemrograman server-side yang digunakan untuk membuat website dinamis. PHP bekerja dengan mengolah data di server sebelum menampilkan hasil ke browser. Dengan PHP, Anda bisa membuat website interaktif, memproses form, menyimpan data, dan menampilkan konten secara dinamis."
+            }
+        },
+        {
+            "id": "CSLXgNDUY-",
+            "type": "paragraph",
+            "data": {
+                "text": "Highlight:"
+            }
+        },
+        {
+            "id": "vSHoIeVAju",
+            "type": "list",
+            "data": {
+                "style": "unordered",
+                "meta": [],
+                "items": [
+                    {
+                        "content": "Server-side scripting",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "Terintegrasi dengan HTML",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "mendukung database",
+                        "meta": [],
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "id": "Qr3Psq8ICV",
+            "type": "chunkDivider",
+            "data": {
+                "type": "chunk"
+            }
+        },
+        {
+            "id": "3FCF04GH5C",
+            "type": "header",
+            "data": {
+                "text": "Persiapan Lingkungan Kerja",
+                "level": 2
+            }
+        },
+        {
+            "id": "n1JR9I-auy",
+            "type": "paragraph",
+            "data": {
+                "text": "Sebelum mulai coding PHP, Anda perlu menyiapkan server lokal. Beberapa pilihan:"
+            }
+        },
+        {
+            "id": "rI_OW7WqHs",
+            "type": "list",
+            "data": {
+                "style": "unordered",
+                "meta": [],
+                "items": [
+                    {
+                        "content": "XAMPP (Windows, Linux, macOS)",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "MAMP (macOS, Windows)",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "Laragon (Windows)",
+                        "meta": [],
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "id": "3BopHUzc20",
+            "type": "paragraph",
+            "data": {
+                "text": "Langkah-langkah:"
+            }
+        },
+        {
+            "id": "lZXaVYdnHU",
+            "type": "list",
+            "data": {
+                "style": "ordered",
+                "meta": {
+                    "counterType": "numeric"
+                },
+                "items": [
+                    {
+                        "content": "Download dan install XAMPP \/ MAMP \/ Laragon.",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "Jalankan Apache dan MySQL.",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "Buat folder project di htdocs (XAMPP) atau www (Laragon\/MAMP).",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "Buka browser, ketik localhost\/nama-folder untuk mengakses project",
+                        "meta": [],
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "id": "J_lXc9Y31Y",
+            "type": "chunkDivider",
+            "data": {
+                "type": "chunk"
+            }
+        },
+        {
+            "id": "MeTykIrZSS",
+            "type": "header",
+            "data": {
+                "text": "Struktur File PHP Dasar",
+                "level": 2
+            }
+        },
+        {
+            "id": "ER_ov5xEPP",
+            "type": "paragraph",
+            "data": {
+                "text": "PHP biasanya ditempatkan dalam file dengan ekstensi .php. Struktur sederhana"
+            }
+        },
+        {
+            "id": "QFoxLUqIMb",
+            "type": "image",
+            "data": {
+                "caption": "Contoh gambar",
+                "withBorder": false,
+                "withBackground": false,
+                "stretched": false,
+                "file": {
+                    "url": "\/learnweb\/uploads\/admin\/moduleContent\/img_6949d8bdc13021.00567068.png"
+                }
+            }
+        },
+        {
+            "id": "FqC4OIlxaH",
+            "type": "paragraph",
+            "data": {
+                "text": "Penjelasan:"
+            }
+        },
+        {
+            "id": "IhmODGRaNA",
+            "type": "list",
+            "data": {
+                "style": "unordered",
+                "meta": [],
+                "items": [
+                    {
+                        "content": "index.php \u2192 Halaman utama website",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "about.php \u2192 Contoh halaman tambahan",
+                        "meta": [],
+                        "items": []
+                    },
+                    {
+                        "content": "includes\/ \u2192 Folder untuk menyimpan file reusable seperti header\/footer",
+                        "meta": [],
+                        "items": []
+                    }
+                ]
+            }
+        },
+        {
+            "id": "j-wKKbS4GM",
+            "type": "chunkDivider",
+            "data": {
+                "type": "chunk"
+            }
+        },
+        {
+            "id": "INvb-DTNoW",
+            "type": "header",
+            "data": {
+                "text": "Sintaks Dasar PHP",
+                "level": 2
+            }
+        },
+        {
+            "id": "mWH3yxbqpS",
+            "type": "code",
+            "data": {
+                "code": "<?php\n\/\/ Menampilkan teks\necho \"Hello World\";\n\n\/\/ Variabel dan tipe data\n$nama = \"Ali\";\n$umur = 20;\n$nilai = 95.5;\n$aktif = true;\n\n\/\/ Komentar\n\/\/ Ini komentar satu baris\n\/* Ini komentar\n   beberapa baris *\/\n?>\n"
+            }
+        }
+    ],
+    "version": "2.31.0"
+}

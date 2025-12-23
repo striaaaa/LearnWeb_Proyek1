@@ -39,6 +39,8 @@ function generateCourseCover(
     }
 
     $post['modulesData'] = json_decode($post['modulesData'] ?? '[]', true);
+    // var_dump($post['modulesData']);
+    // die;
 
     /* ================= ICON ================= */
     $tmp  = $file['tmp_name'];
@@ -157,19 +159,23 @@ function generateCourseCover(
 
     // list module
     $yText = $cardY + 70;
-    foreach (($post['modulesData'] ?? []) as $item) {
-        imagettftext(
-            $img,
-            12,
-            0,
-            $cardX + 24,
-            $yText,
-            $white,
-            $fontReg,
-            "• $item"
-        );
-        $yText += 18;
-    }
+ $modules = array_slice($post['modulesData'] ?? [], 0, 3);
+
+foreach ($modules as $item) { 
+    $title = $item['title'] ?? '';
+    
+    imagettftext(
+        $img,
+        12,
+        0,
+        $cardX + 24,
+        $yText,
+        $white,
+        $fontReg,
+        "• $title"
+    );
+    $yText += 18;
+}
 
     /* ================= ICON KANAN ================= */
     imagecopyresampled(

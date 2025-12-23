@@ -11,7 +11,7 @@ ob_start();
 <style>
 </style>
 
-<div class="table-controls"><!-- HTML: gantikan input lama dengan ini -->
+<div class="table-controls">
   <div class="search-wrapper" role="search" aria-label="Cari pengguna">
     <!-- SVG search icon -->
     <svg class="search-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
@@ -56,8 +56,8 @@ ob_start();
         <option value="0">Tidak aktif</option>
       </select>
       <div class="modal-btns">
-        <button id="simpanUserActive" type="submit">Simpan</button>
-        <button id="tutupUserActive">Batal</button>
+        <button id="simpanUserActive" type="submit" class="btn-aksi-default">Simpan</button>
+        <button id="tutupUserActive" class="btn-close">Batal</button>
       </div>
     </form>
   </div>

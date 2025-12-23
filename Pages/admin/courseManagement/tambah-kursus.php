@@ -55,17 +55,26 @@ ob_start();
     <div id="moduleModal" class="modal hidden">
       <div class="modal-content">
         <h3>Tambah</h3>
-        <label>Judul Modul</label>
-        <input type="text" id="moduleTitle" placeholder="Masukkan judul modul" />
-        <label>Waktu estimasi</label>
-        <input type="number" id="moduleLearningTime" placeholder="estimasi waktu modul" />
+
+        <div class="form-group default-modal">
+          <label for="moduleTitle">Judul Modul</label>
+          <input type="text" id="moduleTitle" placeholder="Masukkan judul modul" />
+        </div>
+
+        <div class="form-group default-modal">
+          <label for="moduleLearningTime">Waktu Estimasi</label>
+          <input type="number" id="moduleLearningTime" placeholder="Estimasi waktu modul" />
+        </div>
+
         <input type="hidden" id="moduleIndex" />
+
         <div class="modal-btns">
           <button id="simpanModule" type="button" class="btn-confirm-edit">Simpan</button>
           <button id="tutupModal" type="button" class="btn-close">Batal</button>
         </div>
       </div>
     </div>
+
     <input type="hidden" name="modulesData" id="modulesData" />
   </form>
   <!-- <button onclick="  modulesDataInput.value = JSON.stringify(modules); console.log(modulesDataInput.value);">

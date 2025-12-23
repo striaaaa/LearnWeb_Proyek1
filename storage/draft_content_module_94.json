@@ -1,0 +1,143 @@
+{
+    "time": 1766448995788,
+    "blocks": [
+        {
+            "id": "3N9eaXl8qU",
+            "type": "header",
+            "data": {
+                "text": "Cara Menulis JavaScript",
+                "level": 2
+            }
+        },
+        {
+            "id": "LYkpfmUKtt",
+            "type": "header",
+            "data": {
+                "text": "Menulis JavaScript di HTML (Inline Script)",
+                "level": 3
+            }
+        },
+        {
+            "id": "ED0vlrCZxb",
+            "type": "paragraph",
+            "data": {
+                "text": "JavaScript dapat ditulis langsung di dalam tag &lt;script&gt; pada halaman HTML."
+            }
+        },
+        {
+            "id": "-4NPM4b5Oi",
+            "type": "code",
+            "data": {
+                "code": "<!DOCTYPE html>\n<html>\n<head>\n    <title>Belajar JavaScript<\/title>\n<\/head>\n<body>\n    <h1>Belajar JavaScript<\/h1>\n    <script>\n        alert(\"Halo, selamat belajar JavaScript!\");\n    <\/script>\n<\/body>\n<\/html>\n"
+            }
+        },
+        {
+            "id": "2Tz5Kv9R5n",
+            "type": "paragraph",
+            "data": {
+                "text": "Script ditulis di dalam &lt;script&gt; \u2026 &lt;\/script&gt;."
+            }
+        },
+        {
+            "id": "TsCkJ_DXUw",
+            "type": "chunkDivider",
+            "data": {
+                "type": "chunk"
+            }
+        },
+        {
+            "id": "CL3InVvR7o",
+            "type": "header",
+            "data": {
+                "text": "Menulis JavaScript di Head atau Body",
+                "level": 3
+            }
+        },
+        {
+            "id": "S1bc1qchgv",
+            "type": "paragraph",
+            "data": {
+                "text": "JavaScript bisa ditempatkan di bagian &lt;head&gt; atau di akhir &lt;body&gt;. Menaruh di akhir &lt;body&gt; membuat halaman HTML selesai dimuat terlebih dahulu sebelum JavaScript dijalankan."
+            }
+        },
+        {
+            "id": "wCGhhyMP7u",
+            "type": "code",
+            "data": {
+                "code": "<!DOCTYPE html>\n<html>\n<head>\n    <title>Belajar JavaScript<\/title>\n<\/head>\n<body>\n    <h1>Belajar JavaScript<\/h1>\n    <p id=\"demo\"><\/p>\n    <script>\n        document.getElementById(\"demo\").innerHTML = \"Ini contoh JavaScript di akhir body\";\n    <\/script>\n<\/body>\n<\/html>\n"
+            }
+        },
+        {
+            "id": "3IfthF977Y",
+            "type": "chunkDivider",
+            "data": {
+                "type": "chunk"
+            }
+        },
+        {
+            "id": "_PoX8Okx-i",
+            "type": "header",
+            "data": {
+                "text": "Menggunakan File JavaScript Eksternal",
+                "level": 3
+            }
+        },
+        {
+            "id": "n2F6xpTR7b",
+            "type": "paragraph",
+            "data": {
+                "text": "JavaScript juga bisa dipisahkan ke file .js agar lebih rapi dan mudah dikelola."
+            }
+        },
+        {
+            "id": "j_D9H-paHV",
+            "type": "paragraph",
+            "data": {
+                "text": "Contoh Struktur File:"
+            }
+        },
+        {
+            "id": "WTY-C1ZIPQ",
+            "type": "code",
+            "data": {
+                "code": "index.html\nscript.js\n"
+            }
+        },
+        {
+            "id": "gvCJmJ39hd",
+            "type": "paragraph",
+            "data": {
+                "text": "index.html"
+            }
+        },
+        {
+            "id": "nXH7uU_90Y",
+            "type": "code",
+            "data": {
+                "code": "<!DOCTYPE html>\n<html>\n<head>\n    <title>Belajar JavaScript<\/title>\n    <script src=\"script.js\"><\/script>\n<\/head>\n<body>\n    <h1>Belajar JavaScript Eksternal<\/h1>\n<\/body>\n<\/html>\n"
+            }
+        },
+        {
+            "id": "DW1t7FZHwn",
+            "type": "paragraph",
+            "data": {
+                "text": "scriipt.js"
+            }
+        },
+        {
+            "id": "AlGRJ4_vFw",
+            "type": "code",
+            "data": {
+                "code": "alert(\"Halo dari file eksternal!\");\n"
+            }
+        },
+        {
+            "id": "wVGgdIPXGv",
+            "type": "paragraph",
+            "data": {
+                "text": "File .js dipanggil menggunakan atribut src pada tag &lt;script&gt; Untuk Memisahkan kode membuat HTML lebih bersih dan mudah di-maintain."
+            }
+        }
+    ],
+    "version": "2.31.0"
+}

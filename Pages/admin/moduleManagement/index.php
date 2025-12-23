@@ -82,6 +82,23 @@ ob_start();
 </style>
 
 <div>
+  <div class="table-controls" style="margin-bottom:15px;">
+  <div class="search-wrapper" role="search" aria-label="Cari kursus">
+    <svg class="search-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+      <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      <circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+    <input type="text" id="searchCourse" class="search-input" placeholder="Cari kursus...">
+  </div>
+
+  <select id="limitSelect" class="limit-select">
+    <option value="5">5</option>
+    <option value="10" selected>10</option>
+    <option value="25">25</option>
+    <option value="50">50</option>
+  </select>
+</div>
+
   <div class="row-card-table-header">
     <div class="grid grid-cols-12">
       <div class="col-span-1">
@@ -134,7 +151,7 @@ ob_start();
           <input type="hidden" name="action" value="updateModuleOrder">
           <input type="hidden" name="orders_no" id="orders_no_all">
           <input type="hidden" name="course_id" value="<?= htmlspecialchars($course->course_id) ?>">
-          <button class="save-order" type="submit" onclick="saveOrder(event,this, <?= htmlspecialchars($course->course_id) ?>)">Simpan Perubahan Urutan</button>
+          <button class="btn-confirm-edit" type="submit" onclick="saveOrder(event,this, <?= htmlspecialchars($course->course_id) ?>)">Simpan Perubahan Urutan</button>
         </form>
         <div class="module-list" id="module-list-<?= htmlspecialchars($course->course_id) ?>">
           <?php if (empty((array)$course->modules)): ?>
@@ -188,13 +205,17 @@ ob_start();
     <div class="modal-content">
       <h3>Edit Modul</h3>
 
-      <label>Judul Modul</label>
-      <input type="hidden" name="action" value="updateModuleTitle">
-      <input type="hidden" name="module_id" id="moduleIdInput">
-      <input type="text" id="moduleTitle" name="title" placeholder="Masukkan judul modul" />
+      <div class="form-group default-modal">
+        <label for="moduleTitle">Judul Modul</label>
+        <input type="hidden" name="action" value="updateModuleTitle">
+        <input type="hidden" name="module_id" id="moduleIdInput">
+        <input type="text" id="moduleTitle" name="title" placeholder="Masukkan judul modul" />
+      </div>
 
-      <label>Learning Time (menit)</label>
-      <input type="number" id="learningTime" name="learning_time" placeholder="cth: 15">
+      <div class="form-group default-modal">
+        <label for="learningTime">Learning Time (menit)</label>
+        <input type="number" id="learningTime" name="learning_time" placeholder="cth: 15" />
+      </div>
 
       <div class="modal-btns">
         <button id="simpanModule" data-action="simpan" type="submit" class="btn-confirm-edit">Simpan</button>
@@ -208,16 +229,20 @@ ob_start();
     <div class="modal-content">
       <h3>Tambah Modul</h3>
 
-      <label>Judul Modul</label>
-      <input type="hidden" name="action" value="addModuleTitle">
-      <input type="hidden" name="course_id" id="courseIdInputAdd">
-      <input type="text" id="moduleTitleAdd" name="title" placeholder="Masukkan judul modul" />
+      <div class="form-group default-modal">
+        <label for="moduleTitleAdd">Judul Modul</label>
+        <input type="hidden" name="action" value="addModuleTitle">
+        <input type="hidden" name="course_id" id="courseIdInputAdd">
+        <input type="text" id="moduleTitleAdd" name="title" placeholder="Masukkan judul modul" />
+      </div>
 
-      <label>Learning Time (menit)</label>
-      <input type="number" id="learningTimeAdd" name="learning_time" placeholder="cth: 10">
+      <div class="form-group default-modal">
+        <label for="learningTimeAdd">Learning Time (menit)</label>
+        <input type="number" id="learningTimeAdd" name="learning_time" placeholder="cth: 10" />
+      </div>
 
       <div class="modal-btns">
-        <button id="simpanModule" data-action="tambah" type="submit" class="btn-aksi-default">Tambah</button>
+        <button id="simpanModule" data-action="tambah" type="submit" class="btn-aksi-default ">Tambah</button>
         <button id="tutupModal" data-action="batal" type="button" class="btn-close">Batal</button>
       </div>
     </div>
@@ -229,6 +254,7 @@ ob_start();
   <form action="<?= basefolder() ?>/controller/moduleManajemenController.php" method="post">
     <div class="modal-content">
       <h3>Hapus Modul</h3>
+        <p>Apakah kamu yakin ingin menghapus kursus ini?</p>
       <input type="hidden" name="action" value="deleteModule">
       <input type="hidden" name="module_id" id="moduleIdInputDelete">
       <input type="hidden" name="course_id" id="courseIdInputDelete">
@@ -367,6 +393,87 @@ ob_start();
     moduleIdInputDelete.value = moduleId;
     courseIdInputDelete.value = courseId;
   }
+  // Search + Pagination
+const rows = Array.from(document.querySelectorAll('.row-card-table-course'));
+const paginationContainer = document.getElementById('pagination');
+const limitSelect = document.getElementById('limitSelect');
+const searchInput = document.getElementById('searchCourse');
+
+let currentPage = 1;
+let limit = parseInt(limitSelect.value);
+
+function renderPagination(filteredRows) {
+  paginationContainer.innerHTML = '';
+  const totalPages = Math.ceil(filteredRows.length / limit);
+  if (totalPages <= 1) return;
+
+  const prevBtn = document.createElement('button');
+  prevBtn.textContent = '‹';
+  prevBtn.disabled = currentPage === 1;
+  prevBtn.onclick = () => { if (currentPage > 1) { currentPage--; updateDisplay(filteredRows); } };
+  paginationContainer.appendChild(prevBtn);
+
+  for (let i = 1; i <= totalPages; i++) {
+    const btn = document.createElement('button');
+    btn.textContent = i;
+    if (i === currentPage) btn.classList.add('active');
+    btn.onclick = () => { currentPage = i; updateDisplay(filteredRows); };
+    paginationContainer.appendChild(btn);
+  }
+
+  const nextBtn = document.createElement('button');
+  nextBtn.textContent = '›';
+  nextBtn.disabled = currentPage === totalPages;
+  nextBtn.onclick = () => { if (currentPage < totalPages) { currentPage++; updateDisplay(filteredRows); } };
+  paginationContainer.appendChild(nextBtn);
+}
+
+function updateDisplay(filteredRows) {
+  rows.forEach(r => r.style.display = 'none');
+  const start = (currentPage - 1) * limit;
+  const end = start + limit;
+  filteredRows.slice(start, end).forEach(r => r.style.display = '');
+
+  if (filteredRows.length === 0) {
+    if (!document.getElementById('noResults')) {
+      const msg = document.createElement('div');
+      msg.id = 'noResults';
+      msg.textContent = 'Tidak ada kursus yang sesuai.';
+      document.getElementById('courseList').appendChild(msg);
+    }
+  } else {
+    const noRes = document.getElementById('noResults');
+    if (noRes) noRes.remove();
+  }
+
+  renderPagination(filteredRows);
+}
+
+function applyFilterAndPaginate() {
+  const term = searchInput.value.toLowerCase();
+  const filteredRows = rows.filter(r => {
+    const title = r.querySelector('.col-span-3 p')?.innerText.toLowerCase() ?? '';
+    const desc = r.querySelector('.col-span-4 p')?.innerText.toLowerCase() ?? '';
+    return title.includes(term) || desc.includes(term);
+  });
+  currentPage = 1;
+  updateDisplay(filteredRows);
+}
+ 
+limitSelect.addEventListener('change', e => {
+  limit = parseInt(e.target.value);
+  currentPage = 1;
+  applyFilterAndPaginate();
+});
+
+let debounceTimeout;
+searchInput.addEventListener('input', () => {
+  clearTimeout(debounceTimeout);
+  debounceTimeout = setTimeout(applyFilterAndPaginate, 300);
+});
+ 
+applyFilterAndPaginate();
+
 </script>
 
 <?php

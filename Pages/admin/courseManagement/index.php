@@ -39,7 +39,7 @@ ob_start();
 
   <?php foreach ($getCourses['data'] as $index => $course): ?>
     <div class="row-card-table-course">
-      <div class="grid grid-cols-12 items-center row-card-table-course-header">
+      <div class="grid grid-cols-12  items-center row-card-table-course-header">
         <!-- <div class="col-span-1 flex justify-start items-center">
           
           &nbsp;
@@ -47,7 +47,7 @@ ob_start();
           <span class="ml-2">.</span>
         </div> -->
         <div class="col-span-2 flex gap-4">
-          <p><?= $index ?>.</p>
+          <p><?= $index +1?>.</p>
           <p>
             <?= htmlspecialchars($course->title) ?>
           </p>
@@ -83,22 +83,18 @@ ob_start();
     <form id="formEdit" action="<?= basefolder() ?>/controller/courseManajemenController.php?action=updateCourse" method="POST" enctype="multipart/form-data">
       <input type="hidden" name="course_id" id="editId">
       <input type="hidden" name="oldImage" id="editOldImage">
-
-      <div class="form-group">
+      <div class="form-group default-modal">
         <label for="editTitle">Judul Kursus</label>
         <input type="text" id="editTitle" name="title" required>
       </div>
-
-      <div class="form-group">
+      <div class="form-group default-modal">
         <label for="editDescription">Deskripsi</label>
         <textarea id="editDescription" name="description" rows="3" required></textarea>
       </div>
-
-      <div class="form-group">
+      <div class="form-group default-modal">
         <label for="editImage">Gambar (opsional)</label>
         <input type="file" id="editImage" name="courseImage">
       </div>
-
       <div class="modal-btns">
         <button type="button" id="tutupEdit" class="btn-close">Tutup</button>
         <button type="submit" class="btn-confirm-edit">Simpan Perubahan</button>
@@ -106,6 +102,7 @@ ob_start();
     </form>
   </div>
 </div>
+
 
 <div id="modalDelete" class="modal hidden">
   <div class="modal-content">

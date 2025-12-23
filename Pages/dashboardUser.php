@@ -172,7 +172,7 @@ ob_start();
     </div>
     <button class="btn_edit " data-link="<?= basefolder() ?>/dashboard/edit-profile">
     
-    Edit Profile
+    Edit Profil
     </button>
   </div>
 </div>
