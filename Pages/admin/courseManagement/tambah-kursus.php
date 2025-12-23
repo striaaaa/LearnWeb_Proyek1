@@ -1,5 +1,5 @@
 <?php
-
+require_once __DIR__ . '/../../../middleware/adminCheckMiddleware.php';
 $page_css = '<link rel="stylesheet" href="' . basefolder() . '/assets/css/admin/manajemen-penggguna.css" />';
 $page_css2 = '<link rel="stylesheet" href="' . basefolder() . '/assets/css/admin/global-admin.css" />';
 ob_start();

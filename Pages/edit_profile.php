@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../controller/dashboardController.php';
+require_once __DIR__ . '/../middleware/guestMiddleware.php';
 $page_css  = '<link rel="stylesheet" href="' . basefolder() . '/assets/css/edit-profil.css">';
 renderFlashAlert(); 
 ob_start();

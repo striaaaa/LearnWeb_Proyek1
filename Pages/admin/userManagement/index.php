@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../../../controller/userController.php';
+require_once __DIR__ . '/../../../middleware/adminCheckMiddleware.php';
 $page_css = '
 <link rel="stylesheet" href="' . basefolder() . '/assets/css/admin/manajemen-pengguna.css" />
 <link href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css" rel="stylesheet"/>

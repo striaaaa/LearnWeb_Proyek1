@@ -2,7 +2,7 @@
 // require_once __DIR__ . '../../helpers/url.php';
 require_once __DIR__ . '/../controller/courseLearningPathController.php';
 require_once __DIR__ . '/../helpers/imgcolor.php';
-require_once __DIR__ . '/../middleware/guestMiddleware.php';
+
 $page_css  = '<link rel="stylesheet" href="' . basefolder() . '/assets/css/main-user.css">';
 
 ob_start();

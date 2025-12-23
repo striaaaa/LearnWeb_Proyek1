@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../../controller/dashboardController.php';
+require_once __DIR__ . '/../../../middleware/adminCheckMiddleware.php';
 $page_css = '<link rel="stylesheet" href="assets/css/admin/manajemen-penggguna.css" />';
 ob_start();
 ?>
